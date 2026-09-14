@@ -13,7 +13,7 @@ By combining a deterministic Adaptive Filter (NLMS/FDAF) with a lightweight, cau
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 - **Dual-Mic Architecture:** Utilizes a Primary (Voice) and Reference (Noise) microphone array for spatial noise isolation.
 - **Hybrid DSP + AI Pipeline:**
