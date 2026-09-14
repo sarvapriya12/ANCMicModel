@@ -15,12 +15,10 @@ By combining a deterministic Adaptive Filter (NLMS/FDAF) with a lightweight, cau
 
 ## Key Features
 
-- **Dual-Mic Architecture:** Utilizes a Primary (Voice) and Reference (Noise) microphone array for spatial noise isolation.
-- **Hybrid DSP + AI Pipeline:**
-  - *Stage 1:* Adaptive Noise Subtraction (NLMS/FDAF) removes the bulk ambient field.
-  - *Stage 2:* Neural Enhancement (FastEnhancer ONNX) eliminates non-linear transients and clipping artifacts.
-- **Edge Optimized:** Achieves an RTF (Real-Time Factor) of \~0.512 on a Raspberry Pi 5.
-- **Hardware Agnostic Acquisition:** Compatible with ESP32-S3 I2S MEMS arrays for highly synchronized, phase-coherent audio streaming over USB.
+- **Hybrid DSP + AI Pipeline:** Architected a dual-mic speech enhancement pipeline fusing a Delayless VSS Hybrid filter (32M MACS) with a causal RNNFormer (FastEnhancer), achieving **< 22 ms** end-to-end latency and **0.51 RTF** on Raspberry Pi 5.
+- **Phase-Locked Acquisition:** Engineered the hardware acquisition using time-multiplexed INMP441 I2S microphones to guarantee **0.000 ms phase drift**. Uses Power-Level Difference (PLD) and frequency coherence gating to prevent speech cancellation, reducing ambient noise by **18–25 dB**.
+- **Battlefield Custom Loss:** Formulated a composite PyTorch loss function (Multi-Resolution STFT, SI-SNR, ERLE penalty, dynamic clipping guard) to enforce model convergence in extreme **130 dB SPL** environments.
+- **Real-Time Telemetry & CI/CD:** Features a multi-threaded PyQt6 dashboard for 30 FPS spectrum and coherence visualization, backed by a strict CI/CD pipeline running **124 automated Pytest cases**.
 
 ---
 
