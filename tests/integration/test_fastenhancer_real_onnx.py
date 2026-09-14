@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import numpy as np
+import pytest
 
 from highspl.models.fastenhancer import (
     FastEnhancerAdapter,
@@ -12,6 +13,11 @@ ROOT = Path(__file__).resolve().parents[2]
 CHECKPOINT = ROOT / "models" / "fastenhancer" / "b" / "00500.pth"
 
 ONNX_MODEL = ROOT / "models" / "fastenhancer" / "b" / "fastenhancer_b_streaming.onnx"
+
+pytestmark = pytest.mark.skipif(
+    not CHECKPOINT.is_file() or not ONNX_MODEL.is_file(),
+    reason="FastEnhancer model weights not available (large files excluded from CI)",
+)
 
 
 def make_adapter() -> FastEnhancerAdapter:

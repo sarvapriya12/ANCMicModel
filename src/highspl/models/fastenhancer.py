@@ -22,18 +22,18 @@ class FastEnhancerConfig:
 
     def __post_init__(self) -> None:
         if self.backend not in {"pytorch", "onnxruntime", "tensorrt"}:
-            raise TypeError("backend must be one of: pytorch, onnxruntime, tensorrt")
+            raise ValueError("backend must be one of: pytorch, onnxruntime, tensorrt")
 
         if not self.model_kwargs:
             raise TypeError("model_kwargs must not be empty")
 
         sample_rate = self.model_kwargs.get("sample_rate", 48_000)
         if sample_rate != 48_000:
-            raise TypeError("FastEnhancer adapter requires 48 kHz")
+            raise ValueError("FastEnhancer adapter requires 48 kHz")
 
         hop_size = self.model_kwargs.get("hop_size")
         if hop_size is None or hop_size <= 0:
-            raise TypeError("model_kwargs must contain a positive hop_size")
+            raise ValueError("model_kwargs must contain a positive hop_size")
 
         if (
             self.checkpoint_path is not None
@@ -228,7 +228,7 @@ class FastEnhancerAdapter(StreamingEnhancer):
         """Buffer arbitrary input chunks and process complete model hops."""
 
         if sample_rate != self.sample_rate_in:
-            raise TypeError(
+            raise ValueError(
                 f"FastEnhancer expects {self.sample_rate_in} Hz, got {sample_rate} Hz"
             )
 
@@ -236,10 +236,10 @@ class FastEnhancerAdapter(StreamingEnhancer):
             raise TypeError("audio must be a numpy.ndarray")
 
         if audio.ndim != 1:
-            raise TypeError("FastEnhancer currently expects mono 1-D audio")
+            raise ValueError("FastEnhancer currently expects mono 1-D audio")
 
         if not np.all(np.isfinite(audio)):
-            raise TypeError("audio contains non-finite values")
+            raise ValueError("audio contains non-finite values")
 
         audio = np.asarray(audio, dtype=np.float32)
 

@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import numpy as np
+import pytest
 
 from highspl.models.fastenhancer import (
     FastEnhancerAdapter,
@@ -10,6 +11,11 @@ from highspl.models.fastenhancer import (
 ROOT = Path(__file__).resolve().parents[2]
 
 CHECKPOINT = ROOT / "models" / "fastenhancer" / "b" / "00500.pth"
+
+pytestmark = pytest.mark.skipif(
+    not CHECKPOINT.is_file(),
+    reason="FastEnhancer checkpoint not available (large model weights excluded from CI)",
+)
 
 
 def make_adapter() -> FastEnhancerAdapter:
