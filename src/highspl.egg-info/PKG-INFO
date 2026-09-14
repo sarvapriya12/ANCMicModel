@@ -1,0 +1,24 @@
+Metadata-Version: 2.4
+Name: highspl
+Version: 0.1.0
+Summary: High SPL adaptive noise cancellation and speech enhancement system
+Requires-Python: <3.12,>=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: hydra-core>=1.3.5
+Requires-Dist: librosa>=0.11.0
+Requires-Dist: numpy>=2.4.6
+Requires-Dist: omegaconf>=2.3.1
+Requires-Dist: onnx>=1.22.0
+Requires-Dist: onnxruntime>=1.29.0
+Requires-Dist: onnxscript>=0.7.1
+Requires-Dist: onnxsim>=0.7.3
+Requires-Dist: pesq>=0.0.4
+Requires-Dist: psutil>=7.2.2
+Requires-Dist: pyroomacoustics>=0.10.1
+Requires-Dist: pystoi>=0.4.1
+Requires-Dist: scipy>=1.17.1
+Requires-Dist: sounddevice>=0.5.6
+Requires-Dist: soundfile>=0.14.0
+Requires-Dist: soxr>=1.1.0
+Requires-Dist: torch==2.11.0
+Requires-Dist: torchaudio==2.11.0

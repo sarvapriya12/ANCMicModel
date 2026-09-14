@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+
+# Virtual environment
+.venv/
+
+# Training
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# Data
+data/raw/
+data/generated/
+
+# Generated artifacts
+artifacts/
+
+# Deployment
+*.onnx
+*.engine
+*.trt
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python tooling
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# ESP32 / Firmware Build Artifacts
+esp32_firmware/build/
+build/
+*.bin
+*.elf
+*.map
+*.uf2
+sdkconfig.old
+dependencies.lock
+.pio/
+managed_components/
+
+# Large artifacts and logs
+output_sample/
+**/*.tfevents.*

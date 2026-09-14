@@ -1,0 +1,48 @@
+project:
+  name: high-spl-se
+  seed: 1337
+  version: 0.1.0
+
+signal:
+  capture_rate_hz: 32000
+  target_band_hz: 15000
+  channels_in: 2
+  channels_out: 1
+  dtype: float32
+
+nlms:
+  enabled: true
+  filter_length: 256
+  step_size: 0.25
+  leakage: 1.0e-5
+  freeze_ratio_db: 12.0
+  min_reference_power: 1.0e-8
+
+model:
+  family: dpdfnet
+  variant: dpdfnet2_48khz_hr
+  checkpoint: checkpoints/manifested/model.pth
+  attn_limit_db: 12.0
+  internal_rate_hz: 48000
+
+runtime:
+  chunk_ms: 10
+  num_threads: 4
+  device: cpu
+  backend: pytorch
+
+training:
+  segment_seconds: 4.0
+  batch_size: 8
+  epochs: 50
+  learning_rate: 1.0e-5
+  weight_decay: 1.0e-4
+  grad_clip_norm: 5.0
+  mixed_precision: true
+
+metrics:
+  use_pesq: true
+  use_stoi: true
+  use_si_sdr: true
+  use_dnsmos: true
+  use_wer: true
