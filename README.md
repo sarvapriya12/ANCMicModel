@@ -1,4 +1,5 @@
-<img src="docs/army-soldiers.jpg" alt="Dhwani-Kavach Tactical Microphone" width="258" /># Dhwani-Kavach
+<img src="docs/army-soldiers.jpg" alt="Dhwani-Kavach Tactical Microphone" width="258" />
+# Dhwani-Kavach
 
 **High-SPL Dual-Microphone Speech Enhancement System**
 
