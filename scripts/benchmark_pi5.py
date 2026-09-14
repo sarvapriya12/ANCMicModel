@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Raspberry Pi 5 Performance & Real-Time Benchmark
 Measures DSP and FastEnhancer ONNX streaming latency, RTF, and jitter.
