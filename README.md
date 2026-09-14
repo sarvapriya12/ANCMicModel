@@ -3,7 +3,7 @@
 ## Dhwani-Kavach
 **High-SPL Dual-Microphone Speech Enhancement System**
 
-![Python Version](https://img.shields.io/badge/python-3.11%2B-blue)![Hardware Target](https://img.shields.io/badge/hardware-Raspberry_Pi_5_%7C_ESP32--S3-orange)![Status](https://img.shields.io/badge/status-active-success)![License](https://img.shields.io/badge/license-MIT-green)\---
+![Python Version](https://img.shields.io/badge/python-3.11%2B-blue)![Hardware Target](https://img.shields.io/badge/hardware-Raspberry_Pi_5_%7C_ESP32--S3-orange)![Status](https://img.shields.io/badge/status-active-success)![License](https://img.shields.io/badge/license-MIT-green)
 
 ## Overview
 
