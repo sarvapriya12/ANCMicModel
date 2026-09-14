@@ -1,5 +1,5 @@
-﻿from pathlib import Path
-import sys
+﻿import sys
+from pathlib import Path
 
 import torch
 from omegaconf import OmegaConf

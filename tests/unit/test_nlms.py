@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from highspl.dsp.nlms import NLMSState, RobustNLMS, NLMS, VSSNLMS, VSSNLMSState
+from highspl.dsp.nlms import NLMS, VSSNLMS, NLMSState, RobustNLMS, VSSNLMSState
 
 
 def test_reset_creates_correct_state():

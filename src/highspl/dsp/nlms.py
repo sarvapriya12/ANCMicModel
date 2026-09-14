@@ -1,5 +1,7 @@
 from dataclasses import dataclass
+
 import numpy as np
+
 
 @dataclass
 class NLMSState:
@@ -75,7 +77,7 @@ class RobustNLMS:
 
             oldest_val = float(extended_x[i])
             hist_norm = hist_norm + inst_energy - (oldest_val ** 2)
-            if hist_norm < self.eps: hist_norm = self.eps
+            hist_norm = max(hist_norm, self.eps)
             if freeze_remaining > 0: freeze_remaining -= 1; continue
             if block_frozen: continue
 
@@ -156,8 +158,7 @@ class NLMS:
 
             oldest_val = float(extended_x[i])
             hist_norm = hist_norm + inst_energy - (oldest_val ** 2)
-            if hist_norm < self.eps:
-                hist_norm = self.eps
+            hist_norm = max(hist_norm, self.eps)
 
             if self.leakage > 0.0:
                 w *= 1.0 - self.mu * self.leakage
@@ -231,13 +232,13 @@ class VSSNLMS:
             # Update history norm
             oldest_val = float(extended_x[i])
             hist_norm = hist_norm + inst_energy - (oldest_val ** 2)
-            if hist_norm < self.eps: hist_norm = self.eps
+            hist_norm = max(hist_norm, self.eps)
 
             # Update Variable Step-Size (mu)
             error_power = error ** 2
             mu = self.alpha * mu + self.gamma * error_power
-            if mu > self.mu_max: mu = self.mu_max
-            if mu < self.mu_min: mu = self.mu_min
+            mu = min(mu, self.mu_max)
+            mu = max(mu, self.mu_min)
 
             # Update weights
             w += (mu * error / hist_norm) * hist

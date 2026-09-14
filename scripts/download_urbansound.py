@@ -1,8 +1,9 @@
-import soundata
-from pathlib import Path
-import shutil
 import random
-import os
+import shutil
+from pathlib import Path
+
+import soundata
+
 
 def main():
     print("Initializing UrbanSound8K dataset via soundata...")

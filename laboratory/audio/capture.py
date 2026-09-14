@@ -1,10 +1,12 @@
-import sounddevice as sd
-import numpy as np
 import collections
-import time
 import json
-import soundfile as sf
 import os
+import time
+
+import numpy as np
+import sounddevice as sd
+import soundfile as sf
+
 
 class AudioCapture:
     def __init__(self, mic_a_id, mic_b_id, output_id, blocksize=512, sr=48000):
@@ -74,7 +76,7 @@ class AudioCapture:
             if dev[key] < 1:
                 return False, f"Device [{dev_id}] '{dev['name']}' has no {direction} channels"
             return True, f"Device [{dev_id}] '{dev['name']}' OK"
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             return False, f"Device query failed: {e}"
 
     def start(self):
@@ -201,5 +203,5 @@ class AudioCapture:
                 json.dump(self.rec_metrics, f, indent=2)
                 
             print(f"[SAVE] Session saved to {self.record_path} (mic_a.wav, mic_b.wav, enhanced.wav, metrics.json)")
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             print(f"[SAVE ERROR] {e}")

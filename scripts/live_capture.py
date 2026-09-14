@@ -1,12 +1,14 @@
+import os
 import time
 from pathlib import Path
+
 import numpy as np
+import psutil
 import sounddevice as sd
 import soundfile as sf
-import psutil
-import os
 
 from highspl.models.fastenhancer import FastEnhancerAdapter, FastEnhancerConfig
+
 
 def main():
     duration = 40  # seconds
@@ -108,8 +110,7 @@ def main():
         offset += chunk_size
         
         current_mem = process.memory_info().rss / (1024 * 1024)
-        if current_mem > peak_mem:
-            peak_mem = current_mem
+        peak_mem = max(peak_mem, current_mem)
             
     flushed, state = adapter.flush(state)
     if flushed.size:
@@ -118,7 +119,7 @@ def main():
     compute_time = time.time() - start_time
     clean_audio = np.concatenate(outputs)
     rtf = compute_time / duration
-    print(f"✅ Processing complete!")
+    print("✅ Processing complete!")
     print(f"   Compute time : {compute_time:.2f}s")
     print(f"   RTF          : {rtf:.3f}")
     print(f"   RAM Usage    : Peak {peak_mem:.2f} MB (Started at {mem_before:.2f} MB)")

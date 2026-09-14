@@ -1,12 +1,14 @@
-import time
-import numpy as np
-import sys
 import os
+import sys
+import time
+
+import numpy as np
 
 sys.path.append(os.path.abspath("D:/SIH/ANCMicModel/src"))
-from highspl.dsp.nlms import RobustNLMS, VSSNLMS, NLMS
 from highspl.dsp.fdaf import BattlefieldFDAF
-from highspl.models.fastenhancer import FastEnhancerConfig, FastEnhancerAdapter
+from highspl.dsp.nlms import NLMS, VSSNLMS, RobustNLMS
+from highspl.models.fastenhancer import FastEnhancerAdapter, FastEnhancerConfig
+
 
 class HighSPLPipeline:
     def __init__(self):
@@ -72,7 +74,7 @@ class HighSPLPipeline:
         t3 = time.perf_counter()
         
         out_energy = np.sum(enhanced_audio**2)
-        if out_energy < eps: out_energy = eps
+        out_energy = max(out_energy, eps)
         nr_db = 10 * np.log10(out_energy / (p_energy + eps))
         
         dsp_latency = (t2 - t1) * 1000

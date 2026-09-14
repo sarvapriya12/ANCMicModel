@@ -1,13 +1,13 @@
-import importlib
-from typing import Any, Dict
+from typing import Any
 
 from highspl.models.base import StreamingEnhancer
 from highspl.models.fastenhancer import FastEnhancerAdapter, FastEnhancerConfig
 
+
 def register_models(registry: Any) -> None:
     """Register FastEnhancer models with the model registry."""
     
-    def create_fastenhancer_base(kwargs: Dict[str, Any]) -> StreamingEnhancer:
+    def create_fastenhancer_base(kwargs: dict[str, Any]) -> StreamingEnhancer:
         # Default kwargs based on the integration test
         model_kwargs = {
             "channels": 48,

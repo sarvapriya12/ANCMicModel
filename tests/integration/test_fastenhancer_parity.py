@@ -1,5 +1,7 @@
 ﻿from pathlib import Path
+
 import numpy as np
+
 from highspl.models.fastenhancer import FastEnhancerAdapter, FastEnhancerConfig
 
 ROOT = Path(__file__).resolve().parents[2]

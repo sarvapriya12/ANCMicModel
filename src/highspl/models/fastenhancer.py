@@ -1,8 +1,8 @@
+import importlib
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
-import importlib
-import sys
 
 import numpy as np
 
@@ -22,20 +22,20 @@ class FastEnhancerConfig:
 
     def __post_init__(self) -> None:
         if self.backend not in {"pytorch", "onnxruntime", "tensorrt"}:
-            raise ValueError(
+            raise TypeError(
                 "backend must be one of: pytorch, onnxruntime, tensorrt"
             )
 
         if not self.model_kwargs:
-            raise ValueError("model_kwargs must not be empty")
+            raise TypeError("model_kwargs must not be empty")
 
         sample_rate = self.model_kwargs.get("sample_rate", 48_000)
         if sample_rate != 48_000:
-            raise ValueError("FastEnhancer adapter requires 48 kHz")
+            raise TypeError("FastEnhancer adapter requires 48 kHz")
 
         hop_size = self.model_kwargs.get("hop_size")
         if hop_size is None or hop_size <= 0:
-            raise ValueError(
+            raise TypeError(
                 "model_kwargs must contain a positive hop_size"
             )
 
@@ -125,7 +125,7 @@ class FastEnhancerAdapter(StreamingEnhancer):
         import torch
 
         if self.config.checkpoint_path is None:
-            raise ValueError(
+            raise TypeError(
                 "checkpoint_path is required for the PyTorch backend"
             )
 
@@ -143,7 +143,7 @@ class FastEnhancerAdapter(StreamingEnhancer):
         )
 
         if not isinstance(checkpoint, dict):
-            raise ValueError(
+            raise TypeError(
                 "FastEnhancer checkpoint must contain a dictionary"
             )
 
@@ -174,7 +174,7 @@ class FastEnhancerAdapter(StreamingEnhancer):
         import onnxruntime as ort
 
         if self.config.onnx_path is None:
-            raise ValueError(
+            raise TypeError(
                 "onnx_path is required for the ONNX Runtime backend"
             )
 
@@ -244,7 +244,7 @@ class FastEnhancerAdapter(StreamingEnhancer):
         """Buffer arbitrary input chunks and process complete model hops."""
 
         if sample_rate != self.sample_rate_in:
-            raise ValueError(
+            raise TypeError(
                 f"FastEnhancer expects {self.sample_rate_in} Hz, "
                 f"got {sample_rate} Hz"
             )
@@ -253,12 +253,12 @@ class FastEnhancerAdapter(StreamingEnhancer):
             raise TypeError("audio must be a numpy.ndarray")
 
         if audio.ndim != 1:
-            raise ValueError(
+            raise TypeError(
                 "FastEnhancer currently expects mono 1-D audio"
             )
 
         if not np.all(np.isfinite(audio)):
-            raise ValueError("audio contains non-finite values")
+            raise TypeError("audio contains non-finite values")
 
         audio = np.asarray(audio, dtype=np.float32)
 

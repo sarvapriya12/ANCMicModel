@@ -1,27 +1,27 @@
 """DSP algorithms for High-SPL dual-microphone speech enhancement."""
 
-from highspl.dsp.nlms import (
-    NLMS,
-    NLMSState,
-    RobustNLMS,
-    VSSNLMS,
-    VSSNLMSState,
-)
 from highspl.dsp.fdaf import (
     FDAF,
     BattlefieldFDAF,
-    ReferenceNoiseFDAF,
     FDAFState,
+    ReferenceNoiseFDAF,
+)
+from highspl.dsp.nlms import (
+    NLMS,
+    VSSNLMS,
+    NLMSState,
+    RobustNLMS,
+    VSSNLMSState,
 )
 
 __all__ = [
-    "NLMS",
-    "NLMSState",
-    "RobustNLMS",
-    "VSSNLMS",
-    "VSSNLMSState",
     "FDAF",
+    "NLMS",
+    "VSSNLMS",
     "BattlefieldFDAF",
-    "ReferenceNoiseFDAF",
     "FDAFState",
+    "NLMSState",
+    "ReferenceNoiseFDAF",
+    "RobustNLMS",
+    "VSSNLMSState",
 ]

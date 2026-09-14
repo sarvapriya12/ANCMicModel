@@ -1,12 +1,10 @@
 from __future__ import annotations
 
-from typing import Optional, Tuple, Union
-
 import numpy as np
 from scipy import signal as sp_signal
 
 
-def _to_numpy(x: Union[np.ndarray, list, tuple, object]) -> np.ndarray:
+def _to_numpy(x: np.ndarray | list | tuple | object) -> np.ndarray:
     """Convert tensor, list, or array-like to 1-D float64 numpy array."""
     if hasattr(x, "detach"):
         x = x.detach().cpu().numpy()
@@ -15,12 +13,12 @@ def _to_numpy(x: Union[np.ndarray, list, tuple, object]) -> np.ndarray:
 
 
 def calculate_erle(
-    reference: Union[np.ndarray, list, object],
-    residual: Union[np.ndarray, list, object],
+    reference: np.ndarray | list | object,
+    residual: np.ndarray | list | object,
     sample_rate: int = 16000,
     window_sec: float = 0.05,
     step_sec: float = 0.025,
-) -> Tuple[np.ndarray, np.ndarray]:
+) -> tuple[np.ndarray, np.ndarray]:
     """
     Calculate Echo Return Loss Enhancement (ERLE) over a rolling window.
 
@@ -78,8 +76,8 @@ def calculate_erle(
 
 
 def calculate_convergence_time(
-    times: Union[np.ndarray, list],
-    erle_db: Union[np.ndarray, list],
+    times: np.ndarray | list,
+    erle_db: np.ndarray | list,
     threshold_db: float = 10.0,
     default: float = -1.0,
 ) -> float:
@@ -112,8 +110,8 @@ def calculate_convergence_time(
 
 
 def calculate_post_double_talk_erle(
-    times: Union[np.ndarray, list],
-    erle_db: Union[np.ndarray, list],
+    times: np.ndarray | list,
+    erle_db: np.ndarray | list,
     start_time: float,
     end_time: float,
 ) -> float:
@@ -147,8 +145,8 @@ def calculate_post_double_talk_erle(
 
 
 def calculate_si_sdr(
-    reference: Union[np.ndarray, list, object],
-    estimate: Union[np.ndarray, list, object],
+    reference: np.ndarray | list | object,
+    estimate: np.ndarray | list | object,
     eps: float = 1e-10,
 ) -> float:
     """
@@ -196,8 +194,8 @@ def calculate_si_sdr(
 
 
 def calculate_snr(
-    reference: Union[np.ndarray, list, object],
-    estimate: Union[np.ndarray, list, object],
+    reference: np.ndarray | list | object,
+    estimate: np.ndarray | list | object,
     eps: float = 1e-10,
 ) -> float:
     """
@@ -237,8 +235,8 @@ def calculate_snr(
 
 
 def calculate_coherence(
-    primary: Union[np.ndarray, list, object],
-    reference: Union[np.ndarray, list, object],
+    primary: np.ndarray | list | object,
+    reference: np.ndarray | list | object,
     nperseg: int = 256,
     fs: int = 16000,
 ) -> float:

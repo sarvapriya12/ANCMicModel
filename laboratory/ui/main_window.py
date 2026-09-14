@@ -1,24 +1,41 @@
-import sys
-import os
-import threading
 import collections
+import os
+import sys
+import threading
+
+import numpy as np
 import sounddevice as sd
 import soundfile as sf
-import numpy as np
-
-from PyQt6.QtWidgets import (
-    QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, 
-    QGridLayout, QLabel, QPushButton, QComboBox, QProgressBar, 
-    QGroupBox, QCheckBox, QSplitter, QFileDialog, QMessageBox
-)
 from PyQt6.QtCore import Qt, QTimer
-import pyqtgraph as pg
+from PyQt6.QtWidgets import (
+    QApplication,
+    QCheckBox,
+    QComboBox,
+    QFileDialog,
+    QGridLayout,
+    QGroupBox,
+    QHBoxLayout,
+    QLabel,
+    QMainWindow,
+    QMessageBox,
+    QProgressBar,
+    QPushButton,
+    QSplitter,
+    QVBoxLayout,
+    QWidget,
+)
 
 # Local imports
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from audio.capture import AudioCapture
 from dsp.pipeline import HighSPLPipeline
-from visualization.plots import DualWaveformPlot, SpectrumPlot, CoherencePlot, LatencyBarChart
+from visualization.plots import (
+    CoherencePlot,
+    DualWaveformPlot,
+    LatencyBarChart,
+    SpectrumPlot,
+)
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -297,7 +314,7 @@ class MainWindow(QMainWindow):
         QApplication.processEvents()
         
         try:
-            recording = sd.rec(int(48000 * 2), samplerate=48000, channels=1, device=dev_id)
+            recording = sd.rec((48000 * 2), samplerate=48000, channels=1, device=dev_id)
             sd.wait()
             msg.accept()
             
@@ -313,9 +330,9 @@ class MainWindow(QMainWindow):
                 f"Clipping: {clipping}\n"
                 f"Noise Floor: {20*np.log10(np.min(np.abs(recording[recording != 0])) + 1e-10):.1f} dB"
             )
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             msg.accept()
-            QMessageBox.critical(self, "Error", f"Failed to test microphone:\n{str(e)}")
+            QMessageBox.critical(self, "Error", f"Failed to test microphone:\n{e!s}")
 
     def test_output_audio(self):
         path = "D:/SIH/ANCMicModel/output_sample/live_noisy_clean.wav"
@@ -326,8 +343,8 @@ class MainWindow(QMainWindow):
         try:
             data, fs = sf.read(path)
             sd.play(data, fs, device=out_id)
-        except Exception as e:
-            QMessageBox.critical(self, "Error", f"Failed to play:\n{str(e)}")
+        except Exception as e:  # noqa: BLE001
+            QMessageBox.critical(self, "Error", f"Failed to play:\n{e!s}")
 
     def on_noise_changed(self, text):
         sd.stop()
@@ -338,8 +355,8 @@ class MainWindow(QMainWindow):
                     data, fs = sf.read(path)
                     sd.play(data, fs, loop=True)
                     self.cb_noise.setItemText(1, f"Playing: {os.path.basename(path)}")
-                except Exception as e:
-                    QMessageBox.critical(self, "Error", f"Failed to load:\n{str(e)}")
+                except Exception as e:  # noqa: BLE001
+                    QMessageBox.critical(self, "Error", f"Failed to load:\n{e!s}")
                     self.cb_noise.setCurrentIndex(0)
             else:
                 self.cb_noise.setCurrentIndex(0)
@@ -397,7 +414,7 @@ class MainWindow(QMainWindow):
                 )
                 self.audio_capture = None
                 return
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 QMessageBox.critical(
                     self, "Audio Error",
                     f"Unexpected error starting audio:\n\n{e}"

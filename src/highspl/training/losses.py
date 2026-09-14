@@ -1,11 +1,10 @@
 from __future__ import annotations
 
-import math
-from typing import Dict, List, Optional, Sequence, Tuple, Union
+from collections.abc import Sequence
 
 import torch
-import torch.nn as nn
 import torch.nn.functional as F
+from torch import nn
 
 
 def _align_shape(tensor: torch.Tensor) -> torch.Tensor:
@@ -68,7 +67,7 @@ class SingleResolutionSTFTLoss(nn.Module):
 
     def forward(
         self, estimate: torch.Tensor, target: torch.Tensor
-    ) -> Tuple[torch.Tensor, torch.Tensor]:
+    ) -> tuple[torch.Tensor, torch.Tensor]:
         estimate_2d = _align_shape(estimate)
         target_2d = _align_shape(target)
 
@@ -237,8 +236,8 @@ class ERLELoss(nn.Module):
         self,
         residual: torch.Tensor,
         reference: torch.Tensor,
-        speech_target: Optional[torch.Tensor] = None,
-        speech_mask: Optional[torch.Tensor] = None,
+        speech_target: torch.Tensor | None = None,
+        speech_mask: torch.Tensor | None = None,
     ) -> torch.Tensor:
         res = _align_shape(residual)
         ref = _align_shape(reference)
@@ -360,16 +359,16 @@ class BattlefieldHighSPLLoss(nn.Module):
         self.erle_loss = ERLELoss(mode=erle_mode, eps=eps)
         self.clipping_loss = ClippingPenaltyLoss(threshold=clipping_threshold)
 
-        self.last_components: Dict[str, torch.Tensor] = {}
+        self.last_components: dict[str, torch.Tensor] = {}
 
     def forward(
         self,
         estimate: torch.Tensor,
         target: torch.Tensor,
-        reference: Optional[torch.Tensor] = None,
-        speech_mask: Optional[torch.Tensor] = None,
+        reference: torch.Tensor | None = None,
+        speech_mask: torch.Tensor | None = None,
         return_components: bool = False,
-    ) -> Union[torch.Tensor, Tuple[torch.Tensor, Dict[str, torch.Tensor]]]:
+    ) -> torch.Tensor | tuple[torch.Tensor, dict[str, torch.Tensor]]:
         """
         Compute composite battlefield loss.
 

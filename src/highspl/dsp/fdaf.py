@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Tuple, Optional
+
 import numpy as np
 
 
@@ -35,7 +35,7 @@ class BattlefieldFDAF:
         self,
         block_size: int = 128,
         num_partitions: int = 4,
-        filter_length: Optional[int] = None,
+        filter_length: int | None = None,
         step_size: float = 0.05,
         alpha: float = 0.95,
         leakage: float = 0.0,
@@ -81,7 +81,7 @@ class BattlefieldFDAF:
         d_block: np.ndarray,
         x_block: np.ndarray,
         state: FDAFState,
-    ) -> Tuple[np.ndarray, FDAFState]:
+    ) -> tuple[np.ndarray, FDAFState]:
         """Process exactly one block of length block_size."""
         B = self.block_size
         N = self.fft_size
@@ -166,7 +166,7 @@ class BattlefieldFDAF:
         primary: np.ndarray,
         reference: np.ndarray,
         state: FDAFState,
-    ) -> Tuple[np.ndarray, FDAFState]:
+    ) -> tuple[np.ndarray, FDAFState]:
         """Filter a stream of primary and reference microphone samples."""
         d = np.asarray(primary, dtype=np.float32)
         x = np.asarray(reference, dtype=np.float32)

@@ -7,14 +7,15 @@ Measures DSP and FastEnhancer ONNX streaming latency, RTF, and jitter.
 import sys
 import time
 from pathlib import Path
+
 import numpy as np
 
 # Add src to path
 ROOT_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT_DIR / "src"))
 
-from highspl.dsp.nlms import RobustNLMS, VSSNLMS, NLMS
 from highspl.dsp.fdaf import BattlefieldFDAF
+from highspl.dsp.nlms import NLMS, VSSNLMS, RobustNLMS
 from highspl.models.fastenhancer import FastEnhancerAdapter, FastEnhancerConfig
 
 
@@ -92,7 +93,7 @@ def benchmark_stream(
         t1 = time.perf_counter()
 
         # Stage 2: AI
-        out_chunk, ai_state = model.process(filtered_prim, sample_rate=sample_rate, state=ai_state)
+        _out_chunk, ai_state = model.process(filtered_prim, sample_rate=sample_rate, state=ai_state)
         t2 = time.perf_counter()
 
         # Only record after warmup
@@ -112,7 +113,7 @@ def benchmark_stream(
     mean_total = np.mean(tot_arr)
     rtf = mean_total / frame_duration_ms
     p95_total = np.percentile(tot_arr, 95)
-    p99_total = np.percentile(tot_arr, 99)
+    _p99_total = np.percentile(tot_arr, 99)
 
     print("\n" + "-" * 68)
     print("                      RESULTS BREAKDOWN")

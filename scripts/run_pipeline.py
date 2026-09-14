@@ -1,10 +1,12 @@
 import argparse
 import time
 from pathlib import Path
+
 import numpy as np
 import soundfile as sf
 
 from highspl.models.fastenhancer import FastEnhancerAdapter, FastEnhancerConfig
+
 
 def main():
     parser = argparse.ArgumentParser(description="End-to-End Pipeline for Audio Enhancement")
@@ -80,8 +82,8 @@ def main():
             if ref_path:
                 ref_audio, ref_sr = sf.read(str(ref_path))
                 if sr != ref_sr:
-                    print(f"  Warning: Sample rate mismatch between primary and reference!")
-        except Exception as e:
+                    print("  Warning: Sample rate mismatch between primary and reference!")
+        except Exception as e:  # noqa: BLE001
             print(f"  Failed to read audio: {e}")
             return
             

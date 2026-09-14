@@ -1,4 +1,3 @@
-import pytest
 import torch
 
 from highspl.training.losses import (
@@ -144,7 +143,7 @@ def test_erle_loss_with_speech_mask():
     erle_loss = ERLELoss(mode="ratio")
 
     reference = torch.ones(1, 1000)
-    residual = torch.ones(1, 1000)
+    _residual = torch.ones(1, 1000)
 
     # Speech mask: speech is present in first 500 samples, absent in next 500
     speech_mask = torch.zeros(1, 1000)

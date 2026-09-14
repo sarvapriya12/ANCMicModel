@@ -1,5 +1,6 @@
-import pyqtgraph as pg
 import numpy as np
+import pyqtgraph as pg
+
 
 class WaveformPlot(pg.PlotWidget):
     def __init__(self, title="Waveform"):

@@ -7,7 +7,6 @@ from highspl.models.fastenhancer import (
     FastEnhancerConfig,
 )
 
-
 ROOT = Path(__file__).resolve().parents[2]
 
 CHECKPOINT = (
@@ -198,14 +197,14 @@ def test_real_model_input_is_not_modified():
 
     np.testing.assert_array_equal(audio, original)
 def test_real_model_long_stream_is_stable():
+    from pathlib import Path
+
     import numpy as np
 
     from highspl.models.fastenhancer import (
         FastEnhancerAdapter,
         FastEnhancerConfig,
     )
-
-    from pathlib import Path
 
     root = Path(__file__).resolve().parents[2]
     checkpoint = (

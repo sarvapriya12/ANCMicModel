@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from highspl.dsp.fdaf import FDAF, BattlefieldFDAF, ReferenceNoiseFDAF, FDAFState
+from highspl.dsp.fdaf import FDAF, BattlefieldFDAF, FDAFState, ReferenceNoiseFDAF
 
 
 def test_reset_creates_correct_state():

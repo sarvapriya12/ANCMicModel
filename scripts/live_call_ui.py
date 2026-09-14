@@ -1,11 +1,12 @@
 import os
-import sys
 import queue
+import sys
 import threading
+
+import customtkinter as ctk
 import numpy as np
 import sounddevice as sd
 import soxr
-import customtkinter as ctk
 
 sys.path.append(os.path.abspath("D:/SIH/ANCMicModel/src"))
 from highspl.dsp.nlms import RobustNLMS
@@ -84,7 +85,7 @@ class AudioStreamer:
                 self.stream_b.start()
                 
             return True, "Streaming Active"
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             self.running = False
             return False, str(e)
 
@@ -157,7 +158,7 @@ class AudioStreamer:
 
             except queue.Empty:
                 continue
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 print(f"Processing Error: {e}")
                 break
 
