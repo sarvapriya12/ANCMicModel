@@ -15,18 +15,18 @@ class AudioCapture:
         self.output_id = output_id
         self.blocksize = blocksize
         self.sr = sr
-        
+
         self.running = False
         self.buffer_size = 20
         self.queue_a = collections.deque(maxlen=self.buffer_size)
         self.queue_b = collections.deque(maxlen=self.buffer_size)
         self.out_queue = collections.deque(maxlen=self.buffer_size)
-        
+
         self.stream_a = None
         self.stream_b = None
         self.stream_out = None
-        self.shared_stereo = (mic_a_id == mic_b_id)
-        
+        self.shared_stereo = mic_a_id == mic_b_id
+
         self.recording = False
         self.record_path = "D:/SIH/ANCMicModel/laboratory"
         self.rec_a = []
@@ -35,23 +35,31 @@ class AudioCapture:
         self.rec_metrics = []
 
     def _stereo_cb(self, indata, frames, time_info, status):
-        if status: print(f"[Audio Error] {status}")
+        if status:
+            print(f"[Audio Error] {status}")
         if self.running:
             self.queue_a.append(indata[:, 0].copy())
-            self.queue_b.append(indata[:, 1].copy() if indata.shape[1] > 1 else np.zeros_like(indata[:, 0]))
+            self.queue_b.append(
+                indata[:, 1].copy()
+                if indata.shape[1] > 1
+                else np.zeros_like(indata[:, 0])
+            )
 
     def _mono_cb_a(self, indata, frames, time_info, status):
-        if status: print(f"[Audio Error A] {status}")
+        if status:
+            print(f"[Audio Error A] {status}")
         if self.running:
             self.queue_a.append(indata[:, 0].copy())
 
     def _mono_cb_b(self, indata, frames, time_info, status):
-        if status: print(f"[Audio Error B] {status}")
+        if status:
+            print(f"[Audio Error B] {status}")
         if self.running:
             self.queue_b.append(indata[:, 0].copy())
 
     def _out_cb(self, outdata, frames, time_info, status):
-        if status: print(f"[Audio Error Out] {status}")
+        if status:
+            print(f"[Audio Error Out] {status}")
         if self.running:
             try:
                 data = self.out_queue.popleft()
@@ -70,11 +78,19 @@ class AudioCapture:
             if dev_id is None:
                 return False, "No device selected (ID is None)"
             if dev_id < 0 or dev_id >= len(devs):
-                return False, f"Device ID {dev_id} is out of range (system has {len(devs)} devices)"
+                return (
+                    False,
+                    f"Device ID {dev_id} is out of range (system has {len(devs)} devices)",
+                )
             dev = devs[dev_id]
-            key = "max_input_channels" if direction == "input" else "max_output_channels"
+            key = (
+                "max_input_channels" if direction == "input" else "max_output_channels"
+            )
             if dev[key] < 1:
-                return False, f"Device [{dev_id}] '{dev['name']}' has no {direction} channels"
+                return (
+                    False,
+                    f"Device [{dev_id}] '{dev['name']}' has no {direction} channels",
+                )
             return True, f"Device [{dev_id}] '{dev['name']}' OK"
         except Exception as e:  # noqa: BLE001
             return False, f"Device query failed: {e}"
@@ -113,35 +129,47 @@ class AudioCapture:
                 dev_info = sd.query_devices(self.mic_a_id)
                 channels = min(2, dev_info["max_input_channels"])
                 self.stream_a = sd.InputStream(
-                    device=self.mic_a_id, channels=channels,
-                    samplerate=self.sr, blocksize=self.blocksize,
+                    device=self.mic_a_id,
+                    channels=channels,
+                    samplerate=self.sr,
+                    blocksize=self.blocksize,
                     callback=self._stereo_cb if channels >= 2 else self._mono_cb_a,
                 )
                 self.stream_a.start()
                 if channels < 2:
-                    print("[AUDIO WARNING] Shared stereo requested but device only has 1 channel. "
-                          "Mic B will receive zeros (mono fallback).")
+                    print(
+                        "[AUDIO WARNING] Shared stereo requested but device only has 1 channel. "
+                        "Mic B will receive zeros (mono fallback)."
+                    )
             else:
                 self.stream_a = sd.InputStream(
-                    device=self.mic_a_id, channels=1,
-                    samplerate=self.sr, blocksize=self.blocksize,
+                    device=self.mic_a_id,
+                    channels=1,
+                    samplerate=self.sr,
+                    blocksize=self.blocksize,
                     callback=self._mono_cb_a,
                 )
                 self.stream_b = sd.InputStream(
-                    device=self.mic_b_id, channels=1,
-                    samplerate=self.sr, blocksize=self.blocksize,
+                    device=self.mic_b_id,
+                    channels=1,
+                    samplerate=self.sr,
+                    blocksize=self.blocksize,
                     callback=self._mono_cb_b,
                 )
                 self.stream_a.start()
                 self.stream_b.start()
 
             self.stream_out = sd.OutputStream(
-                device=self.output_id, channels=1,
-                samplerate=self.sr, blocksize=self.blocksize,
+                device=self.output_id,
+                channels=1,
+                samplerate=self.sr,
+                blocksize=self.blocksize,
                 callback=self._out_cb,
             )
             self.stream_out.start()
-            print(f"[AUDIO] All streams started successfully (sr={self.sr}, bs={self.blocksize})")
+            print(
+                f"[AUDIO] All streams started successfully (sr={self.sr}, bs={self.blocksize})"
+            )
         except Exception as e:
             print(f"[AUDIO ERROR] Failed to start streams: {e}")
             self.stop()
@@ -149,9 +177,15 @@ class AudioCapture:
 
     def stop(self):
         self.running = False
-        if self.stream_a: self.stream_a.stop(); self.stream_a.close()
-        if self.stream_b: self.stream_b.stop(); self.stream_b.close()
-        if self.stream_out: self.stream_out.stop(); self.stream_out.close()
+        if self.stream_a:
+            self.stream_a.stop()
+            self.stream_a.close()
+        if self.stream_b:
+            self.stream_b.stop()
+            self.stream_b.close()
+        if self.stream_out:
+            self.stream_out.stop()
+            self.stream_out.close()
         if self.recording:
             self.save_session()
 
@@ -166,18 +200,24 @@ class AudioCapture:
                 time.sleep(0.01)
                 retries -= 1
         return None, None
-            
+
     def push_output(self, enhanced_audio, metrics=None):
         self.out_queue.append(enhanced_audio)
         if self.recording and metrics:
             self.rec_enh.append(enhanced_audio.copy())
-            self.rec_a.append(metrics.get("waveform", np.zeros_like(enhanced_audio)).copy())
-            self.rec_b.append(metrics.get("waveform_ref", np.zeros_like(enhanced_audio)).copy())
-            self.rec_metrics.append({
-                "noise_reduction_db": float(metrics.get("noise_reduction_db", 0)),
-                "coherence": float(metrics.get("coherence", 0)),
-                "latency": metrics.get("latency", {})
-            })
+            self.rec_a.append(
+                metrics.get("waveform", np.zeros_like(enhanced_audio)).copy()
+            )
+            self.rec_b.append(
+                metrics.get("waveform_ref", np.zeros_like(enhanced_audio)).copy()
+            )
+            self.rec_metrics.append(
+                {
+                    "noise_reduction_db": float(metrics.get("noise_reduction_db", 0)),
+                    "coherence": float(metrics.get("coherence", 0)),
+                    "latency": metrics.get("latency", {}),
+                }
+            )
 
     def start_recording(self):
         self.recording = True
@@ -185,23 +225,26 @@ class AudioCapture:
         self.rec_b = []
         self.rec_enh = []
         self.rec_metrics = []
-        
+
     def save_session(self):
         self.recording = False
-        if not self.rec_enh: return
-        
+        if not self.rec_enh:
+            return
+
         try:
             a_data = np.concatenate(self.rec_a)
             b_data = np.concatenate(self.rec_b)
             enh_data = np.concatenate(self.rec_enh)
-            
+
             sf.write(os.path.join(self.record_path, "mic_a.wav"), a_data, self.sr)
             sf.write(os.path.join(self.record_path, "mic_b.wav"), b_data, self.sr)
             sf.write(os.path.join(self.record_path, "enhanced.wav"), enh_data, self.sr)
-            
+
             with open(os.path.join(self.record_path, "metrics.json"), "w") as f:
                 json.dump(self.rec_metrics, f, indent=2)
-                
-            print(f"[SAVE] Session saved to {self.record_path} (mic_a.wav, mic_b.wav, enhanced.wav, metrics.json)")
+
+            print(
+                f"[SAVE] Session saved to {self.record_path} (mic_a.wav, mic_b.wav, enhanced.wav, metrics.json)"
+            )
         except Exception as e:  # noqa: BLE001
             print(f"[SAVE ERROR] {e}")

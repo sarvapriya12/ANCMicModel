@@ -45,13 +45,11 @@ class StreamingWrapper(torch.nn.Module):
             cache_in_0,
         )
 
-        spec_out, cache_out_2, cache_out_3, cache_out_4 = (
-            self.model(
-                spec_in,
-                cache_in_2,
-                cache_in_3,
-                cache_in_4,
-            )
+        spec_out, cache_out_2, cache_out_3, cache_out_4 = self.model(
+            spec_in,
+            cache_in_2,
+            cache_in_3,
+            cache_in_4,
         )
 
         wav_out, cache_out_1 = self.model.stft.inverse(
@@ -103,17 +101,12 @@ def main():
     print("Initializing caches...")
     x = torch.zeros(1, 512)
 
-    cache_list = wrapper.initialize_cache(
-        torch.zeros(1)
-    )
+    cache_list = wrapper.initialize_cache(torch.zeros(1))
 
     print("Cache count:", len(cache_list))
 
     for i, cache in enumerate(cache_list):
-        print(
-            f"cache_{i}: shape={tuple(cache.shape)} "
-            f"dtype={cache.dtype}"
-        )
+        print(f"cache_{i}: shape={tuple(cache.shape)} dtype={cache.dtype}")
 
     print("Exporting ONNX...")
     OUTPUT.parent.mkdir(

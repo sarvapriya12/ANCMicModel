@@ -13,36 +13,38 @@ from highspl.models.fastenhancer import FastEnhancerAdapter, FastEnhancerConfig
 def main():
     duration = 40  # seconds
     sr = 48000
-    
+
     print("=" * 50)
     print("🎙️  LIVE MICROPHONE TEST 🎙️")
     print("=" * 50)
-    
+
     print(f"\nRecording {duration} seconds from your default microphone...")
     print("Speak now! (Try making some background noise too)")
-    
-    audio = sd.rec(int(duration * sr), samplerate=sr, channels=1, dtype='float32')
-    
+
+    audio = sd.rec(int(duration * sr), samplerate=sr, channels=1, dtype="float32")
+
     for i in range(duration, 0, -1):
         print(f"  {i}...")
         time.sleep(1)
-        
+
     sd.wait()
     print("\n✅ Recording finished!")
-    
+
     # Save the raw noisy file
     test_dir = Path("test_sample")
     test_dir.mkdir(exist_ok=True)
     raw_path = test_dir / "live_noisy.wav"
     sf.write(str(raw_path), audio, sr)
     print(f"Saved raw audio to: {raw_path}")
-    
+
     # Process it
     print("\n⚙️  Processing through FastEnhancer ONNX...")
     root = Path(__file__).resolve().parents[1]
     checkpoint = root / "models" / "fastenhancer" / "b" / "00500.pth"
-    onnx_model = root / "models" / "fastenhancer" / "b" / "fastenhancer_b_streaming.onnx"
-    
+    onnx_model = (
+        root / "models" / "fastenhancer" / "b" / "fastenhancer_b_streaming.onnx"
+    )
+
     adapter = FastEnhancerAdapter(
         FastEnhancerConfig(
             model_kwargs={
@@ -82,9 +84,9 @@ def main():
             upstream_root=str(root.parent / "fastenhancer"),
         )
     )
-    
+
     flat_audio = audio.reshape(-1)
-    
+
     # Normalize the audio to peak at 0.9 before passing to the model
     # This prevents extreme over-suppression on quiet microphones!
     max_val = np.max(np.abs(flat_audio))
@@ -93,29 +95,29 @@ def main():
 
     state = adapter.reset()
     outputs = []
-    
+
     chunk_size = 512
     offset = 0
     start_time = time.time()
-    
+
     process = psutil.Process(os.getpid())
     mem_before = process.memory_info().rss / (1024 * 1024)
     peak_mem = mem_before
-    
+
     while offset < flat_audio.size:
         chunk = flat_audio[offset : offset + chunk_size]
         output, state = adapter.process(chunk, sr, state)
         if output.size:
             outputs.append(output)
         offset += chunk_size
-        
+
         current_mem = process.memory_info().rss / (1024 * 1024)
         peak_mem = max(peak_mem, current_mem)
-            
+
     flushed, state = adapter.flush(state)
     if flushed.size:
         outputs.append(flushed)
-        
+
     compute_time = time.time() - start_time
     clean_audio = np.concatenate(outputs)
     rtf = compute_time / duration
@@ -123,22 +125,23 @@ def main():
     print(f"   Compute time : {compute_time:.2f}s")
     print(f"   RTF          : {rtf:.3f}")
     print(f"   RAM Usage    : Peak {peak_mem:.2f} MB (Started at {mem_before:.2f} MB)")
-    
+
     out_dir = Path("output_sample")
     out_dir.mkdir(exist_ok=True)
     clean_path = out_dir / "live_clean.wav"
     sf.write(str(clean_path), clean_audio, sr)
     print(f"Saved cleaned audio to: {clean_path}")
-    
+
     print("\n🔊 Playing back the ORIGINAL NOISY recording...")
     sd.play(audio, sr)
     sd.wait()
-    
+
     print("\n✨ Playing back the CLEANED recording...")
     sd.play(clean_audio, sr)
     sd.wait()
-    
+
     print("\nDone! Check test_sample/ and output_sample/ to listen again.")
+
 
 if __name__ == "__main__":
     main()

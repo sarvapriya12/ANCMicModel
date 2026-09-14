@@ -74,7 +74,9 @@ def test_calculate_convergence_time_not_reached():
     assert t_conv == -1.0
 
     # Custom default
-    t_conv_none = calculate_convergence_time(times, erle_db, threshold_db=10.0, default=-999.0)
+    t_conv_none = calculate_convergence_time(
+        times, erle_db, threshold_db=10.0, default=-999.0
+    )
     assert t_conv_none == -999.0
 
 
@@ -83,12 +85,16 @@ def test_calculate_post_double_talk_erle():
     erle_db = np.array([10.0, 12.0, 14.0, 20.0, 22.0, 24.0, 15.0])
 
     # Window from 2.6 to 3.4 includes times [2.7, 2.9, 3.1] with values [20.0, 22.0, 24.0]
-    avg_erle = calculate_post_double_talk_erle(times, erle_db, start_time=2.6, end_time=3.4)
+    avg_erle = calculate_post_double_talk_erle(
+        times, erle_db, start_time=2.6, end_time=3.4
+    )
     expected_avg = np.mean([20.0, 22.0, 24.0])
     assert avg_erle == pytest.approx(expected_avg)
 
     # Empty window
-    avg_empty = calculate_post_double_talk_erle(times, erle_db, start_time=10.0, end_time=12.0)
+    avg_empty = calculate_post_double_talk_erle(
+        times, erle_db, start_time=10.0, end_time=12.0
+    )
     assert avg_empty == 0.0
 
 

@@ -22,7 +22,9 @@ def _align_shape(tensor: torch.Tensor) -> torch.Tensor:
     elif tensor.dim() == 2:
         return tensor
     else:
-        raise ValueError(f"Expected 1D, 2D, or 3D tensor, got shape {tuple(tensor.shape)}")
+        raise ValueError(
+            f"Expected 1D, 2D, or 3D tensor, got shape {tuple(tensor.shape)}"
+        )
 
 
 class SingleResolutionSTFTLoss(nn.Module):
@@ -110,17 +112,21 @@ class MultiResolutionSTFTLoss(nn.Module):
     ) -> None:
         super().__init__()
         if not (len(n_ffts) == len(hop_sizes) == len(win_lengths)):
-            raise ValueError("n_ffts, hop_sizes, and win_lengths must have the same length")
+            raise ValueError(
+                "n_ffts, hop_sizes, and win_lengths must have the same length"
+            )
 
         self.factor_sc = factor_sc
         self.factor_mag = factor_mag
         self.reduction = reduction
         self.eps = eps
 
-        self.loss_layers = nn.ModuleList([
-            SingleResolutionSTFTLoss(n_fft, hop, win, eps=eps)
-            for n_fft, hop, win in zip(n_ffts, hop_sizes, win_lengths)
-        ])
+        self.loss_layers = nn.ModuleList(
+            [
+                SingleResolutionSTFTLoss(n_fft, hop, win, eps=eps)
+                for n_fft, hop, win in zip(n_ffts, hop_sizes, win_lengths)
+            ]
+        )
 
     def forward(
         self,
@@ -171,7 +177,9 @@ class SISNRLoss(nn.Module):
         tgt = _align_shape(target)
 
         if est.shape != tgt.shape:
-            raise ValueError(f"Shape mismatch: estimate {tuple(est.shape)} vs target {tuple(tgt.shape)}")
+            raise ValueError(
+                f"Shape mismatch: estimate {tuple(est.shape)} vs target {tuple(tgt.shape)}"
+            )
 
         if self.zero_mean:
             est = est - torch.mean(est, dim=-1, keepdim=True)
@@ -186,9 +194,11 @@ class SISNRLoss(nn.Module):
         e_noise = est - s_target
 
         target_power = torch.sum(tgt**2, dim=-1)
-        noise_power = torch.sum((e_noise / (torch.abs(alpha) + self.eps))**2, dim=-1)
+        noise_power = torch.sum((e_noise / (torch.abs(alpha) + self.eps)) ** 2, dim=-1)
 
-        si_snr = 10.0 * torch.log10((target_power + self.eps) / (noise_power + self.eps))
+        si_snr = 10.0 * torch.log10(
+            (target_power + self.eps) / (noise_power + self.eps)
+        )
 
         if self.reduction == "mean":
             return -torch.mean(si_snr)
@@ -226,7 +236,9 @@ class ERLELoss(nn.Module):
     ) -> None:
         super().__init__()
         if mode not in ("ratio", "db", "residual"):
-            raise ValueError(f"mode must be one of ('ratio', 'db', 'residual'), got {mode}")
+            raise ValueError(
+                f"mode must be one of ('ratio', 'db', 'residual'), got {mode}"
+            )
         self.mode = mode
         self.speech_threshold = speech_threshold
         self.reduction = reduction
@@ -254,7 +266,9 @@ class ERLELoss(nn.Module):
             sp = _align_shape(speech_target)[..., :min_len]
             speech_power = sp**2
             # Soft weighting: 1 when speech power << speech_threshold, 0 when speech power >> speech_threshold
-            non_speech_weight = torch.sigmoid(-10.0 * (speech_power / (self.speech_threshold + self.eps) - 1.0))
+            non_speech_weight = torch.sigmoid(
+                -10.0 * (speech_power / (self.speech_threshold + self.eps) - 1.0)
+            )
         else:
             non_speech_weight = torch.ones_like(res)
 

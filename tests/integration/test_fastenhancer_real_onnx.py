@@ -9,21 +9,9 @@ from highspl.models.fastenhancer import (
 
 ROOT = Path(__file__).resolve().parents[2]
 
-CHECKPOINT = (
-    ROOT
-    / "models"
-    / "fastenhancer"
-    / "b"
-    / "00500.pth"
-)
+CHECKPOINT = ROOT / "models" / "fastenhancer" / "b" / "00500.pth"
 
-ONNX_MODEL = (
-    ROOT
-    / "models"
-    / "fastenhancer"
-    / "b"
-    / "fastenhancer_b_streaming.onnx"
-)
+ONNX_MODEL = ROOT / "models" / "fastenhancer" / "b" / "fastenhancer_b_streaming.onnx"
 
 
 def make_adapter() -> FastEnhancerAdapter:
@@ -72,9 +60,7 @@ def test_real_model_single_hop():
     adapter = make_adapter()
     state = adapter.reset()
 
-    audio = np.random.default_rng(0).standard_normal(512).astype(
-        np.float32
-    )
+    audio = np.random.default_rng(0).standard_normal(512).astype(np.float32)
 
     output, state = adapter.process(
         audio,
@@ -90,9 +76,7 @@ def test_real_model_multiple_hops():
     adapter = make_adapter()
     state = adapter.reset()
 
-    audio = np.random.default_rng(1).standard_normal(512 * 10).astype(
-        np.float32
-    )
+    audio = np.random.default_rng(1).standard_normal(512 * 10).astype(np.float32)
 
     output, state = adapter.process(
         audio,
@@ -193,9 +177,7 @@ def test_real_model_input_is_not_modified():
     adapter = make_adapter()
     state = adapter.reset()
 
-    audio = np.random.default_rng(4).standard_normal(512).astype(
-        np.float32
-    )
+    audio = np.random.default_rng(4).standard_normal(512).astype(np.float32)
     original = audio.copy()
 
     adapter.process(
@@ -205,6 +187,8 @@ def test_real_model_input_is_not_modified():
     )
 
     np.testing.assert_array_equal(audio, original)
+
+
 def test_real_model_long_stream_is_stable():
     from pathlib import Path
 
@@ -216,19 +200,9 @@ def test_real_model_long_stream_is_stable():
     )
 
     root = Path(__file__).resolve().parents[2]
-    checkpoint = (
-        root
-        / "models"
-        / "fastenhancer"
-        / "b"
-        / "00500.pth"
-    )
+    checkpoint = root / "models" / "fastenhancer" / "b" / "00500.pth"
     onnx_model = (
-        root
-        / "models"
-        / "fastenhancer"
-        / "b"
-        / "fastenhancer_b_streaming.onnx"
+        root / "models" / "fastenhancer" / "b" / "fastenhancer_b_streaming.onnx"
     )
 
     adapter = FastEnhancerAdapter(

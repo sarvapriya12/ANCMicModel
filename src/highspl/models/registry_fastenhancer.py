@@ -6,7 +6,7 @@ from highspl.models.fastenhancer import FastEnhancerAdapter, FastEnhancerConfig
 
 def register_models(registry: Any) -> None:
     """Register FastEnhancer models with the model registry."""
-    
+
     def create_fastenhancer_base(kwargs: dict[str, Any]) -> StreamingEnhancer:
         # Default kwargs based on the integration test
         model_kwargs = {
@@ -39,10 +39,10 @@ def register_models(registry: Any) -> None:
             "resnet": False,
             "sample_rate": 48_000,
         }
-        
+
         if "model_kwargs" in kwargs:
             model_kwargs.update(kwargs["model_kwargs"])
-        
+
         config = FastEnhancerConfig(
             model_kwargs=model_kwargs,
             checkpoint_path=kwargs.get("checkpoint_path"),

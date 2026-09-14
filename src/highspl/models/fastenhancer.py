@@ -22,9 +22,7 @@ class FastEnhancerConfig:
 
     def __post_init__(self) -> None:
         if self.backend not in {"pytorch", "onnxruntime", "tensorrt"}:
-            raise TypeError(
-                "backend must be one of: pytorch, onnxruntime, tensorrt"
-            )
+            raise TypeError("backend must be one of: pytorch, onnxruntime, tensorrt")
 
         if not self.model_kwargs:
             raise TypeError("model_kwargs must not be empty")
@@ -35,9 +33,7 @@ class FastEnhancerConfig:
 
         hop_size = self.model_kwargs.get("hop_size")
         if hop_size is None or hop_size <= 0:
-            raise TypeError(
-                "model_kwargs must contain a positive hop_size"
-            )
+            raise TypeError("model_kwargs must contain a positive hop_size")
 
         if (
             self.checkpoint_path is not None
@@ -115,9 +111,7 @@ class FastEnhancerAdapter(StreamingEnhancer):
         if root_str not in sys.path:
             sys.path.insert(0, root_str)
 
-        module = importlib.import_module(
-            "models.fastenhancer.default.model"
-        )
+        module = importlib.import_module("models.fastenhancer.default.model")
         return module.ONNXModel
 
     def _load_pytorch_model(self) -> None:
@@ -125,9 +119,7 @@ class FastEnhancerAdapter(StreamingEnhancer):
         import torch
 
         if self.config.checkpoint_path is None:
-            raise TypeError(
-                "checkpoint_path is required for the PyTorch backend"
-            )
+            raise TypeError("checkpoint_path is required for the PyTorch backend")
 
         model_class = self._import_upstream_onnx_model()
 
@@ -143,14 +135,10 @@ class FastEnhancerAdapter(StreamingEnhancer):
         )
 
         if not isinstance(checkpoint, dict):
-            raise TypeError(
-                "FastEnhancer checkpoint must contain a dictionary"
-            )
+            raise TypeError("FastEnhancer checkpoint must contain a dictionary")
 
         if "model" not in checkpoint:
-            raise KeyError(
-                "FastEnhancer checkpoint does not contain a 'model' entry"
-            )
+            raise KeyError("FastEnhancer checkpoint does not contain a 'model' entry")
 
         model.load_state_dict(
             checkpoint["model"],
@@ -174,9 +162,7 @@ class FastEnhancerAdapter(StreamingEnhancer):
         import onnxruntime as ort
 
         if self.config.onnx_path is None:
-            raise TypeError(
-                "onnx_path is required for the ONNX Runtime backend"
-            )
+            raise TypeError("onnx_path is required for the ONNX Runtime backend")
 
         providers = ["CPUExecutionProvider"]
 
@@ -211,9 +197,7 @@ class FastEnhancerAdapter(StreamingEnhancer):
                     dtype=torch.float32,
                 )
 
-                cache_stft, cache_istft = (
-                    self._model.stft.initialize_cache(x)
-                )
+                cache_stft, cache_istft = self._model.stft.initialize_cache(x)
 
                 cache_model = self._model.initialize_cache(x)
 
@@ -245,17 +229,14 @@ class FastEnhancerAdapter(StreamingEnhancer):
 
         if sample_rate != self.sample_rate_in:
             raise TypeError(
-                f"FastEnhancer expects {self.sample_rate_in} Hz, "
-                f"got {sample_rate} Hz"
+                f"FastEnhancer expects {self.sample_rate_in} Hz, got {sample_rate} Hz"
             )
 
         if not isinstance(audio, np.ndarray):
             raise TypeError("audio must be a numpy.ndarray")
 
         if audio.ndim != 1:
-            raise TypeError(
-                "FastEnhancer currently expects mono 1-D audio"
-            )
+            raise TypeError("FastEnhancer currently expects mono 1-D audio")
 
         if not np.all(np.isfinite(audio)):
             raise TypeError("audio contains non-finite values")
@@ -266,9 +247,7 @@ class FastEnhancerAdapter(StreamingEnhancer):
             self._cache = state.backend
 
         if audio.size:
-            self._input_buffer = np.concatenate(
-                [self._input_buffer, audio]
-            )
+            self._input_buffer = np.concatenate([self._input_buffer, audio])
 
         outputs: list[np.ndarray] = []
 
@@ -283,9 +262,7 @@ class FastEnhancerAdapter(StreamingEnhancer):
                 )
 
             output = self._process_hop(chunk)
-            outputs.append(
-                np.asarray(output, dtype=np.float32).reshape(-1)
-            )
+            outputs.append(np.asarray(output, dtype=np.float32).reshape(-1))
 
         if outputs:
             enhanced = np.concatenate(outputs)
@@ -312,9 +289,7 @@ class FastEnhancerAdapter(StreamingEnhancer):
         self._input_buffer = np.empty(0, dtype=np.float32)
 
         if self._model is None:
-            raise RuntimeError(
-                "FastEnhancer backend not initialized"
-            )
+            raise RuntimeError("FastEnhancer backend not initialized")
 
         output = self._process_hop(padded)
 
@@ -348,9 +323,7 @@ class FastEnhancerAdapter(StreamingEnhancer):
         cache_istft = self._cache[1]
         cache_model = self._cache[2:]
 
-        tensor = torch.from_numpy(
-            chunk.reshape(1, self.hop_size)
-        ).to(
+        tensor = torch.from_numpy(chunk.reshape(1, self.hop_size)).to(
             self.device,
             dtype=torch.float32,
         )
@@ -377,19 +350,12 @@ class FastEnhancerAdapter(StreamingEnhancer):
             *cache_model,
         ]
 
-        return (
-            wav_out.detach()
-            .cpu()
-            .numpy()
-            .reshape(-1)
-        )
+        return wav_out.detach().cpu().numpy().reshape(-1)
 
     def _process_onnx(self, chunk: np.ndarray) -> np.ndarray:
         """Run one ONNX Runtime streaming hop."""
         if not hasattr(self._model, "run"):
-            raise RuntimeError(
-                "ONNX Runtime backend is not initialized"
-            )
+            raise RuntimeError("ONNX Runtime backend is not initialized")
 
         inputs = {
             "wav_in": chunk.reshape(1, self.hop_size),

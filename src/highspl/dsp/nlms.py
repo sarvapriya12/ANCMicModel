@@ -6,6 +6,7 @@ import numpy as np
 @dataclass
 class NLMSState:
     """State carried between streaming NLMS process calls."""
+
     weights: np.ndarray
     x_hist: np.ndarray
     energy_ema: float
@@ -13,9 +14,23 @@ class NLMSState:
     warmup_samples: int
     freeze_remaining: int = 0
 
+
 class RobustNLMS:
     """Highly Robust NLMS Adaptive Filter with advanced safety gating."""
-    def __init__(self, filter_length: int = 256, step_size: float = 0.25, leakage: float = 1e-5, freeze_ratio_db: float = 12.0, pld_threshold_db: float = 12.0, freeze_on_clipping: bool = True, freeze_on_divergence: bool = True, min_reference_energy: float = -40.0, max_reference_energy: float = -3.0, eps: float = 1e-8) -> None:
+
+    def __init__(
+        self,
+        filter_length: int = 256,
+        step_size: float = 0.25,
+        leakage: float = 1e-5,
+        freeze_ratio_db: float = 12.0,
+        pld_threshold_db: float = 12.0,
+        freeze_on_clipping: bool = True,
+        freeze_on_divergence: bool = True,
+        min_reference_energy: float = -40.0,
+        max_reference_energy: float = -3.0,
+        eps: float = 1e-8,
+    ) -> None:
         self.n = filter_length
         self.mu = step_size
         self.leakage = leakage
@@ -28,9 +43,18 @@ class RobustNLMS:
         self.eps = eps
 
     def reset(self) -> NLMSState:
-        return NLMSState(weights=np.zeros(self.n, dtype=np.float32), x_hist=np.zeros(self.n, dtype=np.float32), energy_ema=self.eps, primary_energy_ema=self.eps, warmup_samples=0, freeze_remaining=0)
+        return NLMSState(
+            weights=np.zeros(self.n, dtype=np.float32),
+            x_hist=np.zeros(self.n, dtype=np.float32),
+            energy_ema=self.eps,
+            primary_energy_ema=self.eps,
+            warmup_samples=0,
+            freeze_remaining=0,
+        )
 
-    def process(self, primary: np.ndarray, reference: np.ndarray, state: NLMSState) -> tuple[np.ndarray, NLMSState]:
+    def process(
+        self, primary: np.ndarray, reference: np.ndarray, state: NLMSState
+    ) -> tuple[np.ndarray, NLMSState]:
         d = np.asarray(primary, dtype=np.float32)
         x = np.asarray(reference, dtype=np.float32)
 
@@ -66,8 +90,8 @@ class RobustNLMS:
             hist = extended_x[i + 1 : i + 1 + self.n][::-1]
             ref_val = float(x[i])
             prim_val = float(d[i])
-            inst_energy = ref_val ** 2
-            p_inst_energy = prim_val ** 2
+            inst_energy = ref_val**2
+            p_inst_energy = prim_val**2
             energy = 0.995 * energy + 0.005 * inst_energy
             p_energy = 0.995 * p_energy + 0.005 * p_inst_energy
 
@@ -76,22 +100,34 @@ class RobustNLMS:
             out[i] = error
 
             oldest_val = float(extended_x[i])
-            hist_norm = hist_norm + inst_energy - (oldest_val ** 2)
+            hist_norm = hist_norm + inst_energy - (oldest_val**2)
             hist_norm = max(hist_norm, self.eps)
-            if freeze_remaining > 0: freeze_remaining -= 1; continue
-            if block_frozen: continue
+            if freeze_remaining > 0:
+                freeze_remaining -= 1
+                continue
+            if block_frozen:
+                continue
 
             skip_adapt = False
-            if (p_energy / (energy + self.eps)) > self.pld_threshold: skip_adapt = True
-            if self.freeze_on_clipping and (abs(ref_val) > 0.99 or abs(prim_val) > 0.99): skip_adapt = True
-            if energy < self.min_ref_power or energy > self.max_ref_power: skip_adapt = True
-            if self.freeze_on_divergence and abs(error) > (abs(prim_val) * 3.0 + 0.01): skip_adapt = True
+            if (p_energy / (energy + self.eps)) > self.pld_threshold:
+                skip_adapt = True
+            if self.freeze_on_clipping and (
+                abs(ref_val) > 0.99 or abs(prim_val) > 0.99
+            ):
+                skip_adapt = True
+            if energy < self.min_ref_power or energy > self.max_ref_power:
+                skip_adapt = True
+            if self.freeze_on_divergence and abs(error) > (abs(prim_val) * 3.0 + 0.01):
+                skip_adapt = True
 
-            if skip_adapt: continue
-            if self.leakage > 0.0: w *= 1.0 - self.mu * self.leakage
+            if skip_adapt:
+                continue
+            if self.leakage > 0.0:
+                w *= 1.0 - self.mu * self.leakage
             w += (self.mu * error / hist_norm) * hist
 
-        if block_frozen: freeze_remaining = self.n
+        if block_frozen:
+            freeze_remaining = self.n
         state.x_hist = extended_x[-self.n :][::-1]
         state.energy_ema = energy
         state.primary_energy_ema = p_energy
@@ -102,6 +138,7 @@ class RobustNLMS:
 
 class NLMS:
     """Standard canonical baseline Normalized Least Mean Squares (NLMS) adaptive filter."""
+
     def __init__(
         self,
         filter_length: int = 256,
@@ -124,7 +161,9 @@ class NLMS:
             freeze_remaining=0,
         )
 
-    def process(self, primary: np.ndarray, reference: np.ndarray, state: NLMSState) -> tuple[np.ndarray, NLMSState]:
+    def process(
+        self, primary: np.ndarray, reference: np.ndarray, state: NLMSState
+    ) -> tuple[np.ndarray, NLMSState]:
         d = np.asarray(primary, dtype=np.float32)
         x = np.asarray(reference, dtype=np.float32)
 
@@ -147,8 +186,8 @@ class NLMS:
             hist = extended_x[i + 1 : i + 1 + self.n][::-1]
             ref_val = float(x[i])
             prim_val = float(d[i])
-            inst_energy = ref_val ** 2
-            p_inst_energy = prim_val ** 2
+            inst_energy = ref_val**2
+            p_inst_energy = prim_val**2
             energy = 0.995 * energy + 0.005 * inst_energy
             p_energy = 0.995 * p_energy + 0.005 * p_inst_energy
 
@@ -157,7 +196,7 @@ class NLMS:
             out[i] = error
 
             oldest_val = float(extended_x[i])
-            hist_norm = hist_norm + inst_energy - (oldest_val ** 2)
+            hist_norm = hist_norm + inst_energy - (oldest_val**2)
             hist_norm = max(hist_norm, self.eps)
 
             if self.leakage > 0.0:
@@ -174,17 +213,28 @@ class NLMS:
 @dataclass
 class VSSNLMSState:
     """State for Variable Step-Size NLMS"""
+
     weights: np.ndarray
     x_hist: np.ndarray
     mu_current: float
     hist_norm: float
 
+
 class VSSNLMS:
     """Academic Variable Step-Size NLMS (VSS-NLMS).
-    Dynamically adjusts learning rate based on error power, offering a smooth 
+    Dynamically adjusts learning rate based on error power, offering a smooth
     tradeoff between convergence speed and steady-state error.
     """
-    def __init__(self, filter_length: int = 256, mu_max: float = 0.5, mu_min: float = 0.001, alpha: float = 0.99, gamma: float = 0.01, eps: float = 1e-8):
+
+    def __init__(
+        self,
+        filter_length: int = 256,
+        mu_max: float = 0.5,
+        mu_min: float = 0.001,
+        alpha: float = 0.99,
+        gamma: float = 0.01,
+        eps: float = 1e-8,
+    ):
         self.n = filter_length
         self.mu_max = mu_max
         self.mu_min = mu_min
@@ -197,10 +247,12 @@ class VSSNLMS:
             weights=np.zeros(self.n, dtype=np.float32),
             x_hist=np.zeros(self.n, dtype=np.float32),
             mu_current=self.mu_max,
-            hist_norm=self.eps
+            hist_norm=self.eps,
         )
 
-    def process(self, primary: np.ndarray, reference: np.ndarray, state: VSSNLMSState) -> tuple[np.ndarray, VSSNLMSState]:
+    def process(
+        self, primary: np.ndarray, reference: np.ndarray, state: VSSNLMSState
+    ) -> tuple[np.ndarray, VSSNLMSState]:
         d = np.asarray(primary, dtype=np.float32)
         x = np.asarray(reference, dtype=np.float32)
 
@@ -212,7 +264,7 @@ class VSSNLMS:
             return np.empty(0, dtype=np.float32), state
 
         out = np.empty_like(d)
-        
+
         w = state.weights
         mu = state.mu_current
         extended_x = np.concatenate((state.x_hist[::-1], x))
@@ -222,7 +274,7 @@ class VSSNLMS:
             hist = extended_x[i + 1 : i + 1 + self.n][::-1]
             ref_val = float(x[i])
             prim_val = float(d[i])
-            inst_energy = ref_val ** 2
+            inst_energy = ref_val**2
 
             # Predict and calculate error
             y_hat = float(np.dot(w, hist))
@@ -231,11 +283,11 @@ class VSSNLMS:
 
             # Update history norm
             oldest_val = float(extended_x[i])
-            hist_norm = hist_norm + inst_energy - (oldest_val ** 2)
+            hist_norm = hist_norm + inst_energy - (oldest_val**2)
             hist_norm = max(hist_norm, self.eps)
 
             # Update Variable Step-Size (mu)
-            error_power = error ** 2
+            error_power = error**2
             mu = self.alpha * mu + self.gamma * error_power
             mu = min(mu, self.mu_max)
             mu = max(mu, self.mu_min)

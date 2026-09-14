@@ -55,7 +55,9 @@ def benchmark_stream(
         raise ValueError(f"Unknown DSP mode: {dsp_mode}")
 
     # 2. Initialize FastEnhancer ONNX
-    onnx_path = ROOT_DIR / "models" / "fastenhancer" / "b" / "fastenhancer_b_streaming.onnx"
+    onnx_path = (
+        ROOT_DIR / "models" / "fastenhancer" / "b" / "fastenhancer_b_streaming.onnx"
+    )
     if not onnx_path.exists():
         print(f"\n[ERROR] Model not found at: {onnx_path}")
         return
@@ -71,8 +73,12 @@ def benchmark_stream(
 
     # Generate synthetic audio stream
     rng = np.random.default_rng(42)
-    prim_data = rng.normal(0.0, 0.05, (num_frames + warmup_frames, block_size)).astype(np.float32)
-    ref_data = rng.normal(0.0, 0.05, (num_frames + warmup_frames, block_size)).astype(np.float32)
+    prim_data = rng.normal(0.0, 0.05, (num_frames + warmup_frames, block_size)).astype(
+        np.float32
+    )
+    ref_data = rng.normal(0.0, 0.05, (num_frames + warmup_frames, block_size)).astype(
+        np.float32
+    )
 
     dsp_latencies = []
     ai_latencies = []
@@ -86,13 +92,17 @@ def benchmark_stream(
         # Stage 1: DSP
         t0 = time.perf_counter()
         if dsp_filter is not None:
-            filtered_prim, dsp_state = dsp_filter.process(chunk_prim, chunk_ref, dsp_state)
+            filtered_prim, dsp_state = dsp_filter.process(
+                chunk_prim, chunk_ref, dsp_state
+            )
         else:
             filtered_prim = chunk_prim
         t1 = time.perf_counter()
 
         # Stage 2: AI
-        _out_chunk, ai_state = model.process(filtered_prim, sample_rate=sample_rate, state=ai_state)
+        _out_chunk, ai_state = model.process(
+            filtered_prim, sample_rate=sample_rate, state=ai_state
+        )
         t2 = time.perf_counter()
 
         # Only record after warmup
@@ -117,10 +127,16 @@ def benchmark_stream(
     print("\n" + "-" * 68)
     print("                      RESULTS BREAKDOWN")
     print("-" * 68)
-    print(f"Stage 1 (DSP - {dsp_mode:<9s}): Mean: {np.mean(dsp_arr):.2f} ms | P95: {np.percentile(dsp_arr, 95):.2f} ms")
-    print(f"Stage 2 (FastEnhancer-B): Mean: {np.mean(ai_arr):.2f} ms | P95: {np.percentile(ai_arr, 95):.2f} ms")
+    print(
+        f"Stage 1 (DSP - {dsp_mode:<9s}): Mean: {np.mean(dsp_arr):.2f} ms | P95: {np.percentile(dsp_arr, 95):.2f} ms"
+    )
+    print(
+        f"Stage 2 (FastEnhancer-B): Mean: {np.mean(ai_arr):.2f} ms | P95: {np.percentile(ai_arr, 95):.2f} ms"
+    )
     print("-" * 68)
-    print(f"Total Processing Time   : Mean: {mean_total:.2f} ms | P50: {np.median(tot_arr):.2f} ms | P95: {p95_total:.2f} ms")
+    print(
+        f"Total Processing Time   : Mean: {mean_total:.2f} ms | P50: {np.median(tot_arr):.2f} ms | P95: {p95_total:.2f} ms"
+    )
     print(f"Frame Budget (Deadline) : {frame_duration_ms:.2f} ms")
     print(f"Real-Time Factor (RTF)  : {rtf:.3f}")
     print(f"CPU Headroom Available  : {max(0.0, (1.0 - rtf) * 100.0):.1f}%")

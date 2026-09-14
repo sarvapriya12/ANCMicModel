@@ -42,7 +42,9 @@ def calculate_erle(
     res = _to_numpy(residual)
 
     if ref.ndim != 1 or res.ndim != 1:
-        raise ValueError(f"Inputs must be 1-D audio signals, got shapes {ref.shape} and {res.shape}")
+        raise ValueError(
+            f"Inputs must be 1-D audio signals, got shapes {ref.shape} and {res.shape}"
+        )
 
     min_len = min(len(ref), len(res))
     ref = ref[:min_len]
@@ -53,7 +55,9 @@ def calculate_erle(
     step = int(step_sec if step_sec >= 1.0 else sample_rate * step_sec)
 
     if window <= 0 or step <= 0:
-        raise ValueError(f"Window and step must be positive integers, got window={window}, step={step}")
+        raise ValueError(
+            f"Window and step must be positive integers, got window={window}, step={step}"
+        )
 
     if min_len <= window:
         return np.array([], dtype=np.float64), np.array([], dtype=np.float64)
@@ -164,7 +168,9 @@ def calculate_si_sdr(
     est = _to_numpy(estimate)
 
     if ref.ndim != 1 or est.ndim != 1:
-        raise ValueError(f"Inputs must be 1-D audio signals, got {ref.shape} and {est.shape}")
+        raise ValueError(
+            f"Inputs must be 1-D audio signals, got {ref.shape} and {est.shape}"
+        )
 
     min_len = min(len(ref), len(est))
     if min_len == 0:
@@ -187,7 +193,7 @@ def calculate_si_sdr(
     e_noise = est - e_target
 
     target_energy = np.sum(ref**2)
-    noise_energy = np.sum((e_noise / (np.abs(alpha) + eps))**2)
+    noise_energy = np.sum((e_noise / (np.abs(alpha) + eps)) ** 2)
 
     si_sdr = 10.0 * np.log10((target_energy + eps) / (noise_energy + eps))
     return float(si_sdr)
@@ -218,7 +224,9 @@ def calculate_snr(
     est = _to_numpy(estimate)
 
     if ref.ndim != 1 or est.ndim != 1:
-        raise ValueError(f"Inputs must be 1-D audio signals, got {ref.shape} and {est.shape}")
+        raise ValueError(
+            f"Inputs must be 1-D audio signals, got {ref.shape} and {est.shape}"
+        )
 
     min_len = min(len(ref), len(est))
     if min_len == 0:
@@ -260,7 +268,9 @@ def calculate_coherence(
     r = _to_numpy(reference)
 
     if p.ndim != 1 or r.ndim != 1:
-        raise ValueError(f"Inputs must be 1-D audio signals, got {p.shape} and {r.shape}")
+        raise ValueError(
+            f"Inputs must be 1-D audio signals, got {p.shape} and {r.shape}"
+        )
 
     min_len = min(len(p), len(r))
     if min_len < 16:

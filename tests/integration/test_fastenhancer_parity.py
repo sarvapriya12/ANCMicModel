@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 
 import numpy as np
 
@@ -7,6 +7,7 @@ from highspl.models.fastenhancer import FastEnhancerAdapter, FastEnhancerConfig
 ROOT = Path(__file__).resolve().parents[2]
 CHECKPOINT = ROOT / "models" / "fastenhancer" / "b" / "00500.pth"
 ONNX_MODEL = ROOT / "models" / "fastenhancer" / "b" / "fastenhancer_b_streaming.onnx"
+
 
 def get_config(backend: str):
     return FastEnhancerConfig(
@@ -47,25 +48,25 @@ def get_config(backend: str):
         upstream_root=r"D:\SIH\fastenhancer",
     )
 
+
 def test_pytorch_onnx_parity():
     adapter_pt = FastEnhancerAdapter(get_config("pytorch"))
     adapter_ort = FastEnhancerAdapter(get_config("onnxruntime"))
-    
+
     state_pt = adapter_pt.reset()
     state_ort = adapter_ort.reset()
-    
+
     rng = np.random.default_rng(42)
     audio = rng.standard_normal(48_000 * 5).astype(np.float32)
-    
+
     out_pt, _ = adapter_pt.process(audio, 48_000, state_pt)
     out_ort, _ = adapter_ort.process(audio, 48_000, state_ort)
-    
+
     diff = np.abs(out_pt - out_ort)
     max_diff = np.max(diff)
     mean_diff = np.mean(diff)
     print(f"Max absolute error: {max_diff}")
     print(f"Mean absolute error: {mean_diff}")
-    
+
     # Asserting standard floating point tolerance
     np.testing.assert_allclose(out_pt, out_ort, rtol=1e-3, atol=5e-4)
-

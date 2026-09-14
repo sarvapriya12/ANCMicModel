@@ -131,7 +131,7 @@ def test_time_domain_constraint_projection():
     # Check that second half of each partition impulse response is strictly zero
     w_time = np.real(np.fft.ifft(state.weights, axis=-1))
     for p in range(fdaf.num_partitions):
-        assert np.allclose(w_time[p, fdaf.block_size:], 0.0, atol=1e-5)
+        assert np.allclose(w_time[p, fdaf.block_size :], 0.0, atol=1e-5)
 
 
 def test_state_continuity_across_chunks():

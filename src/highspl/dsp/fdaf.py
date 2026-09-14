@@ -6,14 +6,15 @@ import numpy as np
 @dataclass
 class FDAFState:
     """State carried between streaming Partitioned Block FDAF process calls."""
-    weights: np.ndarray             # shape: (num_partitions, fft_size), complex64
-    reference_history: np.ndarray   # shape: (num_partitions, fft_size), complex64
-    prev_ref: np.ndarray            # shape: (block_size,), float32
-    p_x: np.ndarray                 # shape: (fft_size,), float32
-    p_d: np.ndarray                 # shape: (fft_size,), float32
-    p_xd: np.ndarray                # shape: (fft_size,), complex64
-    buf_primary: np.ndarray         # leftover samples, float32
-    buf_reference: np.ndarray       # leftover samples, float32
+
+    weights: np.ndarray  # shape: (num_partitions, fft_size), complex64
+    reference_history: np.ndarray  # shape: (num_partitions, fft_size), complex64
+    prev_ref: np.ndarray  # shape: (block_size,), float32
+    p_x: np.ndarray  # shape: (fft_size,), float32
+    p_d: np.ndarray  # shape: (fft_size,), float32
+    p_xd: np.ndarray  # shape: (fft_size,), complex64
+    buf_primary: np.ndarray  # leftover samples, float32
+    buf_reference: np.ndarray  # leftover samples, float32
     primary_power: float = 0.0
     reference_power: float = 0.0
     warmup_samples: int = 0
@@ -64,7 +65,9 @@ class BattlefieldFDAF:
         """Create a fresh initial FDAF state."""
         return FDAFState(
             weights=np.zeros((self.num_partitions, self.fft_size), dtype=np.complex64),
-            reference_history=np.zeros((self.num_partitions, self.fft_size), dtype=np.complex64),
+            reference_history=np.zeros(
+                (self.num_partitions, self.fft_size), dtype=np.complex64
+            ),
             prev_ref=np.zeros(self.block_size, dtype=np.float32),
             p_x=np.full(self.fft_size, self.eps, dtype=np.float32),
             p_d=np.full(self.fft_size, self.eps, dtype=np.float32),
@@ -131,13 +134,12 @@ class BattlefieldFDAF:
         is_clipped = max_val > thresh
 
         # Voice dominant protection
-        p_pow = float(np.mean(d_block ** 2))
-        r_pow = float(np.mean(x_block ** 2))
+        p_pow = float(np.mean(d_block**2))
+        r_pow = float(np.mean(x_block**2))
         state.primary_power = 0.99 * state.primary_power + 0.01 * p_pow
         state.reference_power = 0.99 * state.reference_power + 0.01 * r_pow
-        voice_dominant = (
-            self.voice_protection and
-            (state.primary_power > state.reference_power * self.voice_ratio)
+        voice_dominant = self.voice_protection and (
+            state.primary_power > state.reference_power * self.voice_ratio
         )
 
         if is_clipped or voice_dominant:
@@ -148,11 +150,13 @@ class BattlefieldFDAF:
         # Weight adaptation
         if not np.all(mu_k == 0.0):
             norm_factor = state.p_x + self.eps
-            grad = (E_k[None, :] * np.conj(state.reference_history)) / norm_factor[None, :]
+            grad = (E_k[None, :] * np.conj(state.reference_history)) / norm_factor[
+                None, :
+            ]
             state.weights += mu_k[None, :] * grad
 
             if self.leakage > 0.0:
-                state.weights *= (1.0 - self.leakage)
+                state.weights *= 1.0 - self.leakage
 
             # Time-domain constraint projection: zero second half of impulse response
             w_time = np.real(np.fft.ifft(state.weights, axis=-1)).astype(np.float32)
@@ -197,7 +201,9 @@ class BattlefieldFDAF:
         for b_idx in range(num_complete_blocks):
             start = b_idx * B
             end = start + B
-            e_b, state = self._process_one_block(all_d[start:end], all_x[start:end], state)
+            e_b, state = self._process_one_block(
+                all_d[start:end], all_x[start:end], state
+            )
             out_blocks.append(e_b)
 
         if out_blocks:
@@ -224,7 +230,9 @@ class BattlefieldFDAF:
             # Estimate with current partition weights
             Y_temp = state.weights[0] * temp_X
             if self.num_partitions > 1:
-                Y_temp += np.sum(state.weights[1:] * state.reference_history[:-1], axis=0)
+                Y_temp += np.sum(
+                    state.weights[1:] * state.reference_history[:-1], axis=0
+                )
 
             y_time = np.real(np.fft.ifft(Y_temp)).astype(np.float32)
             y_est_partial = y_time[B : B + rem_len]
