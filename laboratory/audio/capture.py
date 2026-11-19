@@ -23,11 +23,26 @@ import queue
 import threading
 
 import numpy as np
-import sounddevice as sd
 import soundfile as sf
 
 from highspl.config import project_root
 from highspl.dsp.drift import DriftCompensator
+
+
+class _LazySounddevice:
+    """Import ``sounddevice`` on first use.
+
+    Importing it initialises PortAudio, which raises on a machine with no audio
+    server (CI runners, containers). Importing this module must stay possible
+    there; only opening a real stream needs the audio backend."""
+
+    def __getattr__(self, name):
+        import sounddevice
+
+        return getattr(sounddevice, name)
+
+
+sd = _LazySounddevice()
 
 
 class AudioCapture:
