@@ -1,0 +1,4 @@
+# AI only: no stage-1 DSP (primary mic straight into the neural stage).
+pipeline:
+  frontend:
+    mode: bypass

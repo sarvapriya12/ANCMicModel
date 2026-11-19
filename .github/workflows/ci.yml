@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: ["main", "master"]
 
+env:
+  # MIT-licensed upstream model code, pinned so the export is reproducible.
+  FASTENHANCER_REF: 85d98a689a85b956dec384f258b075859ca50263
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -13,6 +17,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: System libraries (PortAudio for sounddevice, used by the capture tests)
+        run: sudo apt-get update && sudo apt-get install -y libportaudio2
 
       - name: Install uv
         uses: astral-sh/setup-uv@v6
@@ -31,5 +38,21 @@ jobs:
       - name: Ruff format check
         run: uv run ruff format --check .
 
+      # The ONNX model is not in git. Rebuild it from the checkpoint that is
+      # (models/fastenhancer/fastenhancer_b.zip) so the integration tests run
+      # the real neural stage instead of being skipped.
+      - name: Build the streaming ONNX model
+        run: |
+          mkdir -p models/fastenhancer/b third_party
+          unzip -o -j models/fastenhancer/fastenhancer_b.zip 00500.pth config.yaml -d models/fastenhancer/b
+          git clone https://github.com/aask1357/fastenhancer third_party/fastenhancer
+          git -C third_party/fastenhancer checkout "$FASTENHANCER_REF"
+          uv run python scripts/export_fastenhancer_b.py
+
       - name: Run tests
-        run: uv run pytest
+        run: uv run pytest -q
+
+      - name: Synthetic end-to-end smoke (generate -> stream -> score)
+        run: |
+          uv run python scripts/generate_mixtures.py --set tiny --workers 2
+          uv run python scripts/evaluate.py --set tiny --pipelines bypass,gsc_blend --workers 2

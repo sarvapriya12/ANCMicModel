@@ -1,8 +1,11 @@
 import os
 import sys
 
-sys.path.append(os.path.abspath(os.path.dirname(__file__)))
-from ui.main_window import MainWindow, QApplication
+# Repo root first on sys.path so `highspl` and `laboratory.*` resolve without
+# depending on the working directory.
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from laboratory.ui.main_window import MainWindow, QApplication
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

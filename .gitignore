@@ -56,3 +56,9 @@ managed_components/
 # Large artifacts and logs
 output_sample/
 **/*.tfevents.*
+
+# Third-party code fetched for fine-tuning
+third_party/
+
+# Packaging metadata
+*.egg-info/

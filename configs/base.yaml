@@ -4,7 +4,7 @@ project:
   version: 0.1.0
 
 signal:
-  capture_rate_hz: 32000
+  capture_rate_hz: 48000
   target_band_hz: 15000
   channels_in: 2
   channels_out: 1
@@ -16,20 +16,23 @@ nlms:
   step_size: 0.25
   leakage: 1.0e-5
   freeze_ratio_db: 12.0
-  min_reference_power: 1.0e-8
+  pld_threshold_db: 12.0
+  min_reference_db: -40.0
+  max_reference_db: -3.0
 
 model:
-  family: dpdfnet
-  variant: dpdfnet2_48khz_hr
-  checkpoint: checkpoints/manifested/model.pth
-  attn_limit_db: 12.0
+  family: fastenhancer
+  variant: fastenhancer_b
+  checkpoint: models/fastenhancer/b/00500.pth
+  onnx_path: models/fastenhancer/b/fastenhancer_b_streaming.onnx
+  hop_size: 512
   internal_rate_hz: 48000
 
 runtime:
-  chunk_ms: 10
-  num_threads: 4
+  block_size: 512
+  num_threads: 1
   device: cpu
-  backend: pytorch
+  backend: onnxruntime
 
 training:
   segment_seconds: 4.0
@@ -44,5 +47,24 @@ metrics:
   use_pesq: true
   use_stoi: true
   use_si_sdr: true
-  use_dnsmos: true
-  use_wer: true
+  use_dnsmos: false
+  use_wer: false
+
+# Default pipeline == the legacy system (baseline B0): hard-gated NLMS, then the
+# neural stage, then a flat x0.8 (-1.94 dB). Presets in configs/pipelines/
+# switch on the improved stages.
+pipeline:
+  frontend:
+    mode: robust
+    mic_spacing_m: 0.015
+    mouth_distance_m: 0.055
+  level:
+    output_gain_db: -1.94
+    agc_enabled: false
+    limiter_enabled: false
+  guard:
+    sanitize: true
+    clip_diversity: false
+    impulse_duck: false
+  calibration:
+    enabled: false

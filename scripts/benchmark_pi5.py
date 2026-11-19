@@ -1,158 +1,153 @@
-"""
-Raspberry Pi 5 Performance & Real-Time Benchmark
-Measures DSP and FastEnhancer ONNX streaming latency, RTF, and jitter.
+"""Real-time benchmark for the streaming pipeline (run it ON the Raspberry Pi 5).
+
+    uv run python scripts/benchmark_pi5.py --preset gsc_blend --seconds 60
+    uv run python scripts/benchmark_pi5.py --preset gsc_blend --soak-minutes 30
+
+A real-time system fails on its *tail*, not its mean: one 15 ms block among
+thousands of 3 ms blocks is an audible dropout. The verdict therefore gates on
+the 99.9th percentile against the 10.67 ms block deadline (512 samples @ 48 kHz).
+
+The input is a rendered synthetic battlefield scene (jet noise + speech through
+the pod geometry and hardware model), not white noise, so the adaptive filters
+and gates run their real code paths.
+
+Run on a Pi with the performance governor and an active cooler for a meaningful
+soak result. Results from other machines say nothing about the Pi.
 """
 
+from __future__ import annotations
+
+import argparse
 import sys
 import time
 from pathlib import Path
 
 import numpy as np
 
-# Add src to path
-ROOT_DIR = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT_DIR / "src"))
-
-from highspl.dsp.fdaf import BattlefieldFDAF
-from highspl.dsp.nlms import NLMS, VSSNLMS, RobustNLMS
-from highspl.models.fastenhancer import FastEnhancerAdapter, FastEnhancerConfig
+ROOT = Path(__file__).resolve().parents[1]
+BLOCK = 512
+SR = 48_000
+DEADLINE_MS = BLOCK / SR * 1000.0
 
 
-def benchmark_stream(
-    num_frames: int = 500,
-    block_size: int = 512,
-    sample_rate: int = 48000,
-    dsp_mode: str = "ROBUST",
-    warmup_frames: int = 50,
-):
-    frame_duration_ms = (block_size / sample_rate) * 1000.0
+def _read(path: str) -> float | None:
+    try:
+        return float(Path(path).read_text().strip())
+    except (OSError, ValueError):
+        return None
 
-    print("=" * 68)
-    print("      RASPBERRY PI 5 HIGH-SPL STREAMING BENCHMARK")
-    print("=" * 68)
-    print(f"Sample Rate     : {sample_rate} Hz")
-    print(f"Block Size      : {block_size} samples ({frame_duration_ms:.2f} ms/frame)")
-    print(f"DSP Pre-filter  : {dsp_mode}")
-    print(f"Benchmark Frames: {num_frames} (+ {warmup_frames} warmup)")
 
-    # 1. Initialize DSP Filter
-    if dsp_mode == "ROBUST":
-        dsp_filter = RobustNLMS(filter_length=256)
-        dsp_state = dsp_filter.reset()
-    elif dsp_mode == "VSS":
-        dsp_filter = VSSNLMS(filter_length=256)
-        dsp_state = dsp_filter.reset()
-    elif dsp_mode == "CLASSICAL":
-        dsp_filter = NLMS(filter_length=256)
-        dsp_state = dsp_filter.reset()
-    elif dsp_mode == "FDAF":
-        dsp_filter = BattlefieldFDAF(block_size=128, num_partitions=2)
-        dsp_state = dsp_filter.reset()
-    elif dsp_mode == "BYPASS":
-        dsp_filter = None
-        dsp_state = None
-    else:
-        raise ValueError(f"Unknown DSP mode: {dsp_mode}")
-
-    # 2. Initialize FastEnhancer ONNX
-    onnx_path = (
-        ROOT_DIR / "models" / "fastenhancer" / "b" / "fastenhancer_b_streaming.onnx"
-    )
-    if not onnx_path.exists():
-        print(f"\n[ERROR] Model not found at: {onnx_path}")
-        return
-
-    config = FastEnhancerConfig(
-        model_kwargs={"hop_size": block_size, "sample_rate": sample_rate},
-        onnx_path=str(onnx_path),
-        backend="onnxruntime",
-        device="cpu",
-    )
-    model = FastEnhancerAdapter(config)
-    ai_state = model.reset()
-
-    # Generate synthetic audio stream
-    rng = np.random.default_rng(42)
-    prim_data = rng.normal(0.0, 0.05, (num_frames + warmup_frames, block_size)).astype(
-        np.float32
-    )
-    ref_data = rng.normal(0.0, 0.05, (num_frames + warmup_frames, block_size)).astype(
-        np.float32
-    )
-
-    dsp_latencies = []
-    ai_latencies = []
-    total_latencies = []
-
-    print("\nRunning streaming benchmark...")
-    for frame_idx in range(num_frames + warmup_frames):
-        chunk_prim = prim_data[frame_idx]
-        chunk_ref = ref_data[frame_idx]
-
-        # Stage 1: DSP
-        t0 = time.perf_counter()
-        if dsp_filter is not None:
-            filtered_prim, dsp_state = dsp_filter.process(
-                chunk_prim, chunk_ref, dsp_state
-            )
-        else:
-            filtered_prim = chunk_prim
-        t1 = time.perf_counter()
-
-        # Stage 2: AI
-        _out_chunk, ai_state = model.process(
-            filtered_prim, sample_rate=sample_rate, state=ai_state
+def sys_status() -> dict:
+    return {
+        "temp_c": (_read("/sys/class/thermal/thermal_zone0/temp") or float("nan"))
+        / 1000.0,
+        "cpu_mhz": (
+            _read("/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq")
+            or float("nan")
         )
-        t2 = time.perf_counter()
+        / 1000.0,
+    }
 
-        # Only record after warmup
-        if frame_idx >= warmup_frames:
-            dsp_ms = (t1 - t0) * 1000.0
-            ai_ms = (t2 - t1) * 1000.0
-            tot_ms = (t2 - t0) * 1000.0
 
-            dsp_latencies.append(dsp_ms)
-            ai_latencies.append(ai_ms)
-            total_latencies.append(tot_ms)
+def make_stream(seconds: float) -> np.ndarray:
+    from highspl.data.mixture import render_scene, sample_scene_spec
 
-    dsp_arr = np.array(dsp_latencies)
-    ai_arr = np.array(ai_latencies)
-    tot_arr = np.array(total_latencies)
+    spec = sample_scene_spec(
+        1, 12, duration_s=max(seconds, 10.0), tier="S1"
+    )  # jet, 105-120 dB band
+    return render_scene(spec).mic
 
-    mean_total = np.mean(tot_arr)
-    rtf = mean_total / frame_duration_ms
-    p95_total = np.percentile(tot_arr, 95)
-    _p99_total = np.percentile(tot_arr, 99)
 
-    print("\n" + "-" * 68)
-    print("                      RESULTS BREAKDOWN")
-    print("-" * 68)
-    print(
-        f"Stage 1 (DSP - {dsp_mode:<9s}): Mean: {np.mean(dsp_arr):.2f} ms | P95: {np.percentile(dsp_arr, 95):.2f} ms"
+def run(preset: str, seconds: float, warmup_s: float) -> dict:
+    from highspl.evaluation.runner import build_pipeline
+
+    pipe = build_pipeline(preset)
+    mic = make_stream(min(seconds, 20.0))
+    n_blocks = int(seconds * SR / BLOCK)
+    n_warm = int(warmup_s * SR / BLOCK)
+    pipe.reset()
+
+    times = np.empty(n_blocks)
+    dsp = np.empty(n_blocks)
+    ai = np.empty(n_blocks)
+    pos = 0
+    start = sys_status()
+    for k in range(n_blocks + n_warm):
+        if pos + BLOCK > mic.shape[1]:
+            pos = 0
+        d, x = mic[0, pos : pos + BLOCK], mic[1, pos : pos + BLOCK]
+        pos += BLOCK
+        t0 = time.perf_counter()
+        res = pipe.process(d, x)
+        dt = (time.perf_counter() - t0) * 1000.0
+        if k >= n_warm:
+            times[k - n_warm] = dt
+            dsp[k - n_warm] = res.telemetry["time_dsp_ms"]
+            ai[k - n_warm] = res.telemetry["time_ai_ms"]
+    end = sys_status()
+
+    return {
+        "preset": preset,
+        "blocks": n_blocks,
+        "mean": float(times.mean()),
+        "p50": float(np.percentile(times, 50)),
+        "p95": float(np.percentile(times, 95)),
+        "p99": float(np.percentile(times, 99)),
+        "p999": float(np.percentile(times, 99.9)),
+        "max": float(times.max()),
+        "misses": int((times > DEADLINE_MS).sum()),
+        "rtf": float(times.mean() / DEADLINE_MS),
+        "dsp_mean": float(dsp.mean()),
+        "ai_mean": float(ai.mean()),
+        "temp_start": start["temp_c"],
+        "temp_end": end["temp_c"],
+        "mhz_end": end["cpu_mhz"],
+    }
+
+
+def verdict(r: dict) -> str:
+    if r["p999"] < 0.8 * DEADLINE_MS and r["misses"] == 0:
+        return "PASS"
+    if r["p999"] < DEADLINE_MS:
+        return "MARGINAL"
+    return "FAIL"
+
+
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    ap.add_argument("--preset", default="gsc_blend")
+    ap.add_argument("--seconds", type=float, default=30.0)
+    ap.add_argument("--warmup", type=float, default=3.0)
+    ap.add_argument(
+        "--soak-minutes",
+        type=float,
+        default=0.0,
+        help="repeat in 60 s rounds for this long",
     )
-    print(
-        f"Stage 2 (FastEnhancer-B): Mean: {np.mean(ai_arr):.2f} ms | P95: {np.percentile(ai_arr, 95):.2f} ms"
-    )
-    print("-" * 68)
-    print(
-        f"Total Processing Time   : Mean: {mean_total:.2f} ms | P50: {np.median(tot_arr):.2f} ms | P95: {p95_total:.2f} ms"
-    )
-    print(f"Frame Budget (Deadline) : {frame_duration_ms:.2f} ms")
-    print(f"Real-Time Factor (RTF)  : {rtf:.3f}")
-    print(f"CPU Headroom Available  : {max(0.0, (1.0 - rtf) * 100.0):.1f}%")
-    print("-" * 68)
+    args = ap.parse_args(argv)
 
-    if rtf < 0.65:
-        print("[VERDICT] PASS - EXCELLENT REAL-TIME PERFORMANCE ON RASPBERRY PI 5!")
-    elif rtf < 1.0:
-        print("[VERDICT] PASS - REAL-TIME CAPABLE (Monitor peak system load)")
-    else:
-        print("[VERDICT] FAIL - EXCEEDS FRAME DEADLINE (Drop block size or optimize)")
-    print("=" * 68)
+    rounds = max(round(args.soak_minutes), 1) if args.soak_minutes else 1
+    seconds = 60.0 if args.soak_minutes else args.seconds
+    print(
+        f"preset={args.preset}  block={BLOCK} ({DEADLINE_MS:.2f} ms)  rounds={rounds} x {seconds:.0f}s"
+    )
+    worst = None
+    for i in range(rounds):
+        r = run(args.preset, seconds, args.warmup)
+        v = verdict(r)
+        print(
+            f"[{i + 1}/{rounds}] mean {r['mean']:.2f}  p50 {r['p50']:.2f}  p99 {r['p99']:.2f}  "
+            f"p99.9 {r['p999']:.2f}  max {r['max']:.2f} ms | misses {r['misses']} | RTF {r['rtf']:.2f} | "
+            f"dsp {r['dsp_mean']:.2f} ai {r['ai_mean']:.2f} | {r['temp_end']:.0f} C {r['mhz_end']:.0f} MHz | {v}"
+        )
+        if worst is None or r["p999"] > worst["p999"]:
+            worst = r
+    final = verdict(worst)
+    print(
+        f"\nVERDICT: {final}  (worst p99.9 = {worst['p999']:.2f} ms vs deadline {DEADLINE_MS:.2f} ms)"
+    )
+    return 0 if final != "FAIL" else 1
 
 
 if __name__ == "__main__":
-    mode = "ROBUST"
-    if len(sys.argv) > 1:
-        mode = sys.argv[1].upper()
-    benchmark_stream(dsp_mode=mode)
+    sys.exit(main())

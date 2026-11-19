@@ -5,12 +5,23 @@ import pytest
 
 from highspl.models.fastenhancer import FastEnhancerAdapter, FastEnhancerConfig
 
+_ROOT = Path(__file__).resolve().parents[2]
+UPSTREAM = next(
+    (
+        p
+        for p in (_ROOT / "third_party" / "fastenhancer", _ROOT.parent / "fastenhancer")
+        if p.is_dir()
+    ),
+    _ROOT / "third_party" / "fastenhancer",
+)
+
+
 ROOT = Path(__file__).resolve().parents[2]
 CHECKPOINT = ROOT / "models" / "fastenhancer" / "b" / "00500.pth"
 ONNX_MODEL = ROOT / "models" / "fastenhancer" / "b" / "fastenhancer_b_streaming.onnx"
 
 pytestmark = pytest.mark.skipif(
-    not CHECKPOINT.is_file() or not ONNX_MODEL.is_file(),
+    not UPSTREAM.is_dir() or not CHECKPOINT.is_file() or not ONNX_MODEL.is_file(),
     reason="FastEnhancer model weights not available (large files excluded from CI)",
 )
 
@@ -51,7 +62,7 @@ def get_config(backend: str):
         onnx_path=str(ONNX_MODEL),
         backend=backend,
         device="cpu",
-        upstream_root=r"D:\SIH\fastenhancer",
+        upstream_root=str(UPSTREAM),
     )
 
 

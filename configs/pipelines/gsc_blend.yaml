@@ -1,0 +1,7 @@
+# GSC faded in with the noise level (primary mic only in quiet scenes).
+pipeline:
+  frontend:
+    mode: gsc
+    blend: true
+  level:
+    output_gain_db: 0.0

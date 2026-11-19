@@ -233,6 +233,7 @@ class ERLELoss(nn.Module):
         speech_threshold: float = 1e-4,
         reduction: str = "mean",
         eps: float = 1e-7,
+        smoothing_samples: int = 480,
     ) -> None:
         super().__init__()
         if mode not in ("ratio", "db", "residual"):
@@ -240,6 +241,10 @@ class ERLELoss(nn.Module):
                 f"mode must be one of ('ratio', 'db', 'residual'), got {mode}"
             )
         self.mode = mode
+        # "Speech absent" must be decided from a smoothed envelope (10 ms at 48 kHz),
+        # not from instantaneous sample power: speech passes through ~0 at every
+        # zero crossing, which would switch the penalty on *during* speech.
+        self.smoothing_samples = int(smoothing_samples)
         self.speech_threshold = speech_threshold
         self.reduction = reduction
         self.eps = eps
@@ -265,6 +270,16 @@ class ERLELoss(nn.Module):
         elif speech_target is not None:
             sp = _align_shape(speech_target)[..., :min_len]
             speech_power = sp**2
+            k = self.smoothing_samples
+            if k > 1:
+                pad = k // 2
+                speech_power = F.avg_pool1d(
+                    speech_power.unsqueeze(1),
+                    kernel_size=k,
+                    stride=1,
+                    padding=pad,
+                    count_include_pad=False,
+                ).squeeze(1)[..., : sp.size(-1)]
             # Soft weighting: 1 when speech power << speech_threshold, 0 when speech power >> speech_threshold
             non_speech_weight = torch.sigmoid(
                 -10.0 * (speech_power / (self.speech_threshold + self.eps) - 1.0)
@@ -349,7 +364,10 @@ class BattlefieldHighSPLLoss(nn.Module):
         stft_weight: float = 1.0,
         sisnr_weight: float = 1.0,
         erle_weight: float = 0.5,
-        clipping_weight: float = 10.0,
+        # Off by default: this penalises *output* amplitudes above the threshold,
+        # but clipping happens at the microphone *input*, so the term almost
+        # never activates and teaches no declipping. Kept for completeness.
+        clipping_weight: float = 0.0,
         n_ffts: Sequence[int] = (512, 1024, 2048),
         hop_sizes: Sequence[int] = (50, 120, 240),
         win_lengths: Sequence[int] = (240, 600, 1200),

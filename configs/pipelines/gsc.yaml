@@ -1,0 +1,4 @@
+# D5: differential beam + near-field blocking + constrained canceller.
+pipeline:
+  frontend:
+    mode: gsc

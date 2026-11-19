@@ -8,12 +8,23 @@ from highspl.models.fastenhancer import (
     FastEnhancerConfig,
 )
 
+_ROOT = Path(__file__).resolve().parents[2]
+UPSTREAM = next(
+    (
+        p
+        for p in (_ROOT / "third_party" / "fastenhancer", _ROOT.parent / "fastenhancer")
+        if p.is_dir()
+    ),
+    _ROOT / "third_party" / "fastenhancer",
+)
+
+
 ROOT = Path(__file__).resolve().parents[2]
 
 CHECKPOINT = ROOT / "models" / "fastenhancer" / "b" / "00500.pth"
 
 pytestmark = pytest.mark.skipif(
-    not CHECKPOINT.is_file(),
+    not UPSTREAM.is_dir() or not CHECKPOINT.is_file(),
     reason="FastEnhancer checkpoint not available (large model weights excluded from CI)",
 )
 
@@ -54,7 +65,7 @@ def make_adapter() -> FastEnhancerAdapter:
             checkpoint_path=str(CHECKPOINT),
             backend="pytorch",
             device="cpu",
-            upstream_root=r"D:\SIH\fastenhancer",
+            upstream_root=str(UPSTREAM),
         )
     )
 
@@ -240,7 +251,7 @@ def test_real_model_long_stream_is_stable():
             checkpoint_path=str(checkpoint),
             backend="pytorch",
             device="cpu",
-            upstream_root=r"D:\SIH\fastenhancer",
+            upstream_root=str(UPSTREAM),
         )
     )
 

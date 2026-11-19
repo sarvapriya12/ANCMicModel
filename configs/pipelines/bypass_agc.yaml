@@ -1,0 +1,8 @@
+# AI only, with level management (AGC in, lookahead limiter out).
+pipeline:
+  frontend:
+    mode: bypass
+  level:
+    output_gain_db: 0.0
+    agc_enabled: true
+    limiter_enabled: true

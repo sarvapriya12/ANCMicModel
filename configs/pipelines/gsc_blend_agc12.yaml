@@ -1,0 +1,10 @@
+# GSC (blended) + AGC targeting -12 dBFS + limiter.
+pipeline:
+  frontend:
+    mode: gsc
+    blend: true
+  level:
+    output_gain_db: 0.0
+    agc_enabled: true
+    agc_target_dbfs: -12.0
+    limiter_enabled: true

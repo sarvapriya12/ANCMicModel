@@ -8,6 +8,17 @@ from highspl.models.fastenhancer import (
     FastEnhancerConfig,
 )
 
+_ROOT = Path(__file__).resolve().parents[2]
+UPSTREAM = next(
+    (
+        p
+        for p in (_ROOT / "third_party" / "fastenhancer", _ROOT.parent / "fastenhancer")
+        if p.is_dir()
+    ),
+    _ROOT / "third_party" / "fastenhancer",
+)
+
+
 ROOT = Path(__file__).resolve().parents[2]
 
 CHECKPOINT = ROOT / "models" / "fastenhancer" / "b" / "00500.pth"
@@ -57,7 +68,7 @@ def make_adapter() -> FastEnhancerAdapter:
             onnx_path=str(ONNX_MODEL),
             backend="onnxruntime",
             device="cpu",
-            upstream_root=r"D:\SIH\fastenhancer",
+            upstream_root=str(UPSTREAM),
         )
     )
 
@@ -247,7 +258,7 @@ def test_real_model_long_stream_is_stable():
             onnx_path=str(onnx_model),
             backend="onnxruntime",
             device="cpu",
-            upstream_root=r"D:\SIH\fastenhancer",
+            upstream_root=str(UPSTREAM),
         )
     )
 

@@ -1,0 +1,4 @@
+# D3: fixed differential (cardioid-family) beamformer.
+pipeline:
+  frontend:
+    mode: diff

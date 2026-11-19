@@ -1,0 +1,8 @@
+pipeline:
+  frontend:
+    mode: diff
+    blend: true
+  level:
+    output_gain_db: 0.0
+  calibration:
+    enabled: true

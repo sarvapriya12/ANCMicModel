@@ -1,0 +1,4 @@
+# D4: adaptive-beta differential beamformer.
+pipeline:
+  frontend:
+    mode: adiff

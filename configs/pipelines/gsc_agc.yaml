@@ -1,0 +1,8 @@
+# gsc front-end plus level management.
+pipeline:
+  frontend:
+    mode: gsc
+  level:
+    output_gain_db: 0.0
+    agc_enabled: true
+    limiter_enabled: true

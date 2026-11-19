@@ -1,0 +1,10 @@
+# GSC faded in with the noise level, after a one-off quiet-room calibration of
+# the rear capsule (gain and I2S offset).
+pipeline:
+  frontend:
+    mode: gsc
+    blend: true
+  level:
+    output_gain_db: 0.0
+  calibration:
+    enabled: true

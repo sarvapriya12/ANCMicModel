@@ -1,63 +1,118 @@
-# Mathematical Framework: High-SPL Speech Enhancement
+# Mathematical framework
 
-This document outlines the conceptual mathematical framework used in the Dhwani-Kavach High-SPL Speech Enhancement system. It details the variables and signal pathways used for our hybrid Adaptive Filter (NLMS/FDAF) + Deep Learning approach, without disclosing the proprietary algorithmic implementations.
+What the code in `src/highspl` actually computes. Every statement here is
+implemented and tested; numbers come from `docs/EVAL_REPORT.md`.
 
-## 1. Core Signal Definitions
+## 1. Signals and geometry
 
-The system utilizes a dual-microphone setup to isolate speech from extreme ambient noise (e.g., 130 dB battlefield environments).
+Two omnidirectional MEMS capsules form a **back-to-back, near-field endfire
+pair**: the primary mic `f` faces the lips, the reference `r` sits directly
+behind it facing away, at spacing `d` (1-2 cm), with the lips at `r1` (4.5-6.5 cm).
+With `tau = d/c` (about 2 samples at 48 kHz):
 
-*   **$d(n)$**: The **Primary Signal** (Voice Target). This is the signal captured by the microphone closest to the user's mouth. It contains the desired speech $s(n)$ mixed with a large amount of ambient noise $n_p(n)$ and microphone characteristics $\epsilon_p(n)$.
-    *   $d(n) = s(n) + n_p(n) + \epsilon_p(n)$
-*   **$r(n)$**: The **Reference Signal** (Noise Target). This is captured by the outward-facing microphone. It ideally contains only the ambient noise field $n_r(n)$ and microphone characteristics $\epsilon_r(n)$, with minimal speech leakage.
-    *   $r(n) = n_r(n) + \epsilon_r(n)$
-*   **$s(n)$**: The clean, desired speech signal.
-*   **$n(n)$**: The ambient noise field.
-*   **$e(n)$**: The **Error Signal** (Residual). This is the output of the first stage of adaptive filtering, representing the primary signal after the estimated reference noise has been subtracted.
+| source | model at the rear mic |
+|---|---|
+| far-field wave from the front | `r(t) = f(t - tau)` |
+| far-field wave from the rear | `r(t) = f(t + tau)` |
+| mouth (spherical wave) | `r(t) = g f(t - tau)`, `g = r1/(r1+d) ~ 0.79` |
+| diffuse field | coherence `sinc(2 pi f d / c)` |
+| wind | independent per capsule (zero coherence) |
 
-## 2. Stage 1: Adaptive Noise Subtraction
+The mouth differs from a front far-field wave only by the amplitude factor `g`
+(about -2 dB). This is the key constraint of the design: there is almost no
+spatial discrimination for noise arriving from the front.
 
-The first stage attempts to linearly subtract the noise from the primary signal using the reference signal.
+> The earlier model, `d(n) = s + n_p`, `r(n) = n_r` with `r` "noise only", does
+> not hold for this geometry: the reference hears the talker at -2 dB, so any
+> filter that treats `r` as a noise reference learns to cancel speech.
 
-### The Adaptive Filter
-We employ an advanced adaptive filter algorithm—specifically designed as a **Delayless Variable Step-Size (VSS) Hybrid**—that fuses time-domain NLMS with frequency-domain Kalman filter-grade double-talk immunity. This models the acoustic path between the reference microphone and the primary microphone with **< 0.1 ms latency** and an efficient compute footprint (~32M MACS).
+## 2. Stage 1 (selectable; `pipeline.frontend.mode`)
 
-*   **$W(n)$**: The adaptive filter weight vector at time step $n$.
-*   **$\hat{n}_p(n)$**: The estimated noise at the primary microphone, calculated by applying the filter weights to the reference signal.
-    *   $\hat{n}_p(n) = W^T(n) r(n)$
+All are block-vectorised and add no look-ahead.
 
-### Error Calculation
-The estimated noise is subtracted from the primary signal to yield the error signal. In an optimal scenario, $e(n) \approx s(n)$.
-*   $e(n) = d(n) - \hat{n}_p(n)$
+**diff (D3)** - first-order differential beamformer. With the two cardioids
+`c_F = f(t) - r(t - tau)` (null behind) and `c_B = r(t) - f(t - tau)`:
 
-### Filter Update Mechanism
-The filter weights $W(n)$ are continuously updated to minimize the power of the error signal $e(n)$ when speech is absent.
-*   $W(n+1) = W(n) + \mu \cdot f(e(n), r(n))$
-    *   **$\mu$ (Step Size)**: Controls how quickly the filter adapts to changes in the noise environment.
-    *   **$f(\cdot)$**: The update function (specific implementations are proprietary).
+```
+y = EQ{ c_F - beta c_B }
+```
 
-### Control Logic (Voice Activity & Coherence)
-To prevent the adaptive filter from canceling the desired speech (a phenomenon known as "signal cancellation"), the update mechanism is governed by:
-*   **$\gamma(n)$ (Coherence)**: Measures the linear dependence between the primary and reference signals.
-*   **$\Phi(n)$ (Energy Ratio)**: Compares the energy of the primary and reference channels to detect near-end speech.
+`EQ` flattens the *mouth* response `M(w) = 1 - g e^{-j2w tau} + beta (1-g) e^{-j w tau}`
+(it is only -13 dB at low frequencies) with three shelving biquads fitted by
+least squares, each bounded by +12 dB so low-frequency self-noise is not boosted
+without limit. Fractional delays use a 19-tap Kaiser-sinc FIR; both paths are
+delayed by 8 samples so the filters are causal.
 
-## 3. Stage 2: Deep Learning Enhancement
+**adiff (D4)** - `beta` adapted per 128-sample sub-block to null the strongest
+rear-half-plane noise: `beta = clip(<c_F,c_B> / <c_B,c_B>, 0, beta_max)` (Elko).
 
-The residual signal $e(n)$ still contains non-linear noise, transient artifacts, and residual acoustic leakage that the linear adaptive filter cannot resolve.
+**gsc (D5)** - generalised sidelobe canceller:
 
-*   **$y(n)$**: The final enhanced output signal.
-*   **$F_{\theta}(\cdot)$**: The deep neural network model (**FastEnhancer**, a causal RNNFormer architecture), parameterized by weights $\theta$.
+```
+b(t) = D3 output (fixed beam)
+u(t) = r(t) - g f(t - tau)            # blocks the mouth exactly: u = 0 for speech
+y(t) = b(t - L/2) - sum_k w_k u(t - k)  # w: constrained block-NLMS, L = 32
+```
 
-The neural network takes the residual signal $e(n)$ and extracts the clean speech components:
-*   $y(n) = F_{\theta}(e(n))$
+`w` adapts only when speech is absent (`P_b/P_u` stays near its running minimum),
+never on a clipped block, with `|w|_1 <= 6` and leakage. The blocking gain `g`
+must match the real mouth path: a 1 dB capsule mismatch leaks about 9 % of the
+speech into `u`, which `w` (about 4.7 for front noise) would then subtract.
+`highspl.dsp.calibration` therefore estimates `(g_eff, tau_eff)` from clean speech
+by the cross-spectrum `H = csd(f,r)/psd(f)` (gain `|H|`, delay from the phase
+slope) and corrects the rear channel.
 
-### Loss Function Pipeline
-During training, the neural network weights $\theta$ are optimized using a composite loss function $\mathcal{L}_{total}$:
+**blend** (`frontend.blend`) - cross-fades from the primary mic to the beamformer
+by the noise floor of the primary (10th percentile of block power over 4 s):
+the beamformer costs a little speech fidelity when there is nothing to remove.
 
-*   **$\mathcal{L}_{STFT}$**: Multi-Resolution STFT Loss. Penalizes differences in the spectral domain across multiple time-frequency resolutions.
-*   **$\mathcal{L}_{SISNR}$**: Scale-Invariant Signal-to-Noise Ratio Loss. Maximizes the target signal energy relative to the residual noise.
-*   **$\mathcal{L}_{ERLE}$**: Echo Return Loss Enhancement penalty. Explicitly penalizes residual energy during periods when only noise (no speech) is present.
-*   **$\mathcal{L}_{clip}$**: Clipping Penalty. Punishes the model for generating waveforms that exceed the dynamic range $[-1, 1]$.
+**robust / vss / nlms / fdaf** - the legacy filters, kept as baselines. Their
+control logic assumes a reference that does not contain speech; see section 1.
 
-$$ \mathcal{L}_{total} = \lambda_1 \mathcal{L}_{STFT} + \lambda_2 \mathcal{L}_{SISNR} + \lambda_3 \mathcal{L}_{ERLE} + \lambda_4 \mathcal{L}_{clip} $$
+## 3. Level management
 
-This custom composite formulation uniquely enforces stable model convergence in extreme **130 dB SPL** battlefield acoustic environments, balancing perceptual speech fidelity against catastrophic dynamic range clipping.
+* **AGC** (before the neural stage): block RMS with fast attack / slow release,
+  gain slew-limited (`40 dB/s` down, `6 dB/s` up), held through impulses
+  (crest factor > 18 dB) so bangs do not pump it. The stock enhancer was trained on
+  mixtures at about -25..-10 dBFS. On the bench a target of -24 dBFS made it
+  suppress speech in loud scenes; -12 dBFS was the best of -12/-16/-20 and is the
+  default of the recommended preset (`ft_gsc_blend_agc12`).
+* **Lookahead limiter** (after it): with `req[n] = min(1, ceiling/|x[n]|)`,
+  `T[i] = min(req over the trailing hold+S window)` and
+  `G[m] = mean(T[m..m+S-1])`, the output satisfies `|y| <= ceiling` exactly while
+  the gain ramps down *before* the peak (S = 48 samples).
+
+## 4. Stage 2: neural enhancement
+
+FastEnhancer-B (causal RNNFormer, 48 kHz STFT 1024/512 with power-law
+compression 0.3) runs through ONNX Runtime one 512-sample hop at a time. Its
+measured algorithmic delay is **512 samples (10.7 ms)**. The pipeline never sees
+a model exception: a failing stage is reset and the block falls back to a safe
+signal (`telemetry["healthy"] = False`).
+
+### Fine-tuning loss (`highspl.training.trainer`)
+
+The upstream training recipe, on the compressed spectra `S = |X|^0.3 e^{j arg X}`:
+
+```
+L = 0.3 MSE(|S_hat|, |S|) + 0.2 MSE(S_hat, S) + 0.3 MSE(STFT512(y_hat), STFT512(y)) + 0.2 |y_hat - y|_1
+```
+
+The earlier custom composite loss (`training/losses.py`) is retained but its two
+unsound terms were corrected: the ERLE "speech absent" weight is computed from a
+10 ms envelope rather than instantaneous sample power, and the output-clipping
+penalty is off by default (clipping happens at the input, where an output
+penalty cannot act).
+
+## 5. Metrics (`highspl.evaluation`)
+
+All level-invariant, computed on the output aligned to the clean target:
+
+* SI-SDR, ESTOI, PESQ-WB (quality)
+* speech **property preservation**: F0 recall and gross error, voicing accuracy,
+  long-term-spectrum deviation (1/3-octave), 4-8 kHz fricative energy, 2-8 Hz
+  syllabic-envelope correlation, residual level in pauses
+
+"Noise reduction" is not reported as `10 log10(E_out/E_in)`: that counts speech
+as noise and scores a muted output as perfect. The live UI reports the noise
+floor (minimum statistics) before and after instead.

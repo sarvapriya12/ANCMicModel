@@ -19,6 +19,10 @@ class FastEnhancerConfig:
     backend: str = "pytorch"
     device: str = "cpu"
     upstream_root: str | None = None
+    # ONNX Runtime tuning (Pi): few threads avoid contention with the audio
+    # and DSP threads. 0 lets ORT decide.
+    intra_op_threads: int = 1
+    inter_op_threads: int = 1
 
     def __post_init__(self) -> None:
         if self.backend not in {"pytorch", "onnxruntime", "tensorrt"}:
@@ -35,15 +39,22 @@ class FastEnhancerConfig:
         if hop_size is None or hop_size <= 0:
             raise ValueError("model_kwargs must contain a positive hop_size")
 
+        # Only the file the selected backend actually loads must exist. A stray
+        # (gitignored) checkpoint must not break an ONNX-only deployment.
         if (
-            self.checkpoint_path is not None
+            self.backend == "pytorch"
+            and self.checkpoint_path is not None
             and not Path(self.checkpoint_path).is_file()
         ):
             raise FileNotFoundError(
                 f"FastEnhancer checkpoint not found: {self.checkpoint_path}"
             )
 
-        if self.onnx_path is not None and not Path(self.onnx_path).is_file():
+        if (
+            self.backend == "onnxruntime"
+            and self.onnx_path is not None
+            and not Path(self.onnx_path).is_file()
+        ):
             raise FileNotFoundError(
                 f"FastEnhancer ONNX model not found: {self.onnx_path}"
             )
@@ -174,8 +185,15 @@ class FastEnhancerAdapter(StreamingEnhancer):
                     "CPUExecutionProvider",
                 ]
 
+        options = ort.SessionOptions()
+        options.intra_op_num_threads = int(self.config.intra_op_threads)
+        options.inter_op_num_threads = int(self.config.inter_op_threads)
+        options.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
+        options.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_ALL
+
         self._model = ort.InferenceSession(
             self.config.onnx_path,
+            sess_options=options,
             providers=providers,
         )
         self._cache = []

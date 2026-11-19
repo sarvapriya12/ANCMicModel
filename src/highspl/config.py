@@ -1,7 +1,32 @@
-from dataclasses import dataclass
+import os
+from dataclasses import dataclass, field
 from pathlib import Path
 
 from omegaconf import DictConfig, OmegaConf
+
+# --- Paths ---
+
+
+def project_root() -> Path:
+    """Locate the repository root (directory holding pyproject.toml).
+
+    ``HIGHSPL_ROOT`` overrides the search; otherwise we walk up from this file,
+    which works for editable installs and in-tree execution.
+    """
+    env = os.environ.get("HIGHSPL_ROOT")
+    if env:
+        return Path(env).resolve()
+    for parent in Path(__file__).resolve().parents:
+        if (parent / "pyproject.toml").is_file():
+            return parent
+    return Path.cwd()
+
+
+def resolve_path(path: str | Path) -> Path:
+    """Resolve a possibly-relative path against the project root."""
+    p = Path(path)
+    return p if p.is_absolute() else project_root() / p
+
 
 # --- Config Dataclasses ---
 
@@ -15,7 +40,7 @@ class ProjectConfig:
 
 @dataclass
 class SignalConfig:
-    capture_rate_hz: int = 32000
+    capture_rate_hz: int = 48000
     target_band_hz: int = 15000
     channels_in: int = 2
     channels_out: int = 1
@@ -29,24 +54,28 @@ class NLMSConfig:
     step_size: float = 0.25
     leakage: float = 1.0e-5
     freeze_ratio_db: float = 12.0
-    min_reference_power: float = 1.0e-8
+    pld_threshold_db: float = 12.0
+    min_reference_db: float = -40.0
+    max_reference_db: float = -3.0
 
 
 @dataclass
 class ModelConfig:
-    family: str = "dpdfnet"
-    variant: str = "dpdfnet2_48khz_hr"
-    checkpoint: str = "checkpoints/manifested/model.pth"
-    attn_limit_db: float = 12.0
+    family: str = "fastenhancer"
+    variant: str = "fastenhancer_b"
+    checkpoint: str = "models/fastenhancer/b/00500.pth"
+    onnx_path: str = "models/fastenhancer/b/fastenhancer_b_streaming.onnx"
+    hop_size: int = 512
     internal_rate_hz: int = 48000
 
 
 @dataclass
 class RuntimeConfig:
-    chunk_ms: int = 10
-    num_threads: int = 4
+    # Samples per processing block. Must equal the model hop (512 = 10.67 ms).
+    block_size: int = 512
+    num_threads: int = 1
     device: str = "cpu"
-    backend: str = "pytorch"
+    backend: str = "onnxruntime"
 
 
 @dataclass
@@ -65,27 +94,88 @@ class MetricsConfig:
     use_pesq: bool = True
     use_stoi: bool = True
     use_si_sdr: bool = True
-    use_dnsmos: bool = True
-    use_wer: bool = True
+    use_dnsmos: bool = False
+    use_wer: bool = False
+
+
+@dataclass
+class FrontendConfig:
+    """Stage-1 DSP. See highspl.dsp.frontend for the available modes."""
+
+    mode: str = "robust"  # bypass|robust|vss|nlms|fdaf|diff|adiff|gsc
+    # Geometry of the back-to-back pod (primary faces the lips, reference
+    # faces away). Used by the differential / GSC front-ends.
+    mic_spacing_m: float = 0.015
+    mouth_distance_m: float = 0.055
+    # Fade the beamformer in with the noise level (primary mic only when quiet).
+    blend: bool = False
+    blend_floor_lo_dbfs: float = -34.0
+    blend_floor_hi_dbfs: float = -24.0
+
+
+@dataclass
+class LevelConfig:
+    # Linear gain applied after the model. -1.94 dB == the legacy x0.8.
+    output_gain_db: float = -1.94
+    # Streaming AGC in front of the neural network.
+    agc_enabled: bool = False
+    agc_target_dbfs: float = -24.0
+    agc_max_gain_db: float = 24.0
+    agc_min_gain_db: float = -24.0
+    # Hearing-safety limiter on the output.
+    limiter_enabled: bool = False
+    limiter_ceiling_dbfs: float = -1.0
+
+
+@dataclass
+class GuardConfig:
+    """Clipping / impulse / bad-sample handling in front of the DSP."""
+
+    sanitize: bool = True
+    clip_threshold: float = 0.98
+    clip_diversity: bool = False
+    impulse_duck: bool = False
+
+
+@dataclass
+class CalibrationConfig:
+    enabled: bool = False
+    update_seconds: float = 3.0
+
+
+@dataclass
+class PipelineConfig:
+    frontend: FrontendConfig = field(default_factory=FrontendConfig)
+    level: LevelConfig = field(default_factory=LevelConfig)
+    guard: GuardConfig = field(default_factory=GuardConfig)
+    calibration: CalibrationConfig = field(default_factory=CalibrationConfig)
 
 
 @dataclass
 class AppConfig:
-    project: ProjectConfig
-    signal: SignalConfig
-    nlms: NLMSConfig
-    model: ModelConfig
-    runtime: RuntimeConfig
-    training: TrainingConfig
-    metrics: MetricsConfig
+    project: ProjectConfig = field(default_factory=ProjectConfig)
+    signal: SignalConfig = field(default_factory=SignalConfig)
+    nlms: NLMSConfig = field(default_factory=NLMSConfig)
+    model: ModelConfig = field(default_factory=ModelConfig)
+    runtime: RuntimeConfig = field(default_factory=RuntimeConfig)
+    training: TrainingConfig = field(default_factory=TrainingConfig)
+    metrics: MetricsConfig = field(default_factory=MetricsConfig)
+    pipeline: PipelineConfig = field(default_factory=PipelineConfig)
 
 
 # --- Core Functions ---
 
 
-def load_config(path: str | Path = "configs/base.yaml") -> DictConfig:
-    """Load and validate the application configuration."""
-    config_path = Path(path)
+def load_config(
+    path: str | Path | None = None, overrides: list[str] | None = None
+) -> DictConfig:
+    """Load and validate the application configuration.
+
+    ``path`` defaults to ``configs/base.yaml`` under the project root and may
+    be relative to it. ``overrides`` are dotlist strings, e.g.
+    ``["pipeline.frontend.mode=gsc"]``.
+    """
+    config_path = resolve_path(path if path is not None else "configs/base.yaml")
 
     if not config_path.is_file():
         raise FileNotFoundError(f"Configuration file not found: {config_path}")
@@ -93,6 +183,8 @@ def load_config(path: str | Path = "configs/base.yaml") -> DictConfig:
     schema = OmegaConf.structured(AppConfig)
     loaded = OmegaConf.load(config_path)
     config = OmegaConf.merge(schema, loaded)
+    if overrides:
+        config = OmegaConf.merge(config, OmegaConf.from_dotlist(overrides))
     OmegaConf.set_struct(config, True)
 
     return config
@@ -103,11 +195,14 @@ def validate_config(config: DictConfig) -> None:
     _validate_signal(config.signal)
     _validate_nlms(config.nlms)
     _validate_model(config.model)
-    _validate_runtime(config.runtime)
+    _validate_runtime(config.runtime, config.model)
     _validate_training(config.training)
+    _validate_pipeline(config.pipeline)
 
 
 # --- Modular Validation Helpers ---
+
+FRONTEND_MODES = {"bypass", "robust", "vss", "nlms", "fdaf", "diff", "adiff", "gsc"}
 
 
 def _validate_signal(signal: DictConfig) -> None:
@@ -133,11 +228,17 @@ def _validate_nlms(nlms: DictConfig) -> None:
 def _validate_model(model: DictConfig) -> None:
     if model.internal_rate_hz <= 0:
         raise ValueError("model.internal_rate_hz must be positive")
+    if model.hop_size <= 0:
+        raise ValueError("model.hop_size must be positive")
 
 
-def _validate_runtime(runtime: DictConfig) -> None:
-    if runtime.chunk_ms <= 0:
-        raise ValueError("runtime.chunk_ms must be positive")
+def _validate_runtime(runtime: DictConfig, model: DictConfig) -> None:
+    if runtime.block_size <= 0:
+        raise ValueError("runtime.block_size must be positive")
+    if runtime.block_size % model.hop_size != 0:
+        raise ValueError("runtime.block_size must be a multiple of model.hop_size")
+    if runtime.num_threads < 0:
+        raise ValueError("runtime.num_threads must be >= 0")
 
 
 def _validate_training(training: DictConfig) -> None:
@@ -153,3 +254,24 @@ def _validate_training(training: DictConfig) -> None:
         raise ValueError("training.weight_decay must be >= 0")
     if training.grad_clip_norm <= 0:
         raise ValueError("training.grad_clip_norm must be positive")
+
+
+def _validate_pipeline(pipeline: DictConfig) -> None:
+    fe = pipeline.frontend
+    if fe.mode not in FRONTEND_MODES:
+        raise ValueError(
+            f"pipeline.frontend.mode must be one of {sorted(FRONTEND_MODES)}, "
+            f"got {fe.mode!r}"
+        )
+    if fe.mic_spacing_m <= 0:
+        raise ValueError("pipeline.frontend.mic_spacing_m must be positive")
+    if fe.mouth_distance_m <= 0:
+        raise ValueError("pipeline.frontend.mouth_distance_m must be positive")
+    if fe.blend and fe.blend_floor_lo_dbfs >= fe.blend_floor_hi_dbfs:
+        raise ValueError(
+            "pipeline.frontend.blend_floor_lo_dbfs must be < blend_floor_hi_dbfs"
+        )
+    if pipeline.level.agc_min_gain_db > pipeline.level.agc_max_gain_db:
+        raise ValueError("pipeline.level.agc_min_gain_db must be <= agc_max_gain_db")
+    if not (0.0 < pipeline.guard.clip_threshold <= 1.0):
+        raise ValueError("pipeline.guard.clip_threshold must be in (0, 1]")

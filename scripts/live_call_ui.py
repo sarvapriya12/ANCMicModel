@@ -1,198 +1,91 @@
+"""Live dual-microphone call UI (customtkinter).
+
+Runs the SAME streaming pipeline and capture code as the PyQt lab app
+(`highspl.pipeline.StreamingPipeline`, `laboratory.audio.capture.AudioCapture`),
+so mic pairing, xrun accounting, clock-drift compensation, fault containment and
+the neural stage are identical. Preset: ``--preset`` (default ``gsc_blend``).
+"""
+
 import os
-import queue
 import sys
 import threading
 
 import customtkinter as ctk
 import numpy as np
 import sounddevice as sd
-import soxr
 
-sys.path.append(os.path.abspath("D:/SIH/ANCMicModel/src"))
-from highspl.dsp.nlms import RobustNLMS
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
+
+from highspl.evaluation.runner import build_pipeline, default_preset
+from laboratory.audio.capture import AudioCapture
 
 # --- UI Theme Setup ---
 ctk.set_appearance_mode("Dark")
 ctk.set_default_color_theme("blue")
 
+PRESET = default_preset()
+
 
 class AudioStreamer:
-    def __init__(self):
+    """Capture -> StreamingPipeline -> playback, with a contained worker thread."""
+
+    def __init__(self, preset: str = PRESET):
+        self.pipeline = build_pipeline(preset)
+        self.capture = None
+        self.thread = None
+        self._stop = threading.Event()
         self.running = False
-        self.stream_a = None
-        self.stream_b = None
-        self.stream_out = None
-
-        self.queue_a = queue.Queue(maxsize=20)
-        self.queue_b = queue.Queue(maxsize=20)
-
-        self.nlms = RobustNLMS(
-            pld_threshold_db=12.0,
-            freeze_on_clipping=True,
-            freeze_on_divergence=True,
-            min_reference_energy=-40,
-            max_reference_energy=-3,
-        )
-        self.state = self.nlms.reset()
-
-        self.sr_a = 48000
-        self.sr_b = 48000
-        self.sr_out = 48000
         self.vol_callback = None
-        self.shared_stereo = False
+        self.last_error = None
 
     def start_stream(self, mic_a_id, mic_b_id, output_id, enable_output):
         if self.running:
-            return
-
-        try:
-            # Query devices
-            info_a = sd.query_devices(mic_a_id, "input")
-            info_b = sd.query_devices(mic_b_id, "input")
-            info_out = sd.query_devices(output_id, "output")
-
-            self.sr_a = int(info_a["default_samplerate"])
-            self.sr_b = int(info_b["default_samplerate"])
-            self.sr_out = int(info_out["default_samplerate"])
-
-            self.state = self.nlms.reset()
-            self.queue_a.queue.clear()
-            self.queue_b.queue.clear()
-            self.running = True
-
-            self.shared_stereo = mic_a_id == mic_b_id
-
-            self.process_thread = threading.Thread(
-                target=self._processing_loop, args=(enable_output, output_id)
-            )
-            self.process_thread.start()
-
-            if self.shared_stereo:
-                # I2S Hardware / Single Stereo Interface (e.g. Raspberry Pi 5)
-                self.stream_a = sd.InputStream(
-                    device=mic_a_id,
-                    channels=2,
-                    samplerate=self.sr_a,
-                    blocksize=512,
-                    callback=self._stereo_callback,
-                )
-                self.stream_a.start()
-            else:
-                # Two separate USB Microphones (e.g. Windows Testing)
-                self.stream_a = sd.InputStream(
-                    device=mic_a_id,
-                    channels=1,
-                    samplerate=self.sr_a,
-                    blocksize=512,
-                    callback=self._mono_callback_a,
-                )
-                self.stream_b = sd.InputStream(
-                    device=mic_b_id,
-                    channels=1,
-                    samplerate=self.sr_b,
-                    blocksize=512,
-                    callback=self._mono_callback_b,
-                )
-                self.stream_a.start()
-                self.stream_b.start()
-
             return True, "Streaming Active"
-        except Exception as e:  # noqa: BLE001
-            self.running = False
+        try:
+            self.capture = AudioCapture(mic_a_id, mic_b_id, output_id)
+            self.capture.start()
+        except Exception as e:  # noqa: BLE001 - report to the UI instead of crashing
+            self.capture = None
             return False, str(e)
+
+        self.pipeline.reset()  # never start from a previous session's state
+        self._stop.clear()
+        self.last_error = None
+        self.running = True
+        self.thread = threading.Thread(
+            target=self._loop, args=(enable_output,), daemon=True
+        )
+        self.thread.start()
+        return True, "Streaming Active"
 
     def stop_stream(self):
         self.running = False
-        if self.stream_a:
-            self.stream_a.stop()
-            self.stream_a.close()
-        if self.stream_b:
-            self.stream_b.stop()
-            self.stream_b.close()
-        if self.stream_out:
-            self.stream_out.stop()
-            self.stream_out.close()
-        if hasattr(self, "process_thread"):
-            self.process_thread.join(timeout=1.0)
+        self._stop.set()
+        if self.capture is not None:
+            self.capture.stop()  # also wakes a worker blocked on the queue
+        if self.thread is not None:
+            self.thread.join(timeout=1.0)
+            self.thread = None
+        self.capture = None
 
-    def _stereo_callback(self, indata, frames, time, status):
-        if self.running:
-            try:
-                # Split Left (A) and Right (B) channels
-                self.queue_a.put_nowait(indata[:, 0].copy())
-                self.queue_b.put_nowait(
-                    indata[:, 1].copy()
-                    if indata.shape[1] > 1
-                    else np.zeros_like(indata[:, 0])
-                )
-            except queue.Full:
-                pass
-
-    def _mono_callback_a(self, indata, frames, time, status):
-        if self.running:
-            try:
-                self.queue_a.put_nowait(indata[:, 0].copy())
-            except queue.Full:
-                pass
-
-    def _mono_callback_b(self, indata, frames, time, status):
-        if self.running:
-            try:
-                self.queue_b.put_nowait(indata[:, 0].copy())
-            except queue.Full:
-                pass
-
-    def _processing_loop(self, enable_output, output_id):
-        if enable_output:
-            self.stream_out = sd.OutputStream(
-                device=output_id, channels=1, samplerate=self.sr_out, blocksize=0
-            )
-            self.stream_out.start()
-
-        resamp_a = soxr.Resample(self.sr_a, 48000, 1) if self.sr_a != 48000 else None
-        resamp_b = soxr.Resample(self.sr_b, 48000, 1) if self.sr_b != 48000 else None
-        resamp_out = (
-            soxr.Resample(48000, self.sr_out, 1) if self.sr_out != 48000 else None
-        )
-
-        while self.running:
-            try:
-                # Pull from both mics
-                data_a = self.queue_a.get(timeout=0.1)
-                data_b = self.queue_b.get(timeout=0.1)
-
-                # Resample independently
-                if resamp_a:
-                    data_a = resamp_a.resample(data_a)
-                if resamp_b:
-                    data_b = resamp_b.resample(data_b)
-
-                mic_a = data_a.astype(np.float32)
-                mic_b = data_b.astype(np.float32)
-
-                # DSP Processing
-                out_48k, self.state = self.nlms.process(mic_a, mic_b, self.state)
-
-                # UI Meters
-                if self.vol_callback:
-                    v_in = np.clip(np.max(np.abs(mic_a)), 0, 1)
-                    v_out = np.clip(np.max(np.abs(out_48k)), 0, 1)
-                    self.vol_callback(v_in, v_out)
-
-                # Output
-                if enable_output and self.stream_out:
-                    out_48k = out_48k.reshape(-1, 1)
-                    if resamp_out:
-                        out_final = resamp_out.resample(out_48k)
-                    else:
-                        out_final = out_48k
-                    self.stream_out.write(out_final)
-
-            except queue.Empty:
+    def _loop(self, enable_output):
+        capture = self.capture
+        while not self._stop.is_set():
+            mic_a, mic_b, _gap = capture.get_frames(timeout=0.1)
+            if mic_a is None:
                 continue
-            except Exception as e:  # noqa: BLE001
-                print(f"Processing Error: {e}")
-                break
+            try:
+                res = self.pipeline.process(mic_a, mic_b)
+                if enable_output:
+                    capture.push_output(res.enhanced)
+                if self.vol_callback:
+                    v_in = float(np.clip(np.max(np.abs(mic_a)), 0, 1))
+                    v_out = float(np.clip(np.max(np.abs(res.enhanced)), 0, 1))
+                    self.vol_callback(v_in, v_out)
+            except Exception as e:  # noqa: BLE001 - keep the audio thread alive
+                self.last_error = str(e)
 
 
 class ModernLiveUI(ctk.CTk):
@@ -216,7 +109,7 @@ class ModernLiveUI(ctk.CTk):
 
         self.info_label = ctk.CTkLabel(
             self.sidebar_frame,
-            text="True Dual-Mic PLD + AI\nReal-Time Output Streaming",
+            text=f"Dual-mic front-end + neural enhancer\npreset: {PRESET}",
             font=ctk.CTkFont(size=14),
             text_color="gray",
         )

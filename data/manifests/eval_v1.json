@@ -1,0 +1,4807 @@
+{
+ "set": "eval_v1",
+ "base_seed": 20260101,
+ "duration_s": 10.0,
+ "scenes": {
+  "0000_S1_jet_b0": {
+   "sha256": {
+    "mic.flac": "23279d69aa817ff787bf4b3b82a655639eddd99521e7c7f200a46f680c5d1f71",
+    "clean.flac": "4e99c147360eaf29e8581597bf449e94fbac03bf4b00514addf25f3d68d61b80"
+   },
+   "meta": {
+    "scene_id": "0000_S1_jet_b0",
+    "tier": "S1",
+    "group": "jet",
+    "band": 0,
+    "noise_spl_db": 93.48450099043222,
+    "total_noise_rms_spl_db": 93.48450099043222,
+    "speech_spl_db": 101.85032564852852,
+    "snr_db": 8.365824658096301,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 21.811344362640668
+   }
+  },
+  "0001_S1_helicopter_b0": {
+   "sha256": {
+    "mic.flac": "7ec890387e315375b4b48e4cacd2446e071db8b40fc15a421b3473273aa0d3ba",
+    "clean.flac": "dbde0cd39c080095cc8e0e89dd7a8904f2be203f9b145aa7b27518a47834fb7c"
+   },
+   "meta": {
+    "scene_id": "0001_S1_helicopter_b0",
+    "tier": "S1",
+    "group": "helicopter",
+    "band": 0,
+    "noise_spl_db": 100.76018942478255,
+    "total_noise_rms_spl_db": 100.76018942478255,
+    "speech_spl_db": 107.912592070989,
+    "snr_db": 7.152402646206454,
+    "clip_fraction_front": 0.00012916666666666667,
+    "clip_fraction_rear": 1.6666666666666667e-05,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 34.510542773519475
+   }
+  },
+  "0002_S1_tank_b0": {
+   "sha256": {
+    "mic.flac": "2d40274f527bdb662ffe33bbc4af5f207b0ca6ba90e7a48618f26b286baac098",
+    "clean.flac": "e112539f1a97b5103a6f7867602fa479bd4a7f676cc032427c7d07c0758bc5cb"
+   },
+   "meta": {
+    "scene_id": "0002_S1_tank_b0",
+    "tier": "S1",
+    "group": "tank",
+    "band": 0,
+    "noise_spl_db": 104.1091596112255,
+    "total_noise_rms_spl_db": 104.1091596112255,
+    "speech_spl_db": 108.82389507271108,
+    "snr_db": 4.7147354614855885,
+    "clip_fraction_front": 0.0006333333333333333,
+    "clip_fraction_rear": 0.00018958333333333332,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 41.488581284134206
+   }
+  },
+  "0003_S1_missile_b0": {
+   "sha256": {
+    "mic.flac": "fecdf06aed2e36e88b66511d257c931ce123a137a560661b2b56050054b0b179",
+    "clean.flac": "42fd6e920c866bd9563acc4ae1c1c098acf6311ce1e297575e1e00b341b34fac"
+   },
+   "meta": {
+    "scene_id": "0003_S1_missile_b0",
+    "tier": "S1",
+    "group": "missile",
+    "band": 0,
+    "noise_spl_db": 103.14779270983666,
+    "total_noise_rms_spl_db": 103.14779270983666,
+    "speech_spl_db": 108.06514955295538,
+    "snr_db": 4.917356843118711,
+    "clip_fraction_front": 0.0010895833333333332,
+    "clip_fraction_rear": 2.2916666666666667e-05,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 43.57259695481923
+   }
+  },
+  "0004_S1_gunfire_b0": {
+   "sha256": {
+    "mic.flac": "421f2cd0bdf294f8c4d901b3bf03168acde6a9996822cfce136019fe17931280",
+    "clean.flac": "5d2ee8127aaf75d7e5c675d4b8406b2fd62fb40769ffb4990b0115a1ca82ffe4"
+   },
+   "meta": {
+    "scene_id": "0004_S1_gunfire_b0",
+    "tier": "S1",
+    "group": "gunfire",
+    "band": 0,
+    "noise_spl_db": 91.47834050057457,
+    "total_noise_rms_spl_db": 91.49101135979112,
+    "speech_spl_db": 100.59723097317875,
+    "snr_db": 9.106219613387637,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 15.554413642549237
+   }
+  },
+  "0005_S1_artillery_b0": {
+   "sha256": {
+    "mic.flac": "b560016f34a02aa2db0a7a9012e257a0ec9e40655e2e881f31dbe985977ce25e",
+    "clean.flac": "5d4a7d52d259965c955d6fc33d2d5d7cd3e579376e7a48e150a60aee7310189d"
+   },
+   "meta": {
+    "scene_id": "0005_S1_artillery_b0",
+    "tier": "S1",
+    "group": "artillery",
+    "band": 0,
+    "noise_spl_db": 83.98852037337319,
+    "total_noise_rms_spl_db": 85.59067959358521,
+    "speech_spl_db": 95.61008996273054,
+    "snr_db": 10.019410369145334,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 8.231816121710816
+   }
+  },
+  "0006_S1_jet_b1": {
+   "sha256": {
+    "mic.flac": "715107232f6e6e3fca34d346674033853415be301199b527460110af1a6c5eeb",
+    "clean.flac": "8e8d061c55f25dd3cdb9fcdc71c8d22ca055f7e2e0ecfeb460dafdd102acd98e"
+   },
+   "meta": {
+    "scene_id": "0006_S1_jet_b1",
+    "tier": "S1",
+    "group": "jet",
+    "band": 1,
+    "noise_spl_db": 109.20669179151187,
+    "total_noise_rms_spl_db": 109.23814363518892,
+    "speech_spl_db": 112.81657357624702,
+    "snr_db": 3.578429941058104,
+    "clip_fraction_front": 0.013297916666666666,
+    "clip_fraction_rear": 0.007277083333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 112.55414612035776
+   }
+  },
+  "0007_S1_helicopter_b1": {
+   "sha256": {
+    "mic.flac": "7a80a59aca70c6d1c07cd02a36e28ff9aa22c86e81b5a1116715b05e4ae1b604",
+    "clean.flac": "770bea250aaf4255e0e62b64825751090308a0d73203734397a55bc44b4a3339"
+   },
+   "meta": {
+    "scene_id": "0007_S1_helicopter_b1",
+    "tier": "S1",
+    "group": "helicopter",
+    "band": 1,
+    "noise_spl_db": 105.4606175865224,
+    "total_noise_rms_spl_db": 105.4606175865224,
+    "speech_spl_db": 111.00446863742745,
+    "snr_db": 5.543851050905047,
+    "clip_fraction_front": 0.004016666666666667,
+    "clip_fraction_rear": 0.0018104166666666668,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 67.39343521607292
+   }
+  },
+  "0008_S1_tank_b1": {
+   "sha256": {
+    "mic.flac": "27d54ed2ff21bfd25b4bbc9a8ca45731a6d1e0ea2dbdfcec8745d12c961f03c2",
+    "clean.flac": "8523623af7e02dd7cc8e3279763668f90bf66c305884ecc00e880e15d1b6cf8e"
+   },
+   "meta": {
+    "scene_id": "0008_S1_tank_b1",
+    "tier": "S1",
+    "group": "tank",
+    "band": 1,
+    "noise_spl_db": 118.62895665871616,
+    "total_noise_rms_spl_db": 118.62895665871616,
+    "speech_spl_db": 115.30196346466494,
+    "snr_db": -3.3269931940512265,
+    "clip_fraction_front": 0.12374166666666667,
+    "clip_fraction_rear": 0.12016666666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 131.5578335554517
+   }
+  },
+  "0009_S1_missile_b1": {
+   "sha256": {
+    "mic.flac": "84d5285b60edfa0c65d9b0a60a5e3d36377844acdd6675996579f1cb4ff4f266",
+    "clean.flac": "028a6249e07bcf8ceaa52daaee3ad3e4bf9aae0f88ced6143187ef7158fca169"
+   },
+   "meta": {
+    "scene_id": "0009_S1_missile_b1",
+    "tier": "S1",
+    "group": "missile",
+    "band": 1,
+    "noise_spl_db": 114.14063955753025,
+    "total_noise_rms_spl_db": 114.14063955753025,
+    "speech_spl_db": 115.04332680249706,
+    "snr_db": 0.9026872449668133,
+    "clip_fraction_front": 0.03016875,
+    "clip_fraction_rear": 0.03761458333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 156.6837141354489
+   }
+  },
+  "0010_S1_gunfire_b1": {
+   "sha256": {
+    "mic.flac": "a729d03f08c2d183f245d01363543eb7ff56ac887073d20ef9f97638e7614348",
+    "clean.flac": "d5d4cc3c0b716b8eb8d272c75067fbdf5c5600f5cdb7a549ef029dc72f34ad39"
+   },
+   "meta": {
+    "scene_id": "0010_S1_gunfire_b1",
+    "tier": "S1",
+    "group": "gunfire",
+    "band": 1,
+    "noise_spl_db": 113.66304625452625,
+    "total_noise_rms_spl_db": 113.89978656770663,
+    "speech_spl_db": 111.9772729169124,
+    "snr_db": -1.9225136507942295,
+    "clip_fraction_front": 0.022604166666666668,
+    "clip_fraction_rear": 0.014770833333333334,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 205.6831048725946
+   }
+  },
+  "0011_S1_artillery_b1": {
+   "sha256": {
+    "mic.flac": "cef9b4199934fbc158e45ed019e420a67a874ab299b286185fd07cefa1de34cd",
+    "clean.flac": "eb38cf177ba22ca7604d5486c14025667de31ffa23d8ba73aaa3720210512334"
+   },
+   "meta": {
+    "scene_id": "0011_S1_artillery_b1",
+    "tier": "S1",
+    "group": "artillery",
+    "band": 1,
+    "noise_spl_db": 105.2975147814768,
+    "total_noise_rms_spl_db": 106.63548836712644,
+    "speech_spl_db": 113.01546564554673,
+    "snr_db": 6.379977278420284,
+    "clip_fraction_front": 0.009045833333333333,
+    "clip_fraction_rear": 0.006560416666666667,
+    "lost_fraction": 0.0010666666666666667,
+    "peak_pa_front": 94.4693106327174
+   }
+  },
+  "0012_S1_jet_b2": {
+   "sha256": {
+    "mic.flac": "a9975f986bc5bad6ccb2e3a2197fddcf8097eafe1a405a25fdaec0184f3db99c",
+    "clean.flac": "7c7fa696599d8968c2fd028c25857d972ed9b9622eaf140e1977d87dde304277"
+   },
+   "meta": {
+    "scene_id": "0012_S1_jet_b2",
+    "tier": "S1",
+    "group": "jet",
+    "band": 2,
+    "noise_spl_db": 126.74758455582493,
+    "total_noise_rms_spl_db": 126.74758455582493,
+    "speech_spl_db": 117.0503037346122,
+    "snr_db": -9.697280821212729,
+    "clip_fraction_front": 0.51134375,
+    "clip_fraction_rear": 0.4774291666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 419.90454090661717
+   }
+  },
+  "0013_S1_helicopter_b2": {
+   "sha256": {
+    "mic.flac": "9c9453473892055b8cb01d3042a6e107e2a98cf50bba5398b54482f38022d63e",
+    "clean.flac": "0b49932f3c785ca134f971c38f64936131258e96311b309d70396bf165b14a45"
+   },
+   "meta": {
+    "scene_id": "0013_S1_helicopter_b2",
+    "tier": "S1",
+    "group": "helicopter",
+    "band": 2,
+    "noise_spl_db": 127.60432229259563,
+    "total_noise_rms_spl_db": 127.60432229259563,
+    "speech_spl_db": 118.38941617160731,
+    "snr_db": -9.214906120988317,
+    "clip_fraction_front": 0.32588958333333334,
+    "clip_fraction_rear": 0.3472875,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 467.28238369594834
+   }
+  },
+  "0014_S1_tank_b2": {
+   "sha256": {
+    "mic.flac": "30db428735201725dc28a86d5586cced75bfa0b18fbe5668959bcb9f43c91bb0",
+    "clean.flac": "9e41f4962589a17c9d20164dd40fccefdc78a78e8167d562263056bddfe423d0"
+   },
+   "meta": {
+    "scene_id": "0014_S1_tank_b2",
+    "tier": "S1",
+    "group": "tank",
+    "band": 2,
+    "noise_spl_db": 129.63363199381058,
+    "total_noise_rms_spl_db": 129.63363199381058,
+    "speech_spl_db": 118.66035343094472,
+    "snr_db": -10.973278562865858,
+    "clip_fraction_front": 0.62263125,
+    "clip_fraction_rear": 0.62555625,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 481.197633350606
+   }
+  },
+  "0015_S1_missile_b2": {
+   "sha256": {
+    "mic.flac": "823566e7195b49f4264ac4a8792d20a45bbcb5cf254c1e1dd076448d3726a223",
+    "clean.flac": "6dd6be6dfc52953a54c2ab5b57351839db29eeb37184b8935eda2f5b6fa21340"
+   },
+   "meta": {
+    "scene_id": "0015_S1_missile_b2",
+    "tier": "S1",
+    "group": "missile",
+    "band": 2,
+    "noise_spl_db": 129.23229717218263,
+    "total_noise_rms_spl_db": 129.23229717218263,
+    "speech_spl_db": 116.66328454164508,
+    "snr_db": -12.569012630537543,
+    "clip_fraction_front": 0.41755416666666667,
+    "clip_fraction_rear": 0.41675208333333336,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 758.9104343841698
+   }
+  },
+  "0016_S1_gunfire_b2": {
+   "sha256": {
+    "mic.flac": "efee6904e2db91f24a2c9aa8d0879ffc1c45b899dbc6f1f2a8c14074801410d4",
+    "clean.flac": "f7b7a522106d190374d5f431403702ea8802ee20afb63ae398d3c6164d03b183"
+   },
+   "meta": {
+    "scene_id": "0016_S1_gunfire_b2",
+    "tier": "S1",
+    "group": "gunfire",
+    "band": 2,
+    "noise_spl_db": 126.23371225216297,
+    "total_noise_rms_spl_db": 127.08819082646932,
+    "speech_spl_db": 118.02976108946643,
+    "snr_db": -9.058429737002882,
+    "clip_fraction_front": 0.30295833333333333,
+    "clip_fraction_rear": 0.34563125,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 940.1967076425145
+   }
+  },
+  "0017_S1_artillery_b2": {
+   "sha256": {
+    "mic.flac": "6ae11caa72a455e1a6db4b8309475244a50c0ecf2b3559ba0a0cafe29efd9634",
+    "clean.flac": "324e32bb1bfedd98e5abed31d91d53ab085593e841a65ade4d73de3804e6f65a"
+   },
+   "meta": {
+    "scene_id": "0017_S1_artillery_b2",
+    "tier": "S1",
+    "group": "artillery",
+    "band": 2,
+    "noise_spl_db": 121.99110299769556,
+    "total_noise_rms_spl_db": 122.62275752620006,
+    "speech_spl_db": 118.72950072951333,
+    "snr_db": -3.893256796686728,
+    "clip_fraction_front": 0.23126041666666666,
+    "clip_fraction_rear": 0.23348333333333332,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 422.52989014708356
+   }
+  },
+  "0018_S1_jet_b3": {
+   "sha256": {
+    "mic.flac": "a597b9468c99c40ec73f5dde2a9c268c8ac0bc256d64e5c161a537d93ffef4eb",
+    "clean.flac": "d4ab8e434c48a5ee8b52e809f72bc6f4ccc488e0cea9f583881ba4059a349391"
+   },
+   "meta": {
+    "scene_id": "0018_S1_jet_b3",
+    "tier": "S1",
+    "group": "jet",
+    "band": 3,
+    "noise_spl_db": 134.31643764294844,
+    "total_noise_rms_spl_db": 134.31643764294844,
+    "speech_spl_db": 115.63283124012682,
+    "snr_db": -18.683606402821624,
+    "clip_fraction_front": 0.7735333333333333,
+    "clip_fraction_rear": 0.7732104166666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 681.7172336498542
+   }
+  },
+  "0019_S1_helicopter_b3": {
+   "sha256": {
+    "mic.flac": "6d7c6967d8072ccb2583dfa98b48aa04a8951111ff2bb55d1c7ed4315857984a",
+    "clean.flac": "593682170f9769f282ca6e6b57f648fd79048f58508165521f1ca16b47ff52a6"
+   },
+   "meta": {
+    "scene_id": "0019_S1_helicopter_b3",
+    "tier": "S1",
+    "group": "helicopter",
+    "band": 3,
+    "noise_spl_db": 134.3522719110355,
+    "total_noise_rms_spl_db": 134.3522719110355,
+    "speech_spl_db": 118.38566333370989,
+    "snr_db": -15.966608577325616,
+    "clip_fraction_front": 0.6386770833333333,
+    "clip_fraction_rear": 0.671075,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 867.4989866343539
+   }
+  },
+  "0020_S1_tank_b3": {
+   "sha256": {
+    "mic.flac": "0cd4135b8fef20389f3513e4ef2a3198632019b688942d00e590660e074d6dad",
+    "clean.flac": "655776ed744a82741498892f36294680d4c5c28035351dc2426514472b594b25"
+   },
+   "meta": {
+    "scene_id": "0020_S1_tank_b3",
+    "tier": "S1",
+    "group": "tank",
+    "band": 3,
+    "noise_spl_db": 136.94984394393907,
+    "total_noise_rms_spl_db": 136.94984394393907,
+    "speech_spl_db": 120.56247487685465,
+    "snr_db": -16.38736906708442,
+    "clip_fraction_front": 0.84810625,
+    "clip_fraction_rear": 0.8432208333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 886.3195770705404
+   }
+  },
+  "0021_S1_missile_b3": {
+   "sha256": {
+    "mic.flac": "623751ff903e71e13fa4eada18f388e09b4658f322900a76d4ba9951968e0465",
+    "clean.flac": "bc08e1ec9c92966c075306ad0aa71951fdb63a32b1e9a3c2ec0b8985a892c11a"
+   },
+   "meta": {
+    "scene_id": "0021_S1_missile_b3",
+    "tier": "S1",
+    "group": "missile",
+    "band": 3,
+    "noise_spl_db": 133.71309049324492,
+    "total_noise_rms_spl_db": 133.71309049324492,
+    "speech_spl_db": 118.91831588234936,
+    "snr_db": -14.794774610895558,
+    "clip_fraction_front": 0.7450541666666667,
+    "clip_fraction_rear": 0.72229375,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 768.9163834902942
+   }
+  },
+  "0022_S1_gunfire_b3": {
+   "sha256": {
+    "mic.flac": "22863cb88ae59d36bddae127f03090bc5f5fe5d4f9583efa7f2ad06305cd8f50",
+    "clean.flac": "ca8fd5b72faa285f3a6bef5e309ec4072694d03d16c1eca0691bbd318ed1c6d0"
+   },
+   "meta": {
+    "scene_id": "0022_S1_gunfire_b3",
+    "tier": "S1",
+    "group": "gunfire",
+    "band": 3,
+    "noise_spl_db": 133.36786613508616,
+    "total_noise_rms_spl_db": 133.62538515900917,
+    "speech_spl_db": 115.47183542608842,
+    "snr_db": -18.15354973292075,
+    "clip_fraction_front": 0.67875,
+    "clip_fraction_rear": 0.6714645833333334,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1828.5522053196976
+   }
+  },
+  "0023_S1_artillery_b3": {
+   "sha256": {
+    "mic.flac": "c6ad8c178302849211b4669a5ac5ca00c9e73c69841ddbadba32f1d94f8c8247",
+    "clean.flac": "43523b734c2c68470eecb17611a93b87744e72ad5672dc884c251ba47477d559"
+   },
+   "meta": {
+    "scene_id": "0023_S1_artillery_b3",
+    "tier": "S1",
+    "group": "artillery",
+    "band": 3,
+    "noise_spl_db": 127.4767999470451,
+    "total_noise_rms_spl_db": 129.30899297251545,
+    "speech_spl_db": 115.97122339466547,
+    "snr_db": -13.337769577849983,
+    "clip_fraction_front": 0.3914020833333333,
+    "clip_fraction_rear": 0.29924375,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 962.0221940703916
+   }
+  },
+  "0024_S2_jet_b0": {
+   "sha256": {
+    "mic.flac": "df16fb75b3623a83659689819055827f6425c627d0fe85c1bd2d3cc5a658cf1e",
+    "clean.flac": "e64b8fe90ea8c034750d5b5d9da218e5aa4b926320deb0929944f270df7fe38d"
+   },
+   "meta": {
+    "scene_id": "0024_S2_jet_b0",
+    "tier": "S2",
+    "group": "jet",
+    "band": 0,
+    "noise_spl_db": 95.82357511363438,
+    "total_noise_rms_spl_db": 95.82357511363438,
+    "speech_spl_db": 101.32390202134982,
+    "snr_db": 5.500326907715447,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 4.166666666666667e-06,
+    "lost_fraction": 0.0032,
+    "peak_pa_front": 29.851920296768792
+   }
+  },
+  "0025_S2_helicopter_b0": {
+   "sha256": {
+    "mic.flac": "6bccb0c0e8026e04a7ccf816766c6f33bf0b0fa299accf75d0378510bc2fa2db",
+    "clean.flac": "97ee36cf0b4204576cb15a652cb2702be38f963b258be8872d4a7aeed7cab175"
+   },
+   "meta": {
+    "scene_id": "0025_S2_helicopter_b0",
+    "tier": "S2",
+    "group": "helicopter",
+    "band": 0,
+    "noise_spl_db": 95.8599707485883,
+    "total_noise_rms_spl_db": 95.8599707485883,
+    "speech_spl_db": 105.27002190949865,
+    "snr_db": 9.410051160910356,
+    "clip_fraction_front": 0.0003125,
+    "clip_fraction_rear": 4.375e-05,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 41.285716498627636
+   }
+  },
+  "0026_S2_tank_b0": {
+   "sha256": {
+    "mic.flac": "bb0497ac8f0b339f74fc8d019abad52bdcf82a325bb1a70da041e9c0a206c442",
+    "clean.flac": "db2cc1ac1daad0b4dd7fec96f46638444b14f85b52eb4267e1f745fbb2725673"
+   },
+   "meta": {
+    "scene_id": "0026_S2_tank_b0",
+    "tier": "S2",
+    "group": "tank",
+    "band": 0,
+    "noise_spl_db": 96.92807500586039,
+    "total_noise_rms_spl_db": 96.92807500586039,
+    "speech_spl_db": 104.32622104684503,
+    "snr_db": 7.398146040984642,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 26.21654326104864
+   }
+  },
+  "0027_S2_missile_b0": {
+   "sha256": {
+    "mic.flac": "eee14a2dc6b6b4966c2bb5bb909d9af7397321375aa380e98cb87d26f269d4d1",
+    "clean.flac": "4fcbc53d1fe178af745ad251d59f7e3e15dccc5ab663e28138637a241a61d55f"
+   },
+   "meta": {
+    "scene_id": "0027_S2_missile_b0",
+    "tier": "S2",
+    "group": "missile",
+    "band": 0,
+    "noise_spl_db": 90.7719288190712,
+    "total_noise_rms_spl_db": 90.7719288190712,
+    "speech_spl_db": 101.6600878879465,
+    "snr_db": 10.888159068875296,
+    "clip_fraction_front": 7.083333333333334e-05,
+    "clip_fraction_rear": 4.166666666666667e-06,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 37.29381233775797
+   }
+  },
+  "0028_S2_gunfire_b0": {
+   "sha256": {
+    "mic.flac": "cfd218eda5b235ab55cf48661bf7f211a26fd25ceea4d91d2e371e131ba09874",
+    "clean.flac": "2640142e2aa3d5500e6b2cfe5bafea04f725ee1e2ed12e476c48acdda900309d"
+   },
+   "meta": {
+    "scene_id": "0028_S2_gunfire_b0",
+    "tier": "S2",
+    "group": "gunfire",
+    "band": 0,
+    "noise_spl_db": 97.59942954390901,
+    "total_noise_rms_spl_db": 97.6453854997388,
+    "speech_spl_db": 105.52395632987816,
+    "snr_db": 7.878570830139367,
+    "clip_fraction_front": 0.00054375,
+    "clip_fraction_rear": 0.00014791666666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 37.85241858590715
+   }
+  },
+  "0029_S2_artillery_b0": {
+   "sha256": {
+    "mic.flac": "362ac80acf88c63007129b683cc7457eae709c6163b31a5a998358e71002c7f3",
+    "clean.flac": "8ebe1a73c3bc96c2026baa87b3c0d79813efe989b4444faa10637475f56e8727"
+   },
+   "meta": {
+    "scene_id": "0029_S2_artillery_b0",
+    "tier": "S2",
+    "group": "artillery",
+    "band": 0,
+    "noise_spl_db": 97.87105239935264,
+    "total_noise_rms_spl_db": 98.1336499903966,
+    "speech_spl_db": 109.17643741786559,
+    "snr_db": 11.04278742746898,
+    "clip_fraction_front": 0.0013270833333333333,
+    "clip_fraction_rear": 0.00020416666666666668,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 50.195981962020795
+   }
+  },
+  "0030_S2_jet_b1": {
+   "sha256": {
+    "mic.flac": "f3d713b4c101f3742fe81fe9b82a3123efc3b611a10b7eb4231fec461929a1e8",
+    "clean.flac": "aec76d5be4558a6418e1a038eb88ae93bc6119373e3ad270fc85e2171dd7719c"
+   },
+   "meta": {
+    "scene_id": "0030_S2_jet_b1",
+    "tier": "S2",
+    "group": "jet",
+    "band": 1,
+    "noise_spl_db": 112.659108311922,
+    "total_noise_rms_spl_db": 112.66504997883389,
+    "speech_spl_db": 116.62501132714269,
+    "snr_db": 3.959961348308795,
+    "clip_fraction_front": 0.05551458333333333,
+    "clip_fraction_rear": 0.021404166666666665,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 145.12929248964963
+   }
+  },
+  "0031_S2_helicopter_b1": {
+   "sha256": {
+    "mic.flac": "f066d5e5da082a437daf2c99060df65f503f8f65449eb8a8e45cda9886ca82e8",
+    "clean.flac": "a90bba194482f334e21d76d0a79e4b561c330b04e010d23d3141a773b7d35eeb"
+   },
+   "meta": {
+    "scene_id": "0031_S2_helicopter_b1",
+    "tier": "S2",
+    "group": "helicopter",
+    "band": 1,
+    "noise_spl_db": 105.4203470197755,
+    "total_noise_rms_spl_db": 105.4203470197755,
+    "speech_spl_db": 113.64942409199995,
+    "snr_db": 8.229077072224442,
+    "clip_fraction_front": 0.02673125,
+    "clip_fraction_rear": 0.0061625,
+    "lost_fraction": 0.004266666666666667,
+    "peak_pa_front": 108.63257918685434
+   }
+  },
+  "0032_S2_tank_b1": {
+   "sha256": {
+    "mic.flac": "fa19869c859c69da87225cf4c4abc10e10e0c06380bdbf6ead9522be90b3abeb",
+    "clean.flac": "30582d72acea39678771ef1d21696d400b1a0c796f42c7c715077e84cd198c99"
+   },
+   "meta": {
+    "scene_id": "0032_S2_tank_b1",
+    "tier": "S2",
+    "group": "tank",
+    "band": 1,
+    "noise_spl_db": 116.39886647876838,
+    "total_noise_rms_spl_db": 116.39886647876838,
+    "speech_spl_db": 116.26017847236187,
+    "snr_db": -0.13868800640651102,
+    "clip_fraction_front": 0.06344166666666666,
+    "clip_fraction_rear": 0.08258125,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 135.90607431586892
+   }
+  },
+  "0033_S2_missile_b1": {
+   "sha256": {
+    "mic.flac": "1cabff4347960c91f80b16c1b7fdef62ac4432768d1ec68f66a40e82549a9366",
+    "clean.flac": "05de76adc8d4795a1f476f476825da958ca30683ea3019866536e8ec1df736ff"
+   },
+   "meta": {
+    "scene_id": "0033_S2_missile_b1",
+    "tier": "S2",
+    "group": "missile",
+    "band": 1,
+    "noise_spl_db": 109.62625863968614,
+    "total_noise_rms_spl_db": 109.62625863968614,
+    "speech_spl_db": 110.942883454647,
+    "snr_db": 1.3166248149608606,
+    "clip_fraction_front": 0.015147916666666667,
+    "clip_fraction_rear": 0.00160625,
+    "lost_fraction": 0.0021333333333333334,
+    "peak_pa_front": 112.02405446157054
+   }
+  },
+  "0034_S2_gunfire_b1": {
+   "sha256": {
+    "mic.flac": "a6f3e947af74a2ea17f0b60132acfcdd394c95c6d6d70370170047e61185ef46",
+    "clean.flac": "264f8187be2f476bc65ee2294e1d7ff66b3237f93b72914c28a906b75c92858c"
+   },
+   "meta": {
+    "scene_id": "0034_S2_gunfire_b1",
+    "tier": "S2",
+    "group": "gunfire",
+    "band": 1,
+    "noise_spl_db": 108.56377634391134,
+    "total_noise_rms_spl_db": 108.94029859566587,
+    "speech_spl_db": 112.6526244005468,
+    "snr_db": 3.7123258048809333,
+    "clip_fraction_front": 0.010620833333333333,
+    "clip_fraction_rear": 0.005622916666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 127.49422826016084
+   }
+  },
+  "0035_S2_artillery_b1": {
+   "sha256": {
+    "mic.flac": "fd1cfe743a7068cfec05cba6abaa8e33a69324ea0fa3df017505d38c609cc2f1",
+    "clean.flac": "d6904fdd78865d6ce23ff7363d9b8e7a19825a405004eaced2737f5f02553722"
+   },
+   "meta": {
+    "scene_id": "0035_S2_artillery_b1",
+    "tier": "S2",
+    "group": "artillery",
+    "band": 1,
+    "noise_spl_db": 103.99823443489387,
+    "total_noise_rms_spl_db": 104.11747161946218,
+    "speech_spl_db": 107.51111735754758,
+    "snr_db": 3.3936457380853966,
+    "clip_fraction_front": 0.0031,
+    "clip_fraction_rear": 0.0004541666666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 52.84753973803757
+   }
+  },
+  "0036_S2_jet_b2": {
+   "sha256": {
+    "mic.flac": "161b498cb771bd655f3ef59ad25b2ca7d50bdb117bddca94e5425d294c85441b",
+    "clean.flac": "a70be314e1d15f276970abc3b3eaa08216116b38b7991ce13127203ac1c917b4"
+   },
+   "meta": {
+    "scene_id": "0036_S2_jet_b2",
+    "tier": "S2",
+    "group": "jet",
+    "band": 2,
+    "noise_spl_db": 124.55878692113612,
+    "total_noise_rms_spl_db": 124.55878692113612,
+    "speech_spl_db": 114.80665954103709,
+    "snr_db": -9.752127380099026,
+    "clip_fraction_front": 0.3929666666666667,
+    "clip_fraction_rear": 0.32059166666666666,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 558.974866572006
+   }
+  },
+  "0037_S2_helicopter_b2": {
+   "sha256": {
+    "mic.flac": "27084fd6736efb05242dca2cab2444ead3174d8473518cb8580026873f3f4d64",
+    "clean.flac": "982bf7cb5ff784b1a67d001380cc8b6b1ebe854493404da168344163174bca22"
+   },
+   "meta": {
+    "scene_id": "0037_S2_helicopter_b2",
+    "tier": "S2",
+    "group": "helicopter",
+    "band": 2,
+    "noise_spl_db": 125.97340687085506,
+    "total_noise_rms_spl_db": 125.97340687085506,
+    "speech_spl_db": 116.98939212838445,
+    "snr_db": -8.984014742470606,
+    "clip_fraction_front": 0.3370520833333333,
+    "clip_fraction_rear": 0.35005,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 301.0242611438258
+   }
+  },
+  "0038_S2_tank_b2": {
+   "sha256": {
+    "mic.flac": "6bc238ec88c1d5748e17713307b80accb8f66da7e46768cde5e78445dd3cb269",
+    "clean.flac": "428dc2c8883251283f546475eab0201f11b30fb28033c2ca1d0a62bc8e743fa5"
+   },
+   "meta": {
+    "scene_id": "0038_S2_tank_b2",
+    "tier": "S2",
+    "group": "tank",
+    "band": 2,
+    "noise_spl_db": 120.82644761088254,
+    "total_noise_rms_spl_db": 120.82644761088254,
+    "speech_spl_db": 118.78153845430536,
+    "snr_db": -2.0449091565771766,
+    "clip_fraction_front": 0.24842708333333333,
+    "clip_fraction_rear": 0.18257083333333332,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 156.95925974682618
+   }
+  },
+  "0039_S2_missile_b2": {
+   "sha256": {
+    "mic.flac": "ab88ea5057716be458408c563291f189fb2b3761383cbba4b64519ef640b4849",
+    "clean.flac": "2fd68714cb3393bc458f35f6619aba3a4df35316240e5e3da4d7b610eaa69705"
+   },
+   "meta": {
+    "scene_id": "0039_S2_missile_b2",
+    "tier": "S2",
+    "group": "missile",
+    "band": 2,
+    "noise_spl_db": 126.99691828875046,
+    "total_noise_rms_spl_db": 126.99691828875046,
+    "speech_spl_db": 120.30810055247697,
+    "snr_db": -6.688817736273492,
+    "clip_fraction_front": 0.47577708333333335,
+    "clip_fraction_rear": 0.5237145833333333,
+    "lost_fraction": 0.0032,
+    "peak_pa_front": 803.1538665612342
+   }
+  },
+  "0040_S2_gunfire_b2": {
+   "sha256": {
+    "mic.flac": "555131aad6f71da22ac9fac300beaac452eb4a9ecd7bb1d358dc07d258f45b7e",
+    "clean.flac": "1c406cc9b2dd40bbef7e6572b5064ed96786afdc21ef54460695d8f91b3eb3f5"
+   },
+   "meta": {
+    "scene_id": "0040_S2_gunfire_b2",
+    "tier": "S2",
+    "group": "gunfire",
+    "band": 2,
+    "noise_spl_db": 119.84047580587472,
+    "total_noise_rms_spl_db": 121.08819286991962,
+    "speech_spl_db": 115.1317609374726,
+    "snr_db": -5.956431932447018,
+    "clip_fraction_front": 0.16790416666666666,
+    "clip_fraction_rear": 0.12685416666666666,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 520.2084355184628
+   }
+  },
+  "0041_S2_artillery_b2": {
+   "sha256": {
+    "mic.flac": "a5ebe3af2e150d0f81218680c5e6d03d24e2150d2945706b1790204719fccccd",
+    "clean.flac": "5a1770837bf30f739811c1a64cd85b470109c108f4eae7cec68755ade438060a"
+   },
+   "meta": {
+    "scene_id": "0041_S2_artillery_b2",
+    "tier": "S2",
+    "group": "artillery",
+    "band": 2,
+    "noise_spl_db": 121.5232229339293,
+    "total_noise_rms_spl_db": 123.90669457314553,
+    "speech_spl_db": 116.46423704155849,
+    "snr_db": -7.4424575315870385,
+    "clip_fraction_front": 0.2235,
+    "clip_fraction_rear": 0.24454791666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 609.4373004710862
+   }
+  },
+  "0042_S2_jet_b3": {
+   "sha256": {
+    "mic.flac": "d2467ef1e3a061483dcc31d9b657aac19cc93c7b859e948748cb7ccb724d3c46",
+    "clean.flac": "21979698c9179d509cd6f86efafa8d84c63bd8776f4e758364526327f73d5e6a"
+   },
+   "meta": {
+    "scene_id": "0042_S2_jet_b3",
+    "tier": "S2",
+    "group": "jet",
+    "band": 3,
+    "noise_spl_db": 137.00025866206514,
+    "total_noise_rms_spl_db": 137.00025866206514,
+    "speech_spl_db": 119.57254313717078,
+    "snr_db": -17.427715524894353,
+    "clip_fraction_front": 0.8307020833333333,
+    "clip_fraction_rear": 0.83945,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 3344.0146019630292
+   }
+  },
+  "0043_S2_helicopter_b3": {
+   "sha256": {
+    "mic.flac": "d51e929e138950d3c3e8cf3fa600482aa681bda61f483e8f333068b7c99cc79e",
+    "clean.flac": "abe96bae8c96e78ac3deedc08817cae6c8c4b27de997bcbea318f99a146aca4a"
+   },
+   "meta": {
+    "scene_id": "0043_S2_helicopter_b3",
+    "tier": "S2",
+    "group": "helicopter",
+    "band": 3,
+    "noise_spl_db": 134.81084561889702,
+    "total_noise_rms_spl_db": 134.81084666073284,
+    "speech_spl_db": 116.91490783094947,
+    "snr_db": -17.89593882978336,
+    "clip_fraction_front": 0.72433125,
+    "clip_fraction_rear": 0.7175270833333334,
+    "lost_fraction": 0.0032,
+    "peak_pa_front": 1019.2023685460967
+   }
+  },
+  "0044_S2_tank_b3": {
+   "sha256": {
+    "mic.flac": "f02a594190544c70e1958a2e9ed140866ed10c4555b4a124b705059464b6ac32",
+    "clean.flac": "85fa6324f539722061687d8787b718d21acc4f025eac7dfccceb26c1125ff8f1"
+   },
+   "meta": {
+    "scene_id": "0044_S2_tank_b3",
+    "tier": "S2",
+    "group": "tank",
+    "band": 3,
+    "noise_spl_db": 134.72965394756704,
+    "total_noise_rms_spl_db": 134.72965394756704,
+    "speech_spl_db": 114.05474303620457,
+    "snr_db": -20.674910911362474,
+    "clip_fraction_front": 0.78059375,
+    "clip_fraction_rear": 0.7387583333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1106.2257189981635
+   }
+  },
+  "0045_S2_missile_b3": {
+   "sha256": {
+    "mic.flac": "18af047b888b591282d040ee38a517bbc2819cf92d4a2c0169add35c363d6c79",
+    "clean.flac": "b009cb04373ec1ac0d5c14aa3002c7fe3912554fb4f849e3370a1988603686cc"
+   },
+   "meta": {
+    "scene_id": "0045_S2_missile_b3",
+    "tier": "S2",
+    "group": "missile",
+    "band": 3,
+    "noise_spl_db": 131.84896718832502,
+    "total_noise_rms_spl_db": 131.84896718832502,
+    "speech_spl_db": 118.54309229268239,
+    "snr_db": -13.305874895642631,
+    "clip_fraction_front": 0.7016791666666666,
+    "clip_fraction_rear": 0.68226875,
+    "lost_fraction": 0.0010666666666666667,
+    "peak_pa_front": 554.0062085376021
+   }
+  },
+  "0046_S2_gunfire_b3": {
+   "sha256": {
+    "mic.flac": "964a0f07020e8d181758ee0bc1f974d522533cdbeebc780a3f9cc75953b3c525",
+    "clean.flac": "31046e41e143be4559a1d6397f752d521677ed6ba07c964c464f0748b1b381c3"
+   },
+   "meta": {
+    "scene_id": "0046_S2_gunfire_b3",
+    "tier": "S2",
+    "group": "gunfire",
+    "band": 3,
+    "noise_spl_db": 124.27701135237055,
+    "total_noise_rms_spl_db": 124.30696046554732,
+    "speech_spl_db": 117.67542905376162,
+    "snr_db": -6.631531411785701,
+    "clip_fraction_front": 0.3771979166666667,
+    "clip_fraction_rear": 0.33588958333333335,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 511.9736562429699
+   }
+  },
+  "0047_S2_artillery_b3": {
+   "sha256": {
+    "mic.flac": "71eb28a8940aeedb939c6d90aa5797740581dcb998c8efa71d527b0256688047",
+    "clean.flac": "4e9535f569dcbe525f06e1edd7c38a9cc664a1952e6d520fecd3dfab4b8a0901"
+   },
+   "meta": {
+    "scene_id": "0047_S2_artillery_b3",
+    "tier": "S2",
+    "group": "artillery",
+    "band": 3,
+    "noise_spl_db": 128.34336030813597,
+    "total_noise_rms_spl_db": 128.56739953999332,
+    "speech_spl_db": 115.70364746484212,
+    "snr_db": -12.863752075151197,
+    "clip_fraction_front": 0.58478125,
+    "clip_fraction_rear": 0.5557166666666666,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 420.03166831403354
+   }
+  },
+  "0048_S3_jet_b0": {
+   "sha256": {
+    "mic.flac": "59ed706e68b0fc962246499103e5dcb524a10325c7965c0601d090e277cece66",
+    "clean.flac": "e7dab3330be7b154dbfdbd149ea0d515313bfcd8b778dc21b62834ba51912b81"
+   },
+   "meta": {
+    "scene_id": "0048_S3_jet_b0",
+    "tier": "S3",
+    "group": "jet",
+    "band": 0,
+    "noise_spl_db": 92.1762413292306,
+    "total_noise_rms_spl_db": 92.1762413292306,
+    "speech_spl_db": 102.47160849747456,
+    "snr_db": 10.295367168243956,
+    "clip_fraction_front": 6.25e-05,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 32.64288107146641
+   }
+  },
+  "0049_S3_helicopter_b0": {
+   "sha256": {
+    "mic.flac": "8f12be302b3b11940e8c1bc4fcb6a660c9e854cfbfeebb117c08170985af0bb8",
+    "clean.flac": "9ddbf8e47ae74fb42c4c5cee0dc485c2a591adfeb16e01f4853546cd95647b1e"
+   },
+   "meta": {
+    "scene_id": "0049_S3_helicopter_b0",
+    "tier": "S3",
+    "group": "helicopter",
+    "band": 0,
+    "noise_spl_db": 104.78985406737178,
+    "total_noise_rms_spl_db": 104.78985406737178,
+    "speech_spl_db": 108.76873523821064,
+    "snr_db": 3.9788811708388607,
+    "clip_fraction_front": 0.00105,
+    "clip_fraction_rear": 0.0002479166666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 59.90173516247982
+   }
+  },
+  "0050_S3_tank_b0": {
+   "sha256": {
+    "mic.flac": "60b9bf54c44e361efb15be39fcc426beb957c6b043f1436f1b78b98e97c4e2fa",
+    "clean.flac": "41caf20cfcd31800e6cec58c0671706e7947122c381924d60646c3ba61b8a6a7"
+   },
+   "meta": {
+    "scene_id": "0050_S3_tank_b0",
+    "tier": "S3",
+    "group": "tank",
+    "band": 0,
+    "noise_spl_db": 94.43178687258967,
+    "total_noise_rms_spl_db": 94.43178687258967,
+    "speech_spl_db": 104.71951832671067,
+    "snr_db": 10.287731454121001,
+    "clip_fraction_front": 0.00055625,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 38.643407547532135
+   }
+  },
+  "0051_S3_missile_b0": {
+   "sha256": {
+    "mic.flac": "f7d196425f8770b2f8fd1ae52f9d0cac4c60066bd18a1b40156553094339da39",
+    "clean.flac": "cc277419ae4db28e7855f74d0873c446dab617558e546c3941fb35c027f8f663"
+   },
+   "meta": {
+    "scene_id": "0051_S3_missile_b0",
+    "tier": "S3",
+    "group": "missile",
+    "band": 0,
+    "noise_spl_db": 100.2249865897586,
+    "total_noise_rms_spl_db": 100.2249865897586,
+    "speech_spl_db": 111.20630364155946,
+    "snr_db": 10.981317051800858,
+    "clip_fraction_front": 0.004914583333333333,
+    "clip_fraction_rear": 0.00024166666666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 69.60324261787655
+   }
+  },
+  "0052_S3_gunfire_b0": {
+   "sha256": {
+    "mic.flac": "6923ef236b4e5e3b65b3d7160193323856cdc56974785b888597cee994a401c8",
+    "clean.flac": "22d5006419202063a43a0c1118ac5300277eac0270e88a7baf6525bacb2a2f5c"
+   },
+   "meta": {
+    "scene_id": "0052_S3_gunfire_b0",
+    "tier": "S3",
+    "group": "gunfire",
+    "band": 0,
+    "noise_spl_db": 93.98904639612309,
+    "total_noise_rms_spl_db": 94.02582748003812,
+    "speech_spl_db": 105.29536639862879,
+    "snr_db": 11.26953891859067,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 19.27897071941443
+   }
+  },
+  "0053_S3_artillery_b0": {
+   "sha256": {
+    "mic.flac": "3430723aacbf62aa1795f0e2bcaf0e270be0e0bfddcf998e64c5650e42837364",
+    "clean.flac": "871bc68fdce700dce381bf90d7d107c3c960d2ea8e3ad30c3217c7328e54fb4f"
+   },
+   "meta": {
+    "scene_id": "0053_S3_artillery_b0",
+    "tier": "S3",
+    "group": "artillery",
+    "band": 0,
+    "noise_spl_db": 99.17965780298844,
+    "total_noise_rms_spl_db": 102.05588573955139,
+    "speech_spl_db": 105.38797195846324,
+    "snr_db": 3.3320862189118543,
+    "clip_fraction_front": 0.0008958333333333333,
+    "clip_fraction_rear": 0.00011458333333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 44.51133400722769
+   }
+  },
+  "0054_S3_jet_b1": {
+   "sha256": {
+    "mic.flac": "e54d06c41f91b2259214317f63fdbb3169647acb4bf18bee4a9c3d65ed6e9706",
+    "clean.flac": "05811a86084705c6c2ad739250f10040bd834a3a7ce09d176e409832355c56a1"
+   },
+   "meta": {
+    "scene_id": "0054_S3_jet_b1",
+    "tier": "S3",
+    "group": "jet",
+    "band": 1,
+    "noise_spl_db": 117.52920437436494,
+    "total_noise_rms_spl_db": 117.52920437436494,
+    "speech_spl_db": 118.48441540164687,
+    "snr_db": 0.9552110272819334,
+    "clip_fraction_front": 0.15957708333333334,
+    "clip_fraction_rear": 0.09874375,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 173.12556431566458
+   }
+  },
+  "0055_S3_helicopter_b1": {
+   "sha256": {
+    "mic.flac": "57dff57c4d780c63f8456a3f7bce7b4c88ea2271e5f21c23102fd222913f5838",
+    "clean.flac": "a8d15b2ca3cfac3cdb8e38fff212d88ac2b573a7e9e6c13e9dbbd5265be02665"
+   },
+   "meta": {
+    "scene_id": "0055_S3_helicopter_b1",
+    "tier": "S3",
+    "group": "helicopter",
+    "band": 1,
+    "noise_spl_db": 113.2685470322837,
+    "total_noise_rms_spl_db": 113.27040506467385,
+    "speech_spl_db": 112.63537205500589,
+    "snr_db": -0.6350330096679642,
+    "clip_fraction_front": 0.022535416666666665,
+    "clip_fraction_rear": 0.01231875,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 96.0878875511946
+   }
+  },
+  "0056_S3_tank_b1": {
+   "sha256": {
+    "mic.flac": "f530f0b951a4e54470dfe90a9242e5d3c25e7cf03d3939d46ff4387b92fb96fd",
+    "clean.flac": "7817b83975dbb6a6e378bad594de1479e5037c55e32bd0b940d211502ca4d8bb"
+   },
+   "meta": {
+    "scene_id": "0056_S3_tank_b1",
+    "tier": "S3",
+    "group": "tank",
+    "band": 1,
+    "noise_spl_db": 117.45950838936488,
+    "total_noise_rms_spl_db": 117.45950838936488,
+    "speech_spl_db": 119.14910101310264,
+    "snr_db": 1.6895926237377523,
+    "clip_fraction_front": 0.10710625,
+    "clip_fraction_rear": 0.05902916666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 219.18390044886914
+   }
+  },
+  "0057_S3_missile_b1": {
+   "sha256": {
+    "mic.flac": "8f4e621ec338d9927ff5d8978ffe64e41da96d40861cd9b918d8b2421595a40f",
+    "clean.flac": "e7a4d977c331fefd960e4b28c063ba90e0d312386030e07039e61e8095bbc819"
+   },
+   "meta": {
+    "scene_id": "0057_S3_missile_b1",
+    "tier": "S3",
+    "group": "missile",
+    "band": 1,
+    "noise_spl_db": 109.8892494540906,
+    "total_noise_rms_spl_db": 109.8892494540906,
+    "speech_spl_db": 115.74482019940815,
+    "snr_db": 5.85557074531755,
+    "clip_fraction_front": 0.0488375,
+    "clip_fraction_rear": 0.031983333333333336,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 95.91284408579631
+   }
+  },
+  "0058_S3_gunfire_b1": {
+   "sha256": {
+    "mic.flac": "3a160e5031cc13de57f06dd7b216c29e74a585ce5f54119b50780d619d811b70",
+    "clean.flac": "53c7aae717baa2448596de9e404c79089ad773773b2346b25cd75ddde41af513"
+   },
+   "meta": {
+    "scene_id": "0058_S3_gunfire_b1",
+    "tier": "S3",
+    "group": "gunfire",
+    "band": 1,
+    "noise_spl_db": 112.42701792019373,
+    "total_noise_rms_spl_db": 112.46160833762343,
+    "speech_spl_db": 113.96143344703692,
+    "snr_db": 1.499825109413493,
+    "clip_fraction_front": 0.023725,
+    "clip_fraction_rear": 0.010097916666666666,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 155.2348899763801
+   }
+  },
+  "0059_S3_artillery_b1": {
+   "sha256": {
+    "mic.flac": "00f1a0243e3013630a6f2a5ff35492faef75a3e37e8b809f7db53999b709cf83",
+    "clean.flac": "0fb1bd5b2f32091b5f53ef7423acc6d654af9a47c1f12e2645ef8a30038cb11c"
+   },
+   "meta": {
+    "scene_id": "0059_S3_artillery_b1",
+    "tier": "S3",
+    "group": "artillery",
+    "band": 1,
+    "noise_spl_db": 104.7121338985646,
+    "total_noise_rms_spl_db": 104.91224350556772,
+    "speech_spl_db": 108.99372858947052,
+    "snr_db": 4.081485083902805,
+    "clip_fraction_front": 8.333333333333334e-06,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 33.05454391317053
+   }
+  },
+  "0060_S3_jet_b2": {
+   "sha256": {
+    "mic.flac": "bb4e19bc95c0ed17c97f232fc3d66ea1cc64ee7ee89d50b332cb240ddc2f61a2",
+    "clean.flac": "bdcff1478b5cd4b8eb7848630f327754432801f502055b8709808d98a34ef858"
+   },
+   "meta": {
+    "scene_id": "0060_S3_jet_b2",
+    "tier": "S3",
+    "group": "jet",
+    "band": 2,
+    "noise_spl_db": 123.69997496491423,
+    "total_noise_rms_spl_db": 123.69997496491423,
+    "speech_spl_db": 117.41831080804494,
+    "snr_db": -6.281664156869297,
+    "clip_fraction_front": 0.3321208333333333,
+    "clip_fraction_rear": 0.35055833333333336,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 276.79690037143627
+   }
+  },
+  "0061_S3_helicopter_b2": {
+   "sha256": {
+    "mic.flac": "d8053f41cb1b4a3079aa4e1666a6a3949ba1f5647a570fee51fbc14f3d202340",
+    "clean.flac": "b9dc87a6adbeb0c0cc558609c7050692eb72c88c4ebc9f85b8cff80af0a73921"
+   },
+   "meta": {
+    "scene_id": "0061_S3_helicopter_b2",
+    "tier": "S3",
+    "group": "helicopter",
+    "band": 2,
+    "noise_spl_db": 120.58992824860735,
+    "total_noise_rms_spl_db": 120.58992824860735,
+    "speech_spl_db": 120.09673768666224,
+    "snr_db": -0.4931905619451129,
+    "clip_fraction_front": 0.22809375,
+    "clip_fraction_rear": 0.16864583333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 182.56203260280023
+   }
+  },
+  "0062_S3_tank_b2": {
+   "sha256": {
+    "mic.flac": "217123ab97a2bfd04b7fabdab29729d96e838c5da6d1d88e6f78a28406842a42",
+    "clean.flac": "ec0bbe7dfefe8f795ea52a8cb88c8f1bcae40994d88197b688ba763e7e37479e"
+   },
+   "meta": {
+    "scene_id": "0062_S3_tank_b2",
+    "tier": "S3",
+    "group": "tank",
+    "band": 2,
+    "noise_spl_db": 122.61080169079959,
+    "total_noise_rms_spl_db": 122.61080169079959,
+    "speech_spl_db": 115.82634115848828,
+    "snr_db": -6.784460532311314,
+    "clip_fraction_front": 0.30819166666666664,
+    "clip_fraction_rear": 0.25059166666666666,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 169.90926561449407
+   }
+  },
+  "0063_S3_missile_b2": {
+   "sha256": {
+    "mic.flac": "4b0f001ce539f818502ec230d51c46754c8191d70a6bf637e40db2dc17cbe164",
+    "clean.flac": "3a66f9166475a78113923bc6be6b0fba624096ac866bbb97bf5e711a2e6b635f"
+   },
+   "meta": {
+    "scene_id": "0063_S3_missile_b2",
+    "tier": "S3",
+    "group": "missile",
+    "band": 2,
+    "noise_spl_db": 124.61584041204013,
+    "total_noise_rms_spl_db": 124.61676614170015,
+    "speech_spl_db": 119.56768633794509,
+    "snr_db": -5.049079803755063,
+    "clip_fraction_front": 0.3531416666666667,
+    "clip_fraction_rear": 0.3704458333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 397.777711515042
+   }
+  },
+  "0064_S3_gunfire_b2": {
+   "sha256": {
+    "mic.flac": "251d227e7fa9a8ded4fce71e51d4b72e644f3169fe7017c7e175fd2d2c07d08f",
+    "clean.flac": "0a51c5e6b9977ec1897aa4fa0aa4e24b268b0655cf55e478d4fb900ca21aa9ae"
+   },
+   "meta": {
+    "scene_id": "0064_S3_gunfire_b2",
+    "tier": "S3",
+    "group": "gunfire",
+    "band": 2,
+    "noise_spl_db": 121.06054759407412,
+    "total_noise_rms_spl_db": 121.22301211708803,
+    "speech_spl_db": 112.83053766752751,
+    "snr_db": -8.392474449560524,
+    "clip_fraction_front": 0.16401666666666667,
+    "clip_fraction_rear": 0.14511458333333332,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 554.487818800204
+   }
+  },
+  "0065_S3_artillery_b2": {
+   "sha256": {
+    "mic.flac": "ce611d13df84593801481bcab303cba474049114311f7ff7338a5713555077ec",
+    "clean.flac": "bc5e65d3cb46224237b4531e016eccf6e73c5409b8c02259aff709c2b512dea9"
+   },
+   "meta": {
+    "scene_id": "0065_S3_artillery_b2",
+    "tier": "S3",
+    "group": "artillery",
+    "band": 2,
+    "noise_spl_db": 115.51926890740302,
+    "total_noise_rms_spl_db": 118.7727565120345,
+    "speech_spl_db": 116.80052646451387,
+    "snr_db": -1.9722300475206396,
+    "clip_fraction_front": 0.10143958333333333,
+    "clip_fraction_rear": 0.08983125,
+    "lost_fraction": 0.0010666666666666667,
+    "peak_pa_front": 390.4410676405414
+   }
+  },
+  "0066_S3_jet_b3": {
+   "sha256": {
+    "mic.flac": "a2d4dcc53a5704d1d152bc0c4e4f347d35b8ae452977c38c42b3cc775accd7e6",
+    "clean.flac": "3a559bad1c366b27fc5d8748fc14ee03050a944417e789c6d8363d369fed873d"
+   },
+   "meta": {
+    "scene_id": "0066_S3_jet_b3",
+    "tier": "S3",
+    "group": "jet",
+    "band": 3,
+    "noise_spl_db": 132.9094456258217,
+    "total_noise_rms_spl_db": 132.90973149879835,
+    "speech_spl_db": 117.37980911340142,
+    "snr_db": -15.52992238539693,
+    "clip_fraction_front": 0.7557541666666666,
+    "clip_fraction_rear": 0.7430583333333334,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 821.7683176642141
+   }
+  },
+  "0067_S3_helicopter_b3": {
+   "sha256": {
+    "mic.flac": "1acee265b3b5ee4ce5441390332c035c48981e81b84992b7f6fdf48a2bd30abe",
+    "clean.flac": "d5c2ac545d3a27d596bdcf23b9be3e764b31f53ff3239b5d850368d9280e9d03"
+   },
+   "meta": {
+    "scene_id": "0067_S3_helicopter_b3",
+    "tier": "S3",
+    "group": "helicopter",
+    "band": 3,
+    "noise_spl_db": 130.72342285978286,
+    "total_noise_rms_spl_db": 130.72342285978286,
+    "speech_spl_db": 116.44935748099059,
+    "snr_db": -14.274065378792272,
+    "clip_fraction_front": 0.5703395833333333,
+    "clip_fraction_rear": 0.5810520833333334,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 426.9159906361262
+   }
+  },
+  "0068_S3_tank_b3": {
+   "sha256": {
+    "mic.flac": "2b74f95a50ba5584bd33fafb4cfec34512cb5ec6edfbc064d8f72838d95f467f",
+    "clean.flac": "f492ea5b20dc99688e41d7dcce2225ed013222f6d73f43682e7ce203a4c16df9"
+   },
+   "meta": {
+    "scene_id": "0068_S3_tank_b3",
+    "tier": "S3",
+    "group": "tank",
+    "band": 3,
+    "noise_spl_db": 132.7259918415025,
+    "total_noise_rms_spl_db": 132.726116027259,
+    "speech_spl_db": 114.29426171533696,
+    "snr_db": -18.431854311922038,
+    "clip_fraction_front": 0.71263125,
+    "clip_fraction_rear": 0.6795395833333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 636.9686264794143
+   }
+  },
+  "0069_S3_missile_b3": {
+   "sha256": {
+    "mic.flac": "11ae0cab7c8ede75b3b7e37bd49ebdf3d530d3f5fd922f104aa7a4fa8a4921ef",
+    "clean.flac": "7ffcde18926492453ee496fc9338fc40806db44be28afe48c71e68be40d47164"
+   },
+   "meta": {
+    "scene_id": "0069_S3_missile_b3",
+    "tier": "S3",
+    "group": "missile",
+    "band": 3,
+    "noise_spl_db": 134.80451429667212,
+    "total_noise_rms_spl_db": 134.80451429667212,
+    "speech_spl_db": 118.161542108267,
+    "snr_db": -16.642972188405125,
+    "clip_fraction_front": 0.72914375,
+    "clip_fraction_rear": 0.7004645833333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1055.636930983693
+   }
+  },
+  "0070_S3_gunfire_b3": {
+   "sha256": {
+    "mic.flac": "bab86eb046b7dacc9a94e711bc7ad32f865698240b0f77896b074f9ba5c12e82",
+    "clean.flac": "41d97c75881db8a6038ce9da90aaa69e4e5f48ee0f54226ebafc893cc5185cd4"
+   },
+   "meta": {
+    "scene_id": "0070_S3_gunfire_b3",
+    "tier": "S3",
+    "group": "gunfire",
+    "band": 3,
+    "noise_spl_db": 126.08854760981637,
+    "total_noise_rms_spl_db": 126.21501027093777,
+    "speech_spl_db": 119.89250599330016,
+    "snr_db": -6.322504277637606,
+    "clip_fraction_front": 0.5196833333333334,
+    "clip_fraction_rear": 0.481275,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 641.9130602834712
+   }
+  },
+  "0071_S3_artillery_b3": {
+   "sha256": {
+    "mic.flac": "c19725d16004e0646943c36c809dfb7524b3e68291eae0afb268b021d7baed22",
+    "clean.flac": "e5e560cb31afc358e832100c36798cdae1f46e8d8f94a9bcb19e153ed2ab6336"
+   },
+   "meta": {
+    "scene_id": "0071_S3_artillery_b3",
+    "tier": "S3",
+    "group": "artillery",
+    "band": 3,
+    "noise_spl_db": 120.85917137361119,
+    "total_noise_rms_spl_db": 121.309958636796,
+    "speech_spl_db": 117.46493166480055,
+    "snr_db": -3.845026971995452,
+    "clip_fraction_front": 0.19354166666666667,
+    "clip_fraction_rear": 0.17158958333333332,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 579.7526326616248
+   }
+  },
+  "0072_S1_jet_b0": {
+   "sha256": {
+    "mic.flac": "76bfd580090125a06bda19ecbb1504c5a7d60255fdd37839002279f5b30bcfda",
+    "clean.flac": "cc9ccd9ad76f9ec6c78361ea19a1107c85a298162faae98865db0e6aeb19d4cc"
+   },
+   "meta": {
+    "scene_id": "0072_S1_jet_b0",
+    "tier": "S1",
+    "group": "jet",
+    "band": 0,
+    "noise_spl_db": 95.73539871502794,
+    "total_noise_rms_spl_db": 95.73539871502794,
+    "speech_spl_db": 106.3286327806596,
+    "snr_db": 10.593234065631663,
+    "clip_fraction_front": 0.00024166666666666667,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 30.660108119937096
+   }
+  },
+  "0073_S1_helicopter_b0": {
+   "sha256": {
+    "mic.flac": "a5abf87cab453c550fe516a21077df2117507e543d1efef9375df6e81ec2748b",
+    "clean.flac": "a8a1dbd31ec76f3869ac6e8aed1a2d86018dead187eb26bc5b0c2aade7fcbc1f"
+   },
+   "meta": {
+    "scene_id": "0073_S1_helicopter_b0",
+    "tier": "S1",
+    "group": "helicopter",
+    "band": 0,
+    "noise_spl_db": 97.58655138026938,
+    "total_noise_rms_spl_db": 97.58655138026938,
+    "speech_spl_db": 102.16494974004992,
+    "snr_db": 4.578398359780536,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 17.229790591394515
+   }
+  },
+  "0074_S1_tank_b0": {
+   "sha256": {
+    "mic.flac": "be9ef2b47d3f36a14e1936f778c43376b52990ca3771619c9e5983558803edac",
+    "clean.flac": "6a81e2f76b77ce2ad00571b6795325a0c326932f4d1217cba166ecdc4d7164f2"
+   },
+   "meta": {
+    "scene_id": "0074_S1_tank_b0",
+    "tier": "S1",
+    "group": "tank",
+    "band": 0,
+    "noise_spl_db": 93.93302039213984,
+    "total_noise_rms_spl_db": 95.24473915500118,
+    "speech_spl_db": 101.68370945971056,
+    "snr_db": 6.438970304709372,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 20.923037086107012
+   }
+  },
+  "0075_S1_missile_b0": {
+   "sha256": {
+    "mic.flac": "d7fe9660cf9bfa2f12916d15c7157e2389445424cde8326f5f381c7f370f6da2",
+    "clean.flac": "d5fa6bc0090d58130a64d7deddce88ddaa4498018cc52f2e152c77259b5e8796"
+   },
+   "meta": {
+    "scene_id": "0075_S1_missile_b0",
+    "tier": "S1",
+    "group": "missile",
+    "band": 0,
+    "noise_spl_db": 91.00141534578277,
+    "total_noise_rms_spl_db": 91.00141534578277,
+    "speech_spl_db": 100.20747774238521,
+    "snr_db": 9.206062396602434,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0021333333333333334,
+    "peak_pa_front": 16.121961132835892
+   }
+  },
+  "0076_S1_gunfire_b0": {
+   "sha256": {
+    "mic.flac": "6272ed70f69e4f839e708055f76cc437efb213cfb14d6d90f82a775e8e61f601",
+    "clean.flac": "c17a4b33721a8c32665a142f3ce873ec123b8eaf9342903d06d3a5eae7b13d2b"
+   },
+   "meta": {
+    "scene_id": "0076_S1_gunfire_b0",
+    "tier": "S1",
+    "group": "gunfire",
+    "band": 0,
+    "noise_spl_db": 98.76877450651088,
+    "total_noise_rms_spl_db": 98.9739261519832,
+    "speech_spl_db": 102.68147508917104,
+    "snr_db": 3.7075489371878376,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 30.638906353097727
+   }
+  },
+  "0077_S1_artillery_b0": {
+   "sha256": {
+    "mic.flac": "ad9bf2b5c3378d83485dd485d799ee9ff1d0fcc0b4e637b0e2058c8b7aa8bf46",
+    "clean.flac": "f3fc46adb4e576e376f372ed92a49baf9ea76608df6f21d2f9219dd9117e868a"
+   },
+   "meta": {
+    "scene_id": "0077_S1_artillery_b0",
+    "tier": "S1",
+    "group": "artillery",
+    "band": 0,
+    "noise_spl_db": 96.41772683964635,
+    "total_noise_rms_spl_db": 96.9820133247633,
+    "speech_spl_db": 105.1767996782487,
+    "snr_db": 8.194786353485398,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 27.302288705880585
+   }
+  },
+  "0078_S1_jet_b1": {
+   "sha256": {
+    "mic.flac": "e29199cf3aec16efd15b6f8037fbef72c24243ea33b407875d2343f3bba2ed4c",
+    "clean.flac": "7bc3578e1cfaf209172252f2e7912470775f8cbcef7bd05797902065c3ee1130"
+   },
+   "meta": {
+    "scene_id": "0078_S1_jet_b1",
+    "tier": "S1",
+    "group": "jet",
+    "band": 1,
+    "noise_spl_db": 107.92915689638068,
+    "total_noise_rms_spl_db": 107.9311389588649,
+    "speech_spl_db": 113.22958752666717,
+    "snr_db": 5.298448567802268,
+    "clip_fraction_front": 0.011316666666666666,
+    "clip_fraction_rear": 0.004825,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 64.42485255413563
+   }
+  },
+  "0079_S1_helicopter_b1": {
+   "sha256": {
+    "mic.flac": "8e004d1f1aaaae36782bf817b041bd5b66498fd84d1120ab297ad37d94eae39b",
+    "clean.flac": "f13c5c72a196de5eab2d33ae63084938496c7a6dd19a907fa380560a07c9480d"
+   },
+   "meta": {
+    "scene_id": "0079_S1_helicopter_b1",
+    "tier": "S1",
+    "group": "helicopter",
+    "band": 1,
+    "noise_spl_db": 107.96974177090901,
+    "total_noise_rms_spl_db": 107.96974177090901,
+    "speech_spl_db": 112.43744568827978,
+    "snr_db": 4.46770391737077,
+    "clip_fraction_front": 0.014322916666666666,
+    "clip_fraction_rear": 0.0031354166666666666,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 66.19804627617712
+   }
+  },
+  "0080_S1_tank_b1": {
+   "sha256": {
+    "mic.flac": "f08e9c3b2ce52a056543a706d0f4017d0bdc70a528753a1c03006dca9f0db2ca",
+    "clean.flac": "98fc2c757168880b772c96359556bad03d268ee756163877c8b915055e954b6f"
+   },
+   "meta": {
+    "scene_id": "0080_S1_tank_b1",
+    "tier": "S1",
+    "group": "tank",
+    "band": 1,
+    "noise_spl_db": 109.92534183564827,
+    "total_noise_rms_spl_db": 109.92534183564827,
+    "speech_spl_db": 114.29628998429035,
+    "snr_db": 4.370948148642086,
+    "clip_fraction_front": 0.0233375,
+    "clip_fraction_rear": 0.015572916666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 83.27548199209888
+   }
+  },
+  "0081_S1_missile_b1": {
+   "sha256": {
+    "mic.flac": "a2f9c501d312eb615e7670f9e8375df6aa1785552b6fb4e9f9c42366cd6074e8",
+    "clean.flac": "621c3de19063facb217ce2a6c8b8bd2755ac01e3237d7bdf171704c37a18e3cb"
+   },
+   "meta": {
+    "scene_id": "0081_S1_missile_b1",
+    "tier": "S1",
+    "group": "missile",
+    "band": 1,
+    "noise_spl_db": 117.60734185107879,
+    "total_noise_rms_spl_db": 117.60734185107879,
+    "speech_spl_db": 118.41873936841623,
+    "snr_db": 0.8113975173374399,
+    "clip_fraction_front": 0.10105833333333333,
+    "clip_fraction_rear": 0.044104166666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 173.640072942549
+   }
+  },
+  "0082_S1_gunfire_b1": {
+   "sha256": {
+    "mic.flac": "ca03e905390220ed489d3dd642c1e5ca04ad29549410b833ec9278c6c1919709",
+    "clean.flac": "af3d0c09512f78a3ce9eb7334537dd0ffa23d7c74adf851821c472c6f64223a6"
+   },
+   "meta": {
+    "scene_id": "0082_S1_gunfire_b1",
+    "tier": "S1",
+    "group": "gunfire",
+    "band": 1,
+    "noise_spl_db": 102.02821950754752,
+    "total_noise_rms_spl_db": 102.06906542655781,
+    "speech_spl_db": 109.33833123204793,
+    "snr_db": 7.269265805490122,
+    "clip_fraction_front": 0.0007833333333333334,
+    "clip_fraction_rear": 0.00035625,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 44.11739498803888
+   }
+  },
+  "0083_S1_artillery_b1": {
+   "sha256": {
+    "mic.flac": "06c115261e1984e3634f9a2749ef3f89091e814c5fc95ec753908f82e6023fde",
+    "clean.flac": "17ff331bc9cee36883bf9131b6f4a70dd3bdce4fbb6f13af6209972c126ff0e0"
+   },
+   "meta": {
+    "scene_id": "0083_S1_artillery_b1",
+    "tier": "S1",
+    "group": "artillery",
+    "band": 1,
+    "noise_spl_db": 106.2342265066094,
+    "total_noise_rms_spl_db": 106.72791566432268,
+    "speech_spl_db": 110.33464565909733,
+    "snr_db": 3.6067299947746534,
+    "clip_fraction_front": 0.007747916666666667,
+    "clip_fraction_rear": 0.0026145833333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 63.14882589266247
+   }
+  },
+  "0084_S1_jet_b2": {
+   "sha256": {
+    "mic.flac": "c44c517e71e6e7bbfc67d76ef5322648ccc2b61f161f03d6b3e95905dfc6d314",
+    "clean.flac": "e0ef7d99fe035e503d89e3663c4a4dfa845139fd72523419435efa80567e782c"
+   },
+   "meta": {
+    "scene_id": "0084_S1_jet_b2",
+    "tier": "S1",
+    "group": "jet",
+    "band": 2,
+    "noise_spl_db": 127.47359571181407,
+    "total_noise_rms_spl_db": 127.47359571181407,
+    "speech_spl_db": 113.90878548737808,
+    "snr_db": -13.564810224435988,
+    "clip_fraction_front": 0.520575,
+    "clip_fraction_rear": 0.5478125,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 345.5483575692892
+   }
+  },
+  "0085_S1_helicopter_b2": {
+   "sha256": {
+    "mic.flac": "aa3a5fc19c477f93f2866822a51d12803e7e7d0ca22a7b62d87ddb6b79efdd04",
+    "clean.flac": "2b4ed9c65d20d5ced6083ac053ad78173c1cb18786e8f8dbc5076a5490fe009b"
+   },
+   "meta": {
+    "scene_id": "0085_S1_helicopter_b2",
+    "tier": "S1",
+    "group": "helicopter",
+    "band": 2,
+    "noise_spl_db": 123.87745889008971,
+    "total_noise_rms_spl_db": 123.87745889008971,
+    "speech_spl_db": 115.9943454930577,
+    "snr_db": -7.8831133970320195,
+    "clip_fraction_front": 0.29033125,
+    "clip_fraction_rear": 0.28698541666666666,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 395.47268038891985
+   }
+  },
+  "0086_S1_tank_b2": {
+   "sha256": {
+    "mic.flac": "a6911c9337adf6afc1dc5533916a67f7d0ec6b57b9e8b4ea050fbf4b038416df",
+    "clean.flac": "8b072926986148c34b9152cdb6488b1b2175d88e5ab808c178eb41daee6de137"
+   },
+   "meta": {
+    "scene_id": "0086_S1_tank_b2",
+    "tier": "S1",
+    "group": "tank",
+    "band": 2,
+    "noise_spl_db": 124.0373896384554,
+    "total_noise_rms_spl_db": 124.0373896384554,
+    "speech_spl_db": 118.80465793891918,
+    "snr_db": -5.232731699536217,
+    "clip_fraction_front": 0.27971666666666667,
+    "clip_fraction_rear": 0.2649166666666667,
+    "lost_fraction": 0.0032,
+    "peak_pa_front": 205.63517311014277
+   }
+  },
+  "0087_S1_missile_b2": {
+   "sha256": {
+    "mic.flac": "d6429ed009988d43a0b2c4c72f423b82c7ef3bd43ff7e9aac9180a9d0157d2d1",
+    "clean.flac": "44f96a9c06f84329c6f98ab171abbf7ebb55c213d9c732409eb3cdd287091937"
+   },
+   "meta": {
+    "scene_id": "0087_S1_missile_b2",
+    "tier": "S1",
+    "group": "missile",
+    "band": 2,
+    "noise_spl_db": 121.34817432541618,
+    "total_noise_rms_spl_db": 121.35074063510358,
+    "speech_spl_db": 118.55551589601589,
+    "snr_db": -2.7952247390876863,
+    "clip_fraction_front": 0.18414375,
+    "clip_fraction_rear": 0.19381875,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 278.4874311609025
+   }
+  },
+  "0088_S1_gunfire_b2": {
+   "sha256": {
+    "mic.flac": "a2f3b4415e1e46a72930c04ee6550324bd03fc3cfc9902c5c12cb522d132d58a",
+    "clean.flac": "998225f784aa34c4cb41bc008028f5086fc3da460b579d51bb6e2db833a79922"
+   },
+   "meta": {
+    "scene_id": "0088_S1_gunfire_b2",
+    "tier": "S1",
+    "group": "gunfire",
+    "band": 2,
+    "noise_spl_db": 122.74363807976714,
+    "total_noise_rms_spl_db": 124.07462934155029,
+    "speech_spl_db": 115.78579096765634,
+    "snr_db": -8.288838373893952,
+    "clip_fraction_front": 0.25461875,
+    "clip_fraction_rear": 0.3251791666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 791.3108978618263
+   }
+  },
+  "0089_S1_artillery_b2": {
+   "sha256": {
+    "mic.flac": "f7d3caa27827fcd132dee90f782d97413729445f2984c94601649289ee9446ca",
+    "clean.flac": "100a173c3be013248660d7d444f9f7cfb12536bed89043160b21ec6ed650f3d3"
+   },
+   "meta": {
+    "scene_id": "0089_S1_artillery_b2",
+    "tier": "S1",
+    "group": "artillery",
+    "band": 2,
+    "noise_spl_db": 124.34165719785898,
+    "total_noise_rms_spl_db": 124.92004387209417,
+    "speech_spl_db": 118.68755045927989,
+    "snr_db": -6.232493412814279,
+    "clip_fraction_front": 0.2936229166666667,
+    "clip_fraction_rear": 0.21407708333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 396.9410866387828
+   }
+  },
+  "0090_S1_jet_b3": {
+   "sha256": {
+    "mic.flac": "a4149e79baa0701054f849b5f92834d63f1ca4083bebfadd1dc731c018802280",
+    "clean.flac": "48ebe99456e13658c952fedf4966f38b7d3e78409aebacb7e88ca9bcd6cbea8d"
+   },
+   "meta": {
+    "scene_id": "0090_S1_jet_b3",
+    "tier": "S1",
+    "group": "jet",
+    "band": 3,
+    "noise_spl_db": 135.2361806874705,
+    "total_noise_rms_spl_db": 135.2361806874705,
+    "speech_spl_db": 113.3803869796455,
+    "snr_db": -21.855793707825,
+    "clip_fraction_front": 0.7779395833333334,
+    "clip_fraction_rear": 0.7694583333333334,
+    "lost_fraction": 0.0032,
+    "peak_pa_front": 1177.1488656969816
+   }
+  },
+  "0091_S1_helicopter_b3": {
+   "sha256": {
+    "mic.flac": "6ffc7c8e0f0855b126ad24ca00ca8643f8ca5572898a67ea6f9f72acf2c40c9b",
+    "clean.flac": "8490c95e8dbda453796a9262ed503caf891752af05ecbbdd162fe9f7379c1b43"
+   },
+   "meta": {
+    "scene_id": "0091_S1_helicopter_b3",
+    "tier": "S1",
+    "group": "helicopter",
+    "band": 3,
+    "noise_spl_db": 137.75065389510124,
+    "total_noise_rms_spl_db": 137.75065389510124,
+    "speech_spl_db": 117.83047232421228,
+    "snr_db": -19.920181570888957,
+    "clip_fraction_front": 0.7936083333333334,
+    "clip_fraction_rear": 0.7992895833333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 903.9235937366434
+   }
+  },
+  "0092_S1_tank_b3": {
+   "sha256": {
+    "mic.flac": "888153eb3a1107dc83b59b4c8fe007f35cbacbf2ec94a11319d82d578f4572c9",
+    "clean.flac": "89c6fb905d1598025162be872e483cf5bac251cd250b0cdd32398670870124f2"
+   },
+   "meta": {
+    "scene_id": "0092_S1_tank_b3",
+    "tier": "S1",
+    "group": "tank",
+    "band": 3,
+    "noise_spl_db": 134.81112118293268,
+    "total_noise_rms_spl_db": 134.81112637203915,
+    "speech_spl_db": 117.46838806642323,
+    "snr_db": -17.342738305615924,
+    "clip_fraction_front": 0.7299770833333333,
+    "clip_fraction_rear": 0.7598479166666666,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 638.3954500121824
+   }
+  },
+  "0093_S1_missile_b3": {
+   "sha256": {
+    "mic.flac": "f4afa56276197c81c9e4c168ebb99e5bf99acf1b9fb23364736b7a39abb49182",
+    "clean.flac": "9304e3dbfe5befbc36b75b3a4b3cababbc41f387b7fa393da14bc9d5e146219f"
+   },
+   "meta": {
+    "scene_id": "0093_S1_missile_b3",
+    "tier": "S1",
+    "group": "missile",
+    "band": 3,
+    "noise_spl_db": 134.71094150559594,
+    "total_noise_rms_spl_db": 134.71094150559594,
+    "speech_spl_db": 116.98847371501158,
+    "snr_db": -17.72246779058436,
+    "clip_fraction_front": 0.7860958333333333,
+    "clip_fraction_rear": 0.7503895833333334,
+    "lost_fraction": 0.0010666666666666667,
+    "peak_pa_front": 1037.0008088710242
+   }
+  },
+  "0094_S1_gunfire_b3": {
+   "sha256": {
+    "mic.flac": "a966c0457b7feebc0110cf92b2788cff5b36a276fd9d5953e893a0bfab8adef3",
+    "clean.flac": "6b98d96c51e3aa7de634683c43117018d8062d87663e7f814a84c71f69d5e5b9"
+   },
+   "meta": {
+    "scene_id": "0094_S1_gunfire_b3",
+    "tier": "S1",
+    "group": "gunfire",
+    "band": 3,
+    "noise_spl_db": 129.34745011693894,
+    "total_noise_rms_spl_db": 129.49194620010198,
+    "speech_spl_db": 116.86420501533173,
+    "snr_db": -12.627741184770244,
+    "clip_fraction_front": 0.5459,
+    "clip_fraction_rear": 0.5838895833333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1086.1855911273358
+   }
+  },
+  "0095_S1_artillery_b3": {
+   "sha256": {
+    "mic.flac": "0ff84e749deb15ec177feb7293bfac033a285204b4be495554d190c105bc0614",
+    "clean.flac": "bba7533052e13c1e959a53eaff0c479a39e47337b37a3b50d7c15dbe7f291540"
+   },
+   "meta": {
+    "scene_id": "0095_S1_artillery_b3",
+    "tier": "S1",
+    "group": "artillery",
+    "band": 3,
+    "noise_spl_db": 131.3215587464755,
+    "total_noise_rms_spl_db": 131.7932902670231,
+    "speech_spl_db": 114.96337511898906,
+    "snr_db": -16.829915148034047,
+    "clip_fraction_front": 0.6786479166666667,
+    "clip_fraction_rear": 0.640825,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1086.54883746237
+   }
+  },
+  "0096_S2_jet_b0": {
+   "sha256": {
+    "mic.flac": "fb8ae77079201cc45d9bfd176a6f366d0495d17501a303baff3b63708148ba20",
+    "clean.flac": "968ab57919a34295e49464772963184aeeb07b41af5d47e7f5c02713097f63c5"
+   },
+   "meta": {
+    "scene_id": "0096_S2_jet_b0",
+    "tier": "S2",
+    "group": "jet",
+    "band": 0,
+    "noise_spl_db": 94.61164653640165,
+    "total_noise_rms_spl_db": 94.61164653640165,
+    "speech_spl_db": 107.11990540945912,
+    "snr_db": 12.508258873057471,
+    "clip_fraction_front": 0.00190625,
+    "clip_fraction_rear": 0.00049375,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 52.494621188955286
+   }
+  },
+  "0097_S2_helicopter_b0": {
+   "sha256": {
+    "mic.flac": "56244f5d1c9d257ae7217b9f5c9b2a2c8cfec89bca61b76dcad724bcf0f11c29",
+    "clean.flac": "58418d34bcd72620f3e2d711e60f49b63436dd8002aadbdebe3d75d321534f0d"
+   },
+   "meta": {
+    "scene_id": "0097_S2_helicopter_b0",
+    "tier": "S2",
+    "group": "helicopter",
+    "band": 0,
+    "noise_spl_db": 102.2083547620626,
+    "total_noise_rms_spl_db": 102.2083547620626,
+    "speech_spl_db": 109.55198842479518,
+    "snr_db": 7.343633662732586,
+    "clip_fraction_front": 0.0016291666666666666,
+    "clip_fraction_rear": 0.0004729166666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 46.944508450304745
+   }
+  },
+  "0098_S2_tank_b0": {
+   "sha256": {
+    "mic.flac": "2454d1cecc52b48e5a5d2b66fbbda77b99583b5f4c0ee95889994ca1ac792c3d",
+    "clean.flac": "5e96ddace2fddb1932e87820d08691292805dd726bbb630e446339beb4fc0089"
+   },
+   "meta": {
+    "scene_id": "0098_S2_tank_b0",
+    "tier": "S2",
+    "group": "tank",
+    "band": 0,
+    "noise_spl_db": 90.37146120532904,
+    "total_noise_rms_spl_db": 90.37146120532904,
+    "speech_spl_db": 101.65376881008017,
+    "snr_db": 11.282307604751125,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 21.243376490925584
+   }
+  },
+  "0099_S2_missile_b0": {
+   "sha256": {
+    "mic.flac": "5a2d881c05d6338c8d516c6013bfeb0803b777dee1e7528ef96acf928a1841ec",
+    "clean.flac": "0b3e5c86188086d980b0b0f4d52f568accb9d09b0f7e167aeec97f19eb3b1469"
+   },
+   "meta": {
+    "scene_id": "0099_S2_missile_b0",
+    "tier": "S2",
+    "group": "missile",
+    "band": 0,
+    "noise_spl_db": 101.00619457780212,
+    "total_noise_rms_spl_db": 101.00619457780212,
+    "speech_spl_db": 108.55856635192866,
+    "snr_db": 7.5523717741265415,
+    "clip_fraction_front": 0.002022916666666667,
+    "clip_fraction_rear": 6.25e-05,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 45.861016907588905
+   }
+  },
+  "0100_S2_gunfire_b0": {
+   "sha256": {
+    "mic.flac": "230a622e1eedb13f2ec3db299f0a7e79073bfa5542aef2c66d5c99bc4017af47",
+    "clean.flac": "c1374954889df27ffb958e9305771589117bf80d947de945b7b3d9b026ce2ed1"
+   },
+   "meta": {
+    "scene_id": "0100_S2_gunfire_b0",
+    "tier": "S2",
+    "group": "gunfire",
+    "band": 0,
+    "noise_spl_db": 93.74987019146602,
+    "total_noise_rms_spl_db": 93.82659099702936,
+    "speech_spl_db": 106.96990337427331,
+    "snr_db": 13.143312377243959,
+    "clip_fraction_front": 0.00155625,
+    "clip_fraction_rear": 0.00015416666666666666,
+    "lost_fraction": 0.0032,
+    "peak_pa_front": 57.0476160795083
+   }
+  },
+  "0101_S2_artillery_b0": {
+   "sha256": {
+    "mic.flac": "eb79e85cc44f0f70714a1040b1d53220a5e5f5e45ec207c2f70011b530820aa6",
+    "clean.flac": "ad82d69d02769f20231108d2fd6707e1071f2481443411988c649c0309d38c82"
+   },
+   "meta": {
+    "scene_id": "0101_S2_artillery_b0",
+    "tier": "S2",
+    "group": "artillery",
+    "band": 0,
+    "noise_spl_db": 90.15524713387335,
+    "total_noise_rms_spl_db": 91.93854486236047,
+    "speech_spl_db": 98.84812526679923,
+    "snr_db": 6.909580404438756,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0010666666666666667,
+    "peak_pa_front": 12.117498980549282
+   }
+  },
+  "0102_S2_jet_b1": {
+   "sha256": {
+    "mic.flac": "9ffd603b6a91b5ca295f9e126ebe9af257010d0c4cb60a56bf102d3843afb9fc",
+    "clean.flac": "371e1add7398fe21e3112b7d278acf05a2d205e589b9c736be91594da6d4432e"
+   },
+   "meta": {
+    "scene_id": "0102_S2_jet_b1",
+    "tier": "S2",
+    "group": "jet",
+    "band": 1,
+    "noise_spl_db": 107.3433104895043,
+    "total_noise_rms_spl_db": 107.3433104895043,
+    "speech_spl_db": 110.24626666838553,
+    "snr_db": 2.902956178881226,
+    "clip_fraction_front": 0.004308333333333333,
+    "clip_fraction_rear": 0.00048541666666666666,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 74.90722760811681
+   }
+  },
+  "0103_S2_helicopter_b1": {
+   "sha256": {
+    "mic.flac": "50f5323928a0d4fdd6a9749cc724d58593daa834bfd8fcc9984672178866a164",
+    "clean.flac": "b0d6772d285adb46dc43798cb1f37ae0f9eacf361e97bec7ab9f52d5c90801fe"
+   },
+   "meta": {
+    "scene_id": "0103_S2_helicopter_b1",
+    "tier": "S2",
+    "group": "helicopter",
+    "band": 1,
+    "noise_spl_db": 108.5667853093538,
+    "total_noise_rms_spl_db": 108.5667853093538,
+    "speech_spl_db": 111.43473808020234,
+    "snr_db": 2.8679527708485324,
+    "clip_fraction_front": 0.00660625,
+    "clip_fraction_rear": 0.0024916666666666668,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 57.873071923431716
+   }
+  },
+  "0104_S2_tank_b1": {
+   "sha256": {
+    "mic.flac": "b9286663d4788826173a9a8dfee9658190b2c536569fdfc7710907dc3136e8be",
+    "clean.flac": "b046c77370126e6f44ca8c18a8f08191001e58d71d405c9e7513092616c261ba"
+   },
+   "meta": {
+    "scene_id": "0104_S2_tank_b1",
+    "tier": "S2",
+    "group": "tank",
+    "band": 1,
+    "noise_spl_db": 112.66947394370828,
+    "total_noise_rms_spl_db": 112.66947394370828,
+    "speech_spl_db": 113.95306242510361,
+    "snr_db": 1.283588481395327,
+    "clip_fraction_front": 0.025097916666666668,
+    "clip_fraction_rear": 0.012554166666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 84.66739212860074
+   }
+  },
+  "0105_S2_missile_b1": {
+   "sha256": {
+    "mic.flac": "08cae4404668d3511e2ebf75d88b985ce469445cc476e80e45ac5c02062c904c",
+    "clean.flac": "0f69239369641d635c5a9f43653f1faf5a8c55f94c06e464cda0a863414b1240"
+   },
+   "meta": {
+    "scene_id": "0105_S2_missile_b1",
+    "tier": "S2",
+    "group": "missile",
+    "band": 1,
+    "noise_spl_db": 115.0231384756641,
+    "total_noise_rms_spl_db": 115.0231384756641,
+    "speech_spl_db": 118.37476449534662,
+    "snr_db": 3.351626019682527,
+    "clip_fraction_front": 0.11400208333333334,
+    "clip_fraction_rear": 0.050985416666666665,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 158.68915878248595
+   }
+  },
+  "0106_S2_gunfire_b1": {
+   "sha256": {
+    "mic.flac": "b895bfbad2027dd586dfeb5d0fb2503f76da203eeeaaaecde52a0a06ee8247c1",
+    "clean.flac": "1bcf1f18a72c9e7775742fbe5f36acda4a1692156633458800bc456898fa1a89"
+   },
+   "meta": {
+    "scene_id": "0106_S2_gunfire_b1",
+    "tier": "S2",
+    "group": "gunfire",
+    "band": 1,
+    "noise_spl_db": 111.58447080360159,
+    "total_noise_rms_spl_db": 111.63915574404822,
+    "speech_spl_db": 111.44071812582274,
+    "snr_db": -0.19843761822548345,
+    "clip_fraction_front": 0.007602083333333333,
+    "clip_fraction_rear": 0.00410625,
+    "lost_fraction": 0.0010666666666666667,
+    "peak_pa_front": 88.52208176810754
+   }
+  },
+  "0107_S2_artillery_b1": {
+   "sha256": {
+    "mic.flac": "2e2e4c6b1f3374800427f1c398ad0625fc1ad7060adf2e7c1a353d92e0546429",
+    "clean.flac": "058555b970d61b0ffb5409966b6c4aae570c33d8a0290c40dddebf48a3c7fe85"
+   },
+   "meta": {
+    "scene_id": "0107_S2_artillery_b1",
+    "tier": "S2",
+    "group": "artillery",
+    "band": 1,
+    "noise_spl_db": 99.88814095060597,
+    "total_noise_rms_spl_db": 101.82598873418685,
+    "speech_spl_db": 109.0061949708957,
+    "snr_db": 7.180206236708855,
+    "clip_fraction_front": 0.002075,
+    "clip_fraction_rear": 0.00026458333333333336,
+    "lost_fraction": 0.0032,
+    "peak_pa_front": 56.341800577283365
+   }
+  },
+  "0108_S2_jet_b2": {
+   "sha256": {
+    "mic.flac": "26405368c93e41233c26d25e2ec11f2328cea3d01a0789d2d841b84473f2a650",
+    "clean.flac": "3923fa5fad39860b6f15a5abebac9c0daf667c94d0d96f5c1131582b638485c6"
+   },
+   "meta": {
+    "scene_id": "0108_S2_jet_b2",
+    "tier": "S2",
+    "group": "jet",
+    "band": 2,
+    "noise_spl_db": 128.2197713445843,
+    "total_noise_rms_spl_db": 128.2197713445843,
+    "speech_spl_db": 119.4893581481602,
+    "snr_db": -8.730413196424095,
+    "clip_fraction_front": 0.5747208333333333,
+    "clip_fraction_rear": 0.5271354166666666,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 401.92952974054106
+   }
+  },
+  "0109_S2_helicopter_b2": {
+   "sha256": {
+    "mic.flac": "30a9f47cb4649d64140731c8fe18fe45825fab7b8868c3887d050f9b03ba4812",
+    "clean.flac": "fad496718520b9ca76cf669aff0151038e3745fbf7c5e233632b26bfb016ee38"
+   },
+   "meta": {
+    "scene_id": "0109_S2_helicopter_b2",
+    "tier": "S2",
+    "group": "helicopter",
+    "band": 2,
+    "noise_spl_db": 120.69375935762979,
+    "total_noise_rms_spl_db": 120.69375935762979,
+    "speech_spl_db": 118.91035338129758,
+    "snr_db": -1.7834059763322045,
+    "clip_fraction_front": 0.16040208333333333,
+    "clip_fraction_rear": 0.122025,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 211.50579835224238
+   }
+  },
+  "0110_S2_tank_b2": {
+   "sha256": {
+    "mic.flac": "a5b4922a0f6a779ed0c5589bfd746269e485da03901dbabb962cbf94219d9468",
+    "clean.flac": "9cdf6f2b4c36c97b4e93b6380e520e0994f103db7e76f9150bde3265a15ffb74"
+   },
+   "meta": {
+    "scene_id": "0110_S2_tank_b2",
+    "tier": "S2",
+    "group": "tank",
+    "band": 2,
+    "noise_spl_db": 121.78893441179025,
+    "total_noise_rms_spl_db": 121.78893441179025,
+    "speech_spl_db": 119.1104372993666,
+    "snr_db": -2.6784971124236563,
+    "clip_fraction_front": 0.29045625,
+    "clip_fraction_rear": 0.21482916666666665,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 270.4917698562203
+   }
+  },
+  "0111_S2_missile_b2": {
+   "sha256": {
+    "mic.flac": "b164596ccabae740e2372bd342def4df4ed1cb0d50b0a5ad7caa683f6bddc68e",
+    "clean.flac": "d495fbdceb4d1323264bc6458c7a53ab2cb84d5c8f3a2a960d21b3c0aeefbbad"
+   },
+   "meta": {
+    "scene_id": "0111_S2_missile_b2",
+    "tier": "S2",
+    "group": "missile",
+    "band": 2,
+    "noise_spl_db": 120.2110561034931,
+    "total_noise_rms_spl_db": 120.2110561034931,
+    "speech_spl_db": 117.7703338661284,
+    "snr_db": -2.44072223736471,
+    "clip_fraction_front": 0.15090208333333333,
+    "clip_fraction_rear": 0.19427916666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 262.36898614591064
+   }
+  },
+  "0112_S2_gunfire_b2": {
+   "sha256": {
+    "mic.flac": "5f153f13d190e45607696c05dac2982fd394702395a77eff358e226fcc5b88e9",
+    "clean.flac": "9280dcc0b7d2a5127e42c93ef06ae17cca5e735efff1b576fe3e1b0b9a154683"
+   },
+   "meta": {
+    "scene_id": "0112_S2_gunfire_b2",
+    "tier": "S2",
+    "group": "gunfire",
+    "band": 2,
+    "noise_spl_db": 117.13402081424843,
+    "total_noise_rms_spl_db": 117.15732480752908,
+    "speech_spl_db": 115.75355949643499,
+    "snr_db": -1.4037653110940909,
+    "clip_fraction_front": 0.11208541666666667,
+    "clip_fraction_rear": 0.09626666666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 118.20051727826831
+   }
+  },
+  "0113_S2_artillery_b2": {
+   "sha256": {
+    "mic.flac": "e6abdff1c42f8f1863742c29d538916f66c7413c4a5972133d53d3630a17f103",
+    "clean.flac": "1c4eaa1bd9b679c29291b67ae937fe0dd6909ce36a378cdb7f16613d3516c55c"
+   },
+   "meta": {
+    "scene_id": "0113_S2_artillery_b2",
+    "tier": "S2",
+    "group": "artillery",
+    "band": 2,
+    "noise_spl_db": 122.77000655226955,
+    "total_noise_rms_spl_db": 123.29409251118702,
+    "speech_spl_db": 115.59218517620803,
+    "snr_db": -7.7019073349789835,
+    "clip_fraction_front": 0.27800833333333336,
+    "clip_fraction_rear": 0.200275,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 355.17171034042894
+   }
+  },
+  "0114_S2_jet_b3": {
+   "sha256": {
+    "mic.flac": "654a51f2c25d518b7015e4faa5dc70a93664bc9a14711bcfa273d70d4d753137",
+    "clean.flac": "e5114078f6df65822b1c79de88792c852080ddc0d1936daec8970ec31b191c27"
+   },
+   "meta": {
+    "scene_id": "0114_S2_jet_b3",
+    "tier": "S2",
+    "group": "jet",
+    "band": 3,
+    "noise_spl_db": 130.64743490795053,
+    "total_noise_rms_spl_db": 130.64760484727103,
+    "speech_spl_db": 120.25378904334303,
+    "snr_db": -10.393815803927993,
+    "clip_fraction_front": 0.65390625,
+    "clip_fraction_rear": 0.67959375,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1048.307316217192
+   }
+  },
+  "0115_S2_helicopter_b3": {
+   "sha256": {
+    "mic.flac": "f2e627e41bb1d39b65ddb3cf00ea3f1b398b71e95e18a7bb89d9e9c2154b0602",
+    "clean.flac": "7cc306fccf588e20f7bec523beb1e97ffcfc21b62faa5d9a1d5d267207079299"
+   },
+   "meta": {
+    "scene_id": "0115_S2_helicopter_b3",
+    "tier": "S2",
+    "group": "helicopter",
+    "band": 3,
+    "noise_spl_db": 130.41537349526004,
+    "total_noise_rms_spl_db": 130.4153154419113,
+    "speech_spl_db": 113.23486519983342,
+    "snr_db": -17.18045024207788,
+    "clip_fraction_front": 0.5204041666666667,
+    "clip_fraction_rear": 0.5729604166666666,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 421.25328879593263
+   }
+  },
+  "0116_S2_tank_b3": {
+   "sha256": {
+    "mic.flac": "3b29b2fbd595774535f6aa9cba0a8ece6c3f097fceb04ce248cf77acfb5dc110",
+    "clean.flac": "419c93a439f7031a6b500283263e75bca43e0322028b4e393d482d7e43f0ab8a"
+   },
+   "meta": {
+    "scene_id": "0116_S2_tank_b3",
+    "tier": "S2",
+    "group": "tank",
+    "band": 3,
+    "noise_spl_db": 136.00164018518137,
+    "total_noise_rms_spl_db": 136.00164018518137,
+    "speech_spl_db": 118.15011534545289,
+    "snr_db": -17.851524839728484,
+    "clip_fraction_front": 0.8293979166666666,
+    "clip_fraction_rear": 0.8029208333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1651.3588284041812
+   }
+  },
+  "0117_S2_missile_b3": {
+   "sha256": {
+    "mic.flac": "9ce2ba8c1771417690235defd54a3da9eb0211d87661ecb965fcf87b0d1d0bce",
+    "clean.flac": "23ac3bde428ed0d1e4977031f9d71cc72cb0195a80b03f4568489911cb2d4ed7"
+   },
+   "meta": {
+    "scene_id": "0117_S2_missile_b3",
+    "tier": "S2",
+    "group": "missile",
+    "band": 3,
+    "noise_spl_db": 131.0956749305867,
+    "total_noise_rms_spl_db": 131.0956749305867,
+    "speech_spl_db": 114.66148001535923,
+    "snr_db": -16.43419491522748,
+    "clip_fraction_front": 0.6495895833333334,
+    "clip_fraction_rear": 0.6322604166666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1127.3748781010354
+   }
+  },
+  "0118_S2_gunfire_b3": {
+   "sha256": {
+    "mic.flac": "ede7839c5a02cfc007d025a86eccb4940643c7f4b43ff4e51d0ca85e19bf10a9",
+    "clean.flac": "62c4caee56c1699ad3675cfe56ee9c84e323b2628d7b19a5835c24608d0dd69a"
+   },
+   "meta": {
+    "scene_id": "0118_S2_gunfire_b3",
+    "tier": "S2",
+    "group": "gunfire",
+    "band": 3,
+    "noise_spl_db": 125.43868195194437,
+    "total_noise_rms_spl_db": 125.99691908450554,
+    "speech_spl_db": 117.11666317407747,
+    "snr_db": -8.880255910428062,
+    "clip_fraction_front": 0.44847916666666665,
+    "clip_fraction_rear": 0.4051125,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 845.4769061935572
+   }
+  },
+  "0119_S2_artillery_b3": {
+   "sha256": {
+    "mic.flac": "f508f7d2b4ac7afa79ef0f6ec9e56f82d2e3e30d1b8351f9ff8c8c3799bcea0a",
+    "clean.flac": "395f44c66df9f0e491f502a966042743cf2dfa7c67a775bc3782376b852f8fa2"
+   },
+   "meta": {
+    "scene_id": "0119_S2_artillery_b3",
+    "tier": "S2",
+    "group": "artillery",
+    "band": 3,
+    "noise_spl_db": 127.1466764988352,
+    "total_noise_rms_spl_db": 128.53389014733008,
+    "speech_spl_db": 116.45500061862762,
+    "snr_db": -12.078889528702462,
+    "clip_fraction_front": 0.5183604166666667,
+    "clip_fraction_rear": 0.55315625,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 838.9926649228299
+   }
+  },
+  "0120_S3_jet_b0": {
+   "sha256": {
+    "mic.flac": "5961f20ad90411aa1fb675b2e41a72ffbaa98553ddaf10aac1730979ca33bc7e",
+    "clean.flac": "c6575d62f849c8ce65d40d66346b66c16d3721310e1b7ce2a6ced2c4b7956b93"
+   },
+   "meta": {
+    "scene_id": "0120_S3_jet_b0",
+    "tier": "S3",
+    "group": "jet",
+    "band": 0,
+    "noise_spl_db": 93.19810970870782,
+    "total_noise_rms_spl_db": 93.19810970870782,
+    "speech_spl_db": 104.41098094272553,
+    "snr_db": 11.212871234017712,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 21.214966095503875
+   }
+  },
+  "0121_S3_helicopter_b0": {
+   "sha256": {
+    "mic.flac": "412f46db688a44b4a1308861b74772cf460687906f02ab6c01b562c7b68d034c",
+    "clean.flac": "23125abc26b9f0b5e12dc2dc91226757c9ea8e829932c27ee5d4ddab6be53713"
+   },
+   "meta": {
+    "scene_id": "0121_S3_helicopter_b0",
+    "tier": "S3",
+    "group": "helicopter",
+    "band": 0,
+    "noise_spl_db": 90.8212333974651,
+    "total_noise_rms_spl_db": 90.8212333974651,
+    "speech_spl_db": 98.15616756956507,
+    "snr_db": 7.3349341720999774,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 19.355784620357717
+   }
+  },
+  "0122_S3_tank_b0": {
+   "sha256": {
+    "mic.flac": "e19d7190083b8b9666c562fd17da99a81866b05103180c94d79213d02da7bdc5",
+    "clean.flac": "fbcf3973b7519f59cb06e5afa357de1509ef3ec883fac8be5571b17a0db39272"
+   },
+   "meta": {
+    "scene_id": "0122_S3_tank_b0",
+    "tier": "S3",
+    "group": "tank",
+    "band": 0,
+    "noise_spl_db": 91.46102910488517,
+    "total_noise_rms_spl_db": 91.46102910488517,
+    "speech_spl_db": 104.54376148766423,
+    "snr_db": 13.082732382779056,
+    "clip_fraction_front": 4.166666666666667e-06,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0010666666666666667,
+    "peak_pa_front": 30.50180153058679
+   }
+  },
+  "0123_S3_missile_b0": {
+   "sha256": {
+    "mic.flac": "bf84110263f773d51760c9c75bebbebd529be6d05eb149be6933e80541f93099",
+    "clean.flac": "c6f7e9121854f6aa480d5cf1ec59ba8d103c145091e6f2d5a297046080b99c08"
+   },
+   "meta": {
+    "scene_id": "0123_S3_missile_b0",
+    "tier": "S3",
+    "group": "missile",
+    "band": 0,
+    "noise_spl_db": 95.51167681239521,
+    "total_noise_rms_spl_db": 95.51167681239521,
+    "speech_spl_db": 103.55274226308346,
+    "snr_db": 8.04106545068825,
+    "clip_fraction_front": 2.0833333333333333e-05,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 31.955092167580275
+   }
+  },
+  "0124_S3_gunfire_b0": {
+   "sha256": {
+    "mic.flac": "0f6841b95dcb0accfd207f7676f61e4d2f5f820c5ee4d7493d1a2bc83d6d9866",
+    "clean.flac": "0c640c38bc69a32063d910f341faef607da04ef6457430b63ca2e078bf0ed247"
+   },
+   "meta": {
+    "scene_id": "0124_S3_gunfire_b0",
+    "tier": "S3",
+    "group": "gunfire",
+    "band": 0,
+    "noise_spl_db": 84.51661128315732,
+    "total_noise_rms_spl_db": 85.1219069483743,
+    "speech_spl_db": 98.88424432454998,
+    "snr_db": 13.76233737617568,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 16.594044312988643
+   }
+  },
+  "0125_S3_artillery_b0": {
+   "sha256": {
+    "mic.flac": "8c526e35dda23307edc3445f8e0cf9cff544ebf3d0db00c5f3e63494f3c48dc4",
+    "clean.flac": "5cacf0fab0978eaa8c3bd37090ec023fc049bcb47271ed5e44a4a6d4bdc00090"
+   },
+   "meta": {
+    "scene_id": "0125_S3_artillery_b0",
+    "tier": "S3",
+    "group": "artillery",
+    "band": 0,
+    "noise_spl_db": 93.3529090938438,
+    "total_noise_rms_spl_db": 94.22143664187055,
+    "speech_spl_db": 104.30248150481653,
+    "snr_db": 10.081044862945973,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0021333333333333334,
+    "peak_pa_front": 27.11932521538302
+   }
+  },
+  "0126_S3_jet_b1": {
+   "sha256": {
+    "mic.flac": "1b1497138b69a967bf055c52dae90c260597eda50bf6e5498a85badade2a5e52",
+    "clean.flac": "dee983c199a322fa496503e464d603cdbc6e6851f71f85f4f1e6604763f7ffbe"
+   },
+   "meta": {
+    "scene_id": "0126_S3_jet_b1",
+    "tier": "S3",
+    "group": "jet",
+    "band": 1,
+    "noise_spl_db": 115.9769467140514,
+    "total_noise_rms_spl_db": 115.98075618751814,
+    "speech_spl_db": 116.09603571264695,
+    "snr_db": 0.11527952512881257,
+    "clip_fraction_front": 0.04640208333333333,
+    "clip_fraction_rear": 0.0578,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 196.5461003323544
+   }
+  },
+  "0127_S3_helicopter_b1": {
+   "sha256": {
+    "mic.flac": "0b4c36740860305074777eed40c5874f65be19ad005c906613e2019039ce5720",
+    "clean.flac": "ecd2f364776b5bcb0b7530a8529d509c7be47dce459950d1530333eeda205420"
+   },
+   "meta": {
+    "scene_id": "0127_S3_helicopter_b1",
+    "tier": "S3",
+    "group": "helicopter",
+    "band": 1,
+    "noise_spl_db": 113.31494027179352,
+    "total_noise_rms_spl_db": 113.31494027179352,
+    "speech_spl_db": 114.59578738941154,
+    "snr_db": 1.2808471176180234,
+    "clip_fraction_front": 0.04018541666666667,
+    "clip_fraction_rear": 0.01853125,
+    "lost_fraction": 0.0021333333333333334,
+    "peak_pa_front": 110.2198145404895
+   }
+  },
+  "0128_S3_tank_b1": {
+   "sha256": {
+    "mic.flac": "a6acecfb6a7b1619000584cda4db62c5266f94d25b100888736e73c8992eb114",
+    "clean.flac": "3b7a04298c81d1b578aa81677fe201acdac72b35b5f1581c012a6a4202759f12"
+   },
+   "meta": {
+    "scene_id": "0128_S3_tank_b1",
+    "tier": "S3",
+    "group": "tank",
+    "band": 1,
+    "noise_spl_db": 110.48766489227592,
+    "total_noise_rms_spl_db": 110.48766489227592,
+    "speech_spl_db": 113.70854342564014,
+    "snr_db": 3.2208785333642282,
+    "clip_fraction_front": 0.019816666666666666,
+    "clip_fraction_rear": 0.01016875,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 69.21365296594112
+   }
+  },
+  "0129_S3_missile_b1": {
+   "sha256": {
+    "mic.flac": "c8e1ad9ba202f24a918156214e2f3c0b1c3ae4336c81d17549adf60d0d136130",
+    "clean.flac": "c773de02184b30ac44c27246352a238579f01338ab8d78490e1644c4849b90f6"
+   },
+   "meta": {
+    "scene_id": "0129_S3_missile_b1",
+    "tier": "S3",
+    "group": "missile",
+    "band": 1,
+    "noise_spl_db": 117.77034585929121,
+    "total_noise_rms_spl_db": 117.77034585929121,
+    "speech_spl_db": 114.89418639997123,
+    "snr_db": -2.876159459319979,
+    "clip_fraction_front": 0.07546041666666667,
+    "clip_fraction_rear": 0.08497291666666666,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 243.25360427846002
+   }
+  },
+  "0130_S3_gunfire_b1": {
+   "sha256": {
+    "mic.flac": "40b929ba308d92a87c705d4b400fd850deb818498fe7af43126cffc9b25f18e0",
+    "clean.flac": "7c064914357799096122ae596e5c76d97af1b76c4e41024b6471dfe22e4ff2a2"
+   },
+   "meta": {
+    "scene_id": "0130_S3_gunfire_b1",
+    "tier": "S3",
+    "group": "gunfire",
+    "band": 1,
+    "noise_spl_db": 106.06555241654142,
+    "total_noise_rms_spl_db": 106.18793036407547,
+    "speech_spl_db": 112.5110161456657,
+    "snr_db": 6.323085781590237,
+    "clip_fraction_front": 0.016804166666666665,
+    "clip_fraction_rear": 0.005085416666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 110.11780246748323
+   }
+  },
+  "0131_S3_artillery_b1": {
+   "sha256": {
+    "mic.flac": "6ec9e5e3bd5424b1caa0e7e9b7797e6c08873ae08318b10112ceca996b9d03d1",
+    "clean.flac": "08d2addf4ecbd985c83d67bb1b4fd64cc696200cecbc78c3bfd12b496a952ce8"
+   },
+   "meta": {
+    "scene_id": "0131_S3_artillery_b1",
+    "tier": "S3",
+    "group": "artillery",
+    "band": 1,
+    "noise_spl_db": 107.45198451120514,
+    "total_noise_rms_spl_db": 108.08983007614114,
+    "speech_spl_db": 110.652697889932,
+    "snr_db": 2.5628678137908594,
+    "clip_fraction_front": 0.004522916666666666,
+    "clip_fraction_rear": 0.0020791666666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 91.54958128420547
+   }
+  },
+  "0132_S3_jet_b2": {
+   "sha256": {
+    "mic.flac": "ecf85057f5d245ee20f1807a6b8ca76c53a8c464cdb9fc8d94c37843daec7449",
+    "clean.flac": "434b30d8e684ffe77a2164674a64fbae55f0154802dfa02c693fc40d1efe8d47"
+   },
+   "meta": {
+    "scene_id": "0132_S3_jet_b2",
+    "tier": "S3",
+    "group": "jet",
+    "band": 2,
+    "noise_spl_db": 129.55085649993802,
+    "total_noise_rms_spl_db": 129.55085649993802,
+    "speech_spl_db": 120.10118951148243,
+    "snr_db": -9.44966698845559,
+    "clip_fraction_front": 0.6546916666666667,
+    "clip_fraction_rear": 0.6311354166666666,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 356.77688723413837
+   }
+  },
+  "0133_S3_helicopter_b2": {
+   "sha256": {
+    "mic.flac": "8b7d3f297a6806ef5437e1cac185bd603a5ac0555355804f0cd3700a417bae60",
+    "clean.flac": "6bb5b88030b279b0eced1ccebbff383394ef1042a83ecb610cec6167744d2238"
+   },
+   "meta": {
+    "scene_id": "0133_S3_helicopter_b2",
+    "tier": "S3",
+    "group": "helicopter",
+    "band": 2,
+    "noise_spl_db": 127.54024183986363,
+    "total_noise_rms_spl_db": 127.54024183986363,
+    "speech_spl_db": 115.65574710761706,
+    "snr_db": -11.884494732246566,
+    "clip_fraction_front": 0.4031166666666667,
+    "clip_fraction_rear": 0.36481458333333333,
+    "lost_fraction": 0.0021333333333333334,
+    "peak_pa_front": 431.13787568156107
+   }
+  },
+  "0134_S3_tank_b2": {
+   "sha256": {
+    "mic.flac": "a517df78c8154f9639f7aac3d2732e33085d1e7bc15211e15604abc1d6354b1c",
+    "clean.flac": "0c11194b069c2b96e3c318ba7c42a08f84382fe0a733ec68d7ad04c78c896a54"
+   },
+   "meta": {
+    "scene_id": "0134_S3_tank_b2",
+    "tier": "S3",
+    "group": "tank",
+    "band": 2,
+    "noise_spl_db": 120.32686561355857,
+    "total_noise_rms_spl_db": 120.32686561355857,
+    "speech_spl_db": 119.27392240740177,
+    "snr_db": -1.0529432061567974,
+    "clip_fraction_front": 0.18285208333333333,
+    "clip_fraction_rear": 0.18037708333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 239.5201847696555
+   }
+  },
+  "0135_S3_missile_b2": {
+   "sha256": {
+    "mic.flac": "56f9c743ffc43cfc32a1487148f50d38aacabdcc20900f49d3a47faf9e1655ab",
+    "clean.flac": "baf11d0c423ad62b71bcbc6f882eee6b233da1a13c4a377c8c904a5f31ed2803"
+   },
+   "meta": {
+    "scene_id": "0135_S3_missile_b2",
+    "tier": "S3",
+    "group": "missile",
+    "band": 2,
+    "noise_spl_db": 129.16899096763632,
+    "total_noise_rms_spl_db": 129.16899096763632,
+    "speech_spl_db": 118.46553069217232,
+    "snr_db": -10.703460275463996,
+    "clip_fraction_front": 0.5762583333333333,
+    "clip_fraction_rear": 0.5495833333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 486.87768078909613
+   }
+  },
+  "0136_S3_gunfire_b2": {
+   "sha256": {
+    "mic.flac": "ba32d4e8be031d8538f78e402945556c9080a898386be5977298fd6b073b00e7",
+    "clean.flac": "6d45e05fd9f8aafc17342d846aaea0cd2b0b499115e2be4a40995d49e4180221"
+   },
+   "meta": {
+    "scene_id": "0136_S3_gunfire_b2",
+    "tier": "S3",
+    "group": "gunfire",
+    "band": 2,
+    "noise_spl_db": 127.42936050339961,
+    "total_noise_rms_spl_db": 128.99869682004723,
+    "speech_spl_db": 115.54634624677688,
+    "snr_db": -13.452350573270351,
+    "clip_fraction_front": 0.3157520833333333,
+    "clip_fraction_rear": 0.3807125,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1411.4823629661742
+   }
+  },
+  "0137_S3_artillery_b2": {
+   "sha256": {
+    "mic.flac": "a71f190d822202cde69aa0f2634aaac42dc13af8122eeb3de612d97251b3ea38",
+    "clean.flac": "6cd9296ddc5540ee85729f4bba04725d19356f10a3a6fc29b41e2974183394c1"
+   },
+   "meta": {
+    "scene_id": "0137_S3_artillery_b2",
+    "tier": "S3",
+    "group": "artillery",
+    "band": 2,
+    "noise_spl_db": 122.99757722323838,
+    "total_noise_rms_spl_db": 124.37482942766736,
+    "speech_spl_db": 120.79418022886367,
+    "snr_db": -3.580649198803698,
+    "clip_fraction_front": 0.3238083333333333,
+    "clip_fraction_rear": 0.2790875,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 459.7016389385463
+   }
+  },
+  "0138_S3_jet_b3": {
+   "sha256": {
+    "mic.flac": "a305ad60a26d22480d9a5ce593b1d27903ca4568f1c83a19543953a4d7ac9b8d",
+    "clean.flac": "da10fe94cba0945634b3842034445867b5cc288ba55d0b266d1abefad0b94798"
+   },
+   "meta": {
+    "scene_id": "0138_S3_jet_b3",
+    "tier": "S3",
+    "group": "jet",
+    "band": 3,
+    "noise_spl_db": 134.84596606359648,
+    "total_noise_rms_spl_db": 134.84596606359648,
+    "speech_spl_db": 121.28903859737366,
+    "snr_db": -13.556927466222817,
+    "clip_fraction_front": 0.7600541666666667,
+    "clip_fraction_rear": 0.7480708333333334,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1141.2260317790403
+   }
+  },
+  "0139_S3_helicopter_b3": {
+   "sha256": {
+    "mic.flac": "9ebad21ff575c931f5cef72bcfb499963be431ea2a68d6ee321d4bca6158e38e",
+    "clean.flac": "f6a95b316c25bd0e424b40e93348919b17af77688583e3a5250f111828a33b6a"
+   },
+   "meta": {
+    "scene_id": "0139_S3_helicopter_b3",
+    "tier": "S3",
+    "group": "helicopter",
+    "band": 3,
+    "noise_spl_db": 137.3041646133044,
+    "total_noise_rms_spl_db": 137.3041646133044,
+    "speech_spl_db": 115.55768405080158,
+    "snr_db": -21.746480562502825,
+    "clip_fraction_front": 0.7884625,
+    "clip_fraction_rear": 0.7466625,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1086.7774980660852
+   }
+  },
+  "0140_S3_tank_b3": {
+   "sha256": {
+    "mic.flac": "fd67fe57cfaf74c991d7f044a49295a346ecf7de70f33560f3698f09ab48ab8c",
+    "clean.flac": "ee5090bf7395413bed6a7e5da5f567712b793bf8c1572126ff63638bf3e01ceb"
+   },
+   "meta": {
+    "scene_id": "0140_S3_tank_b3",
+    "tier": "S3",
+    "group": "tank",
+    "band": 3,
+    "noise_spl_db": 130.23642996534343,
+    "total_noise_rms_spl_db": 130.23642996534343,
+    "speech_spl_db": 115.6190391107285,
+    "snr_db": -14.61739085461494,
+    "clip_fraction_front": 0.6506770833333333,
+    "clip_fraction_rear": 0.6631083333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 503.6076531930618
+   }
+  },
+  "0141_S3_missile_b3": {
+   "sha256": {
+    "mic.flac": "3ad636a16c38918c155ea72624fe2b450ea1a60d92ebf963ecdc5e9de94dc51b",
+    "clean.flac": "ab63d2127408ebd89b4c3f02d229695dd4524ed5804983bc271aa7484b93de1f"
+   },
+   "meta": {
+    "scene_id": "0141_S3_missile_b3",
+    "tier": "S3",
+    "group": "missile",
+    "band": 3,
+    "noise_spl_db": 134.741940874948,
+    "total_noise_rms_spl_db": 134.741940874948,
+    "speech_spl_db": 118.06147569229928,
+    "snr_db": -16.680465182648717,
+    "clip_fraction_front": 0.7470125,
+    "clip_fraction_rear": 0.7774916666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1443.91463097073
+   }
+  },
+  "0142_S3_gunfire_b3": {
+   "sha256": {
+    "mic.flac": "3721471d0fefdc9901d12edb092b9d58e6dad37ad25e5911e195d89eee0f7d1d",
+    "clean.flac": "cde4881745f7b44457e27e061788c3429f0b663dab2840f0205822596318c736"
+   },
+   "meta": {
+    "scene_id": "0142_S3_gunfire_b3",
+    "tier": "S3",
+    "group": "gunfire",
+    "band": 3,
+    "noise_spl_db": 125.68211186073009,
+    "total_noise_rms_spl_db": 125.75252792113181,
+    "speech_spl_db": 118.54401640473193,
+    "snr_db": -7.208511516399881,
+    "clip_fraction_front": 0.28215,
+    "clip_fraction_rear": 0.23671041666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 413.1207783179852
+   }
+  },
+  "0143_S3_artillery_b3": {
+   "sha256": {
+    "mic.flac": "377467853edc1d2b95f321107aeda9a17e2bea032ab547b08a1e073377108447",
+    "clean.flac": "ecf433a85fb441a9e18a6d1c8cebcaf7ebffe1a0364edea82b5b3c473d3bf82a"
+   },
+   "meta": {
+    "scene_id": "0143_S3_artillery_b3",
+    "tier": "S3",
+    "group": "artillery",
+    "band": 3,
+    "noise_spl_db": 120.4746083957496,
+    "total_noise_rms_spl_db": 120.82470694564037,
+    "speech_spl_db": 118.1569205259342,
+    "snr_db": -2.667786419706175,
+    "clip_fraction_front": 0.21595416666666667,
+    "clip_fraction_rear": 0.21261458333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 337.8504406723101
+   }
+  },
+  "0144_S1_jet_b0": {
+   "sha256": {
+    "mic.flac": "ed8a9997250e28d56922e18dc62452d598b59e774b17b61f8de3ae89c0ec84ba",
+    "clean.flac": "c6274ef3779c7ffecca3ea4761bae1736d7fe0f16a01013a8f948ff46e81f8d6"
+   },
+   "meta": {
+    "scene_id": "0144_S1_jet_b0",
+    "tier": "S1",
+    "group": "jet",
+    "band": 0,
+    "noise_spl_db": 92.36467873371166,
+    "total_noise_rms_spl_db": 92.36467873371166,
+    "speech_spl_db": 100.74855568484395,
+    "snr_db": 8.383876951132294,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 13.245048592669951
+   }
+  },
+  "0145_S1_helicopter_b0": {
+   "sha256": {
+    "mic.flac": "969d2b7512db1f73f015a8d220e80bb7f0ac1a6da410688279d78cd8eb4a2188",
+    "clean.flac": "2ec180e0985c399a1209fae302efb9e1cf4b7d485a3e05be1fc3245f05bbf876"
+   },
+   "meta": {
+    "scene_id": "0145_S1_helicopter_b0",
+    "tier": "S1",
+    "group": "helicopter",
+    "band": 0,
+    "noise_spl_db": 96.03894218205855,
+    "total_noise_rms_spl_db": 96.3339002953511,
+    "speech_spl_db": 104.46925044950952,
+    "snr_db": 8.135350154158417,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0010666666666666667,
+    "peak_pa_front": 26.728108592527327
+   }
+  },
+  "0146_S1_tank_b0": {
+   "sha256": {
+    "mic.flac": "bfa9f09c6431fb3e4483536d93ef03b3cf3fafac9f408ad55bffaf0dbc9b2f8c",
+    "clean.flac": "94d03669a0bda145e5a759fbe9047e53e1d4728cebc3dadbc22663d1c63fc3da"
+   },
+   "meta": {
+    "scene_id": "0146_S1_tank_b0",
+    "tier": "S1",
+    "group": "tank",
+    "band": 0,
+    "noise_spl_db": 94.98219703154918,
+    "total_noise_rms_spl_db": 95.10466785391878,
+    "speech_spl_db": 105.64710824366406,
+    "snr_db": 10.54244038974528,
+    "clip_fraction_front": 3.3333333333333335e-05,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 33.376447566368995
+   }
+  },
+  "0147_S1_missile_b0": {
+   "sha256": {
+    "mic.flac": "a9c9f2c3a40eadbd3aba4bba2b6fe9da4eb5de65dfa451e1e757d31d96ff9873",
+    "clean.flac": "36ac1a9292e8101ca9d38b949c6f6b58403d8dd56866f396cde1b33aa4b681ee"
+   },
+   "meta": {
+    "scene_id": "0147_S1_missile_b0",
+    "tier": "S1",
+    "group": "missile",
+    "band": 0,
+    "noise_spl_db": 100.07647959470292,
+    "total_noise_rms_spl_db": 100.07647959470292,
+    "speech_spl_db": 103.96295862471068,
+    "snr_db": 3.886479030007763,
+    "clip_fraction_front": 2.5e-05,
+    "clip_fraction_rear": 2.7083333333333332e-05,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 52.01238130703465
+   }
+  },
+  "0148_S1_gunfire_b0": {
+   "sha256": {
+    "mic.flac": "f01fee93a4bbcfe8571a6a4eb4d35baebaf96d785ba5cd8afd4785fcb9f6260f",
+    "clean.flac": "a7ea4e86db9ad9d84f5ff0e5c1e1a02dcf56629519722f57384c420d0209947f"
+   },
+   "meta": {
+    "scene_id": "0148_S1_gunfire_b0",
+    "tier": "S1",
+    "group": "gunfire",
+    "band": 0,
+    "noise_spl_db": 92.4763840597366,
+    "total_noise_rms_spl_db": 93.38275871031676,
+    "speech_spl_db": 100.53994607703302,
+    "snr_db": 7.157187366716258,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 25.86416303418858
+   }
+  },
+  "0149_S1_artillery_b0": {
+   "sha256": {
+    "mic.flac": "d511387190207e483ac3f0483f9b6789550bea4cf91e21b373f3649999c6aa1c",
+    "clean.flac": "c3e6cb30d696ac9bb50ca7587e9d216f99b3bfac6000cf5893b0d01a864f3697"
+   },
+   "meta": {
+    "scene_id": "0149_S1_artillery_b0",
+    "tier": "S1",
+    "group": "artillery",
+    "band": 0,
+    "noise_spl_db": 84.00367957989202,
+    "total_noise_rms_spl_db": 84.37379719059258,
+    "speech_spl_db": 97.63203073211483,
+    "snr_db": 13.258233541522245,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 10.800694409450731
+   }
+  },
+  "0150_S1_jet_b1": {
+   "sha256": {
+    "mic.flac": "645ce44abf22f77416209bf747fffa8922467c493435f62b0b58cb169d39f9ec",
+    "clean.flac": "1fcc0ef1893429a0b4183e614159e12f541cc4ae85f36bc576a930daa6e63eda"
+   },
+   "meta": {
+    "scene_id": "0150_S1_jet_b1",
+    "tier": "S1",
+    "group": "jet",
+    "band": 1,
+    "noise_spl_db": 114.55802299615264,
+    "total_noise_rms_spl_db": 114.55802299615264,
+    "speech_spl_db": 113.37893081176748,
+    "snr_db": -1.1790921843851692,
+    "clip_fraction_front": 0.04735625,
+    "clip_fraction_rear": 0.03803541666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 148.52934567015427
+   }
+  },
+  "0151_S1_helicopter_b1": {
+   "sha256": {
+    "mic.flac": "cd5032eefc6494184f7325b1e46319609298a31a78674b0994dc653bc122c8f6",
+    "clean.flac": "221b913730895143bfe07380f727622b3f008ffa0d615694572dd6a54b8c8d3a"
+   },
+   "meta": {
+    "scene_id": "0151_S1_helicopter_b1",
+    "tier": "S1",
+    "group": "helicopter",
+    "band": 1,
+    "noise_spl_db": 117.01185574004751,
+    "total_noise_rms_spl_db": 117.01185574004751,
+    "speech_spl_db": 116.7382802564506,
+    "snr_db": -0.27357548359691464,
+    "clip_fraction_front": 0.07290833333333334,
+    "clip_fraction_rear": 0.05118125,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 133.3546615866029
+   }
+  },
+  "0152_S1_tank_b1": {
+   "sha256": {
+    "mic.flac": "25169332e73e6ad48e3f4c914012908e2cd29ab462b7187dc068d2dbbc88b04a",
+    "clean.flac": "000ab112bf6378f5852eada619dfa7a2930b30e62c33fabe31ba7e34d7af939e"
+   },
+   "meta": {
+    "scene_id": "0152_S1_tank_b1",
+    "tier": "S1",
+    "group": "tank",
+    "band": 1,
+    "noise_spl_db": 111.85388366550552,
+    "total_noise_rms_spl_db": 111.87395913906633,
+    "speech_spl_db": 114.12956722855134,
+    "snr_db": 2.2556080894850083,
+    "clip_fraction_front": 0.021425,
+    "clip_fraction_rear": 0.0128125,
+    "lost_fraction": 0.0021333333333333334,
+    "peak_pa_front": 109.78967269058704
+   }
+  },
+  "0153_S1_missile_b1": {
+   "sha256": {
+    "mic.flac": "fb2e6509efa0d1561b08644bcbea268fb5ea57e2ad63a2d9bbf912b925ec02ad",
+    "clean.flac": "28233e1790994f05ceadcb616c43d71fb19a8d9e3eb833a9618ada502deb2b98"
+   },
+   "meta": {
+    "scene_id": "0153_S1_missile_b1",
+    "tier": "S1",
+    "group": "missile",
+    "band": 1,
+    "noise_spl_db": 116.55653630531293,
+    "total_noise_rms_spl_db": 116.55653630531293,
+    "speech_spl_db": 116.18562603340011,
+    "snr_db": -0.37091027191281967,
+    "clip_fraction_front": 0.052158333333333334,
+    "clip_fraction_rear": 0.04623125,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 197.5258572993528
+   }
+  },
+  "0154_S1_gunfire_b1": {
+   "sha256": {
+    "mic.flac": "631134feccf8566fbd484cd02a6467a5ec10a3a04ce275845128de677bca8a3f",
+    "clean.flac": "794e7b5b4bd24a173ed25bf5629dab0bb5fe0e39aa56115afcc3a29cb8b8fbce"
+   },
+   "meta": {
+    "scene_id": "0154_S1_gunfire_b1",
+    "tier": "S1",
+    "group": "gunfire",
+    "band": 1,
+    "noise_spl_db": 103.01256709047402,
+    "total_noise_rms_spl_db": 103.82840436885536,
+    "speech_spl_db": 108.42843217816466,
+    "snr_db": 4.600027809309296,
+    "clip_fraction_front": 0.0011645833333333332,
+    "clip_fraction_rear": 0.000425,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 83.7773364007696
+   }
+  },
+  "0155_S1_artillery_b1": {
+   "sha256": {
+    "mic.flac": "0069ee8f368f31ddd1950eaa4f0661c1feb9ba6725ae64b2540d9d32aa541da1",
+    "clean.flac": "f7165e4c0598a916250d6cdc98f1a5531282f568a69ae457e95d0ef9897b5a1a"
+   },
+   "meta": {
+    "scene_id": "0155_S1_artillery_b1",
+    "tier": "S1",
+    "group": "artillery",
+    "band": 1,
+    "noise_spl_db": 110.26282532225449,
+    "total_noise_rms_spl_db": 110.40841028192177,
+    "speech_spl_db": 114.50920528168906,
+    "snr_db": 4.100794999767288,
+    "clip_fraction_front": 0.019841666666666667,
+    "clip_fraction_rear": 0.011560416666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 100.60904577041829
+   }
+  },
+  "0156_S1_jet_b2": {
+   "sha256": {
+    "mic.flac": "e13a5d5133cdb5d01704fafbff2b22979cbac4426a327ef2b032d5543a0aa623",
+    "clean.flac": "9f5198584485fd93c0576edc6b04794b972eb72dabc7b9e64b7d038d056927ec"
+   },
+   "meta": {
+    "scene_id": "0156_S1_jet_b2",
+    "tier": "S1",
+    "group": "jet",
+    "band": 2,
+    "noise_spl_db": 125.56197715158356,
+    "total_noise_rms_spl_db": 125.56197715158356,
+    "speech_spl_db": 118.77349544179404,
+    "snr_db": -6.788481709789522,
+    "clip_fraction_front": 0.4402333333333333,
+    "clip_fraction_rear": 0.4069520833333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 210.2264517515934
+   }
+  },
+  "0157_S1_helicopter_b2": {
+   "sha256": {
+    "mic.flac": "79f6fb50010bc3766a0e6586a441aac83cc9dab221d1672b38b4134492a5f817",
+    "clean.flac": "bdfd7668c5d5428c7b92717ee3227e630ff7c8047522def490c26bfb2cd079ea"
+   },
+   "meta": {
+    "scene_id": "0157_S1_helicopter_b2",
+    "tier": "S1",
+    "group": "helicopter",
+    "band": 2,
+    "noise_spl_db": 122.64499836144549,
+    "total_noise_rms_spl_db": 122.64499836144549,
+    "speech_spl_db": 114.99648390242862,
+    "snr_db": -7.648514459016866,
+    "clip_fraction_front": 0.16748541666666666,
+    "clip_fraction_rear": 0.1652625,
+    "lost_fraction": 0.0021333333333333334,
+    "peak_pa_front": 195.60847829114383
+   }
+  },
+  "0158_S1_tank_b2": {
+   "sha256": {
+    "mic.flac": "e6a5f3038cb79a0a61a9634fef3d0f3b380fe1b62ba9a11a01b3d276a0dd84a3",
+    "clean.flac": "43abc3fb8c710d17ffd73a564bcdab4b01ad4a4c2928cb55c24c72b4ade0c6b0"
+   },
+   "meta": {
+    "scene_id": "0158_S1_tank_b2",
+    "tier": "S1",
+    "group": "tank",
+    "band": 2,
+    "noise_spl_db": 122.92518910981232,
+    "total_noise_rms_spl_db": 122.92619560287392,
+    "speech_spl_db": 116.90060705124117,
+    "snr_db": -6.025588551632751,
+    "clip_fraction_front": 0.25991875,
+    "clip_fraction_rear": 0.28265,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 194.4277002527981
+   }
+  },
+  "0159_S1_missile_b2": {
+   "sha256": {
+    "mic.flac": "f60b685695999cebdeadf79aaf182ad149aaa4e873e33213aa1d87f4f0bda47e",
+    "clean.flac": "16a0c16735a2ddd3bc0a087f38d0a783f3d992560e3ec769a3878e5d2bfff637"
+   },
+   "meta": {
+    "scene_id": "0159_S1_missile_b2",
+    "tier": "S1",
+    "group": "missile",
+    "band": 2,
+    "noise_spl_db": 123.834865153118,
+    "total_noise_rms_spl_db": 123.834865153118,
+    "speech_spl_db": 114.64510072384853,
+    "snr_db": -9.189764429269474,
+    "clip_fraction_front": 0.33581875,
+    "clip_fraction_rear": 0.23069791666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 346.2894420739766
+   }
+  },
+  "0160_S1_gunfire_b2": {
+   "sha256": {
+    "mic.flac": "6496d259dba79efd843bfec269624ab88aa13014ef7511df141a83bc4874793a",
+    "clean.flac": "64eb551e30aa5cea246f31418d33ad035ae7f43ffa97ccf58fbe6a35b7599837"
+   },
+   "meta": {
+    "scene_id": "0160_S1_gunfire_b2",
+    "tier": "S1",
+    "group": "gunfire",
+    "band": 2,
+    "noise_spl_db": 119.56757179042043,
+    "total_noise_rms_spl_db": 119.615074682771,
+    "speech_spl_db": 118.6440792513992,
+    "snr_db": -0.9709954313717901,
+    "clip_fraction_front": 0.1403375,
+    "clip_fraction_rear": 0.14621875,
+    "lost_fraction": 0.0021333333333333334,
+    "peak_pa_front": 279.3064840255393
+   }
+  },
+  "0161_S1_artillery_b2": {
+   "sha256": {
+    "mic.flac": "54601eb98ea1e03d62e5ecc47d5402b6fa9ffa4c18ae1cd5916179f9054e4541",
+    "clean.flac": "d676ffff1ec96f78db8e7fd3827a1d34312a4895ac526e6bc0464ee4bb195792"
+   },
+   "meta": {
+    "scene_id": "0161_S1_artillery_b2",
+    "tier": "S1",
+    "group": "artillery",
+    "band": 2,
+    "noise_spl_db": 115.5819145982729,
+    "total_noise_rms_spl_db": 115.86630512450509,
+    "speech_spl_db": 113.72152135388275,
+    "snr_db": -2.1447837706223396,
+    "clip_fraction_front": 0.03721875,
+    "clip_fraction_rear": 0.02573125,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 115.09522685859473
+   }
+  },
+  "0162_S1_jet_b3": {
+   "sha256": {
+    "mic.flac": "fa336ebbb19ccf38d425babb68bb3c80fd6ee28b7ae90b4a04d6d26d2e760226",
+    "clean.flac": "c96069b14721fde3e4934ccb31a4901436650d0fc0d36cd52a37ddf3f7164d8e"
+   },
+   "meta": {
+    "scene_id": "0162_S1_jet_b3",
+    "tier": "S1",
+    "group": "jet",
+    "band": 3,
+    "noise_spl_db": 137.2793419571034,
+    "total_noise_rms_spl_db": 137.2793419571034,
+    "speech_spl_db": 119.33873303566196,
+    "snr_db": -17.940608921441452,
+    "clip_fraction_front": 0.8243666666666667,
+    "clip_fraction_rear": 0.8482875,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1745.836312154453
+   }
+  },
+  "0163_S1_helicopter_b3": {
+   "sha256": {
+    "mic.flac": "603a3dfe927cc637deb845a4fc89f9d616591d4443b4dc099dae5f84439bde8a",
+    "clean.flac": "1335d7e08e97273b6f117dfb1e043c31c84a773f05e0f0e69dfcd6bfb7d062f8"
+   },
+   "meta": {
+    "scene_id": "0163_S1_helicopter_b3",
+    "tier": "S1",
+    "group": "helicopter",
+    "band": 3,
+    "noise_spl_db": 133.92267752407687,
+    "total_noise_rms_spl_db": 133.92267752407687,
+    "speech_spl_db": 119.74521056546533,
+    "snr_db": -14.177466958611546,
+    "clip_fraction_front": 0.6475958333333334,
+    "clip_fraction_rear": 0.6717625,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 763.5919736054017
+   }
+  },
+  "0164_S1_tank_b3": {
+   "sha256": {
+    "mic.flac": "59112ffb81158cd0fe39d73021f2a138e4136c2296d644116fe83fdced23cd87",
+    "clean.flac": "2106948a093cde0cf5974264e9a64bcca12429f04e8dc48fb6d81b8e40d1f8a0"
+   },
+   "meta": {
+    "scene_id": "0164_S1_tank_b3",
+    "tier": "S1",
+    "group": "tank",
+    "band": 3,
+    "noise_spl_db": 130.4602078049335,
+    "total_noise_rms_spl_db": 130.4602078049335,
+    "speech_spl_db": 118.348938422379,
+    "snr_db": -12.111269382554497,
+    "clip_fraction_front": 0.6330729166666667,
+    "clip_fraction_rear": 0.6716125,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 530.3793546918965
+   }
+  },
+  "0165_S1_missile_b3": {
+   "sha256": {
+    "mic.flac": "3f5633d643d336b64c59ef089c8834f6782df037ffb07fa371c3daa755c056c0",
+    "clean.flac": "22d33cf7ac597a149c774d9fff289589dfd1d379555e92a836e484b6db880ceb"
+   },
+   "meta": {
+    "scene_id": "0165_S1_missile_b3",
+    "tier": "S1",
+    "group": "missile",
+    "band": 3,
+    "noise_spl_db": 137.16706251517638,
+    "total_noise_rms_spl_db": 137.16706251517638,
+    "speech_spl_db": 115.65007664395006,
+    "snr_db": -21.516985871226325,
+    "clip_fraction_front": 0.8340541666666667,
+    "clip_fraction_rear": 0.8120083333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 2442.520082230109
+   }
+  },
+  "0166_S1_gunfire_b3": {
+   "sha256": {
+    "mic.flac": "d88f83aa1ef79e6ac377d92ce81b6bd1e8b241f5be7ae1790ef61f6b2477cab3",
+    "clean.flac": "421d6c38f79fb50e50235eafa26588d333f9d3288cc3bc526fe4dd0dd143d1fb"
+   },
+   "meta": {
+    "scene_id": "0166_S1_gunfire_b3",
+    "tier": "S1",
+    "group": "gunfire",
+    "band": 3,
+    "noise_spl_db": 127.55380897418516,
+    "total_noise_rms_spl_db": 127.6274332913698,
+    "speech_spl_db": 117.7411907854205,
+    "snr_db": -9.886242505949298,
+    "clip_fraction_front": 0.5120520833333333,
+    "clip_fraction_rear": 0.477475,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 508.27786288843345
+   }
+  },
+  "0167_S1_artillery_b3": {
+   "sha256": {
+    "mic.flac": "c9ff478c605ca8a6eb675268d2c8aac194b6d0cb89acb3e998b90baaf58bdd9b",
+    "clean.flac": "8216e0970ba6b50868222469379b9eaef930fdc38635394771f67b3e72ded955"
+   },
+   "meta": {
+    "scene_id": "0167_S1_artillery_b3",
+    "tier": "S1",
+    "group": "artillery",
+    "band": 3,
+    "noise_spl_db": 126.2398257820104,
+    "total_noise_rms_spl_db": 128.41945801148432,
+    "speech_spl_db": 117.02640047288119,
+    "snr_db": -11.39305753860313,
+    "clip_fraction_front": 0.5046583333333333,
+    "clip_fraction_rear": 0.5049229166666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 838.7512924740939
+   }
+  },
+  "0168_S2_jet_b0": {
+   "sha256": {
+    "mic.flac": "7d2afe0dbd7478c09d7d0a008c8c7c71f60db5287b00bb17741811f0c746c2f4",
+    "clean.flac": "1c0189b20e6f6215bf248ecbf7f6787f4de0ec0d832acd6d17cc2bc96e81aeb2"
+   },
+   "meta": {
+    "scene_id": "0168_S2_jet_b0",
+    "tier": "S2",
+    "group": "jet",
+    "band": 0,
+    "noise_spl_db": 97.71953073233311,
+    "total_noise_rms_spl_db": 97.71953073233311,
+    "speech_spl_db": 107.60606797790396,
+    "snr_db": 9.88653724557085,
+    "clip_fraction_front": 0.00022708333333333334,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 39.97927151855188
+   }
+  },
+  "0169_S2_helicopter_b0": {
+   "sha256": {
+    "mic.flac": "1c1af56697f6bac89f17c682bebf5fc88c1b3637e1f8c075671918f3682bd940",
+    "clean.flac": "0ec8d847eba685eff3026721f8ab828d0282171625857db25c5859922f0788df"
+   },
+   "meta": {
+    "scene_id": "0169_S2_helicopter_b0",
+    "tier": "S2",
+    "group": "helicopter",
+    "band": 0,
+    "noise_spl_db": 93.01203706549475,
+    "total_noise_rms_spl_db": 93.88517191442017,
+    "speech_spl_db": 99.54863183269828,
+    "snr_db": 5.663459918278107,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 13.243810897445151
+   }
+  },
+  "0170_S2_tank_b0": {
+   "sha256": {
+    "mic.flac": "dc0418bcc6449a950343f6eab21962a014594ad23b674e1713fdd70edc8be149",
+    "clean.flac": "6a3f0aefd0c4f598bfcf49677b2576e66eaa7e718b98e85edaba7a32689518fb"
+   },
+   "meta": {
+    "scene_id": "0170_S2_tank_b0",
+    "tier": "S2",
+    "group": "tank",
+    "band": 0,
+    "noise_spl_db": 100.96719948538046,
+    "total_noise_rms_spl_db": 100.96719948538046,
+    "speech_spl_db": 111.66361617116564,
+    "snr_db": 10.69641668578518,
+    "clip_fraction_front": 0.0111125,
+    "clip_fraction_rear": 0.0017875,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 61.9321785836416
+   }
+  },
+  "0171_S2_missile_b0": {
+   "sha256": {
+    "mic.flac": "6e4af9aed1fdbe954807a09cce6b20b219ce364d31fd6c7d2cb99169510f2853",
+    "clean.flac": "65c606d55007b040999c8949b98be93dafff4a926ad8633231466aac4662eb9e"
+   },
+   "meta": {
+    "scene_id": "0171_S2_missile_b0",
+    "tier": "S2",
+    "group": "missile",
+    "band": 0,
+    "noise_spl_db": 92.94378938919094,
+    "total_noise_rms_spl_db": 94.52781797789845,
+    "speech_spl_db": 103.0139452878642,
+    "snr_db": 8.486127309965752,
+    "clip_fraction_front": 0.00016666666666666666,
+    "clip_fraction_rear": 2.7083333333333332e-05,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 40.43008080268557
+   }
+  },
+  "0172_S2_gunfire_b0": {
+   "sha256": {
+    "mic.flac": "2dc39de16edcdac8c021fbb795df0f12ca72fc9d0741cd22c7a8479381b0c9b5",
+    "clean.flac": "d86278a27adbc0346af8c0f3a44f4cf04c32a7b28262a729244989f279631e2c"
+   },
+   "meta": {
+    "scene_id": "0172_S2_gunfire_b0",
+    "tier": "S2",
+    "group": "gunfire",
+    "band": 0,
+    "noise_spl_db": 94.91366120631385,
+    "total_noise_rms_spl_db": 94.96858399417954,
+    "speech_spl_db": 105.76769219732793,
+    "snr_db": 10.799108203148393,
+    "clip_fraction_front": 1.875e-05,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 33.46035862497791
+   }
+  },
+  "0173_S2_artillery_b0": {
+   "sha256": {
+    "mic.flac": "f5e4d714251d63f67c09b43eae6a77a08fffeed75829bdd352fde0f3949ec16d",
+    "clean.flac": "8a854a8c81ab1bf3a9f22d3797f710bc774762ee5f2e27332a9c75579e1bac05"
+   },
+   "meta": {
+    "scene_id": "0173_S2_artillery_b0",
+    "tier": "S2",
+    "group": "artillery",
+    "band": 0,
+    "noise_spl_db": 86.88418136538667,
+    "total_noise_rms_spl_db": 90.10961277200482,
+    "speech_spl_db": 101.86787526919508,
+    "snr_db": 11.758262497190259,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 20.96177325660058
+   }
+  },
+  "0174_S2_jet_b1": {
+   "sha256": {
+    "mic.flac": "0403d3af2271c7c83a681f4dcea3e59b7d6eb196943432bb63433fe85d36796d",
+    "clean.flac": "feb55b8cb76d125a4deddb75ba6229bcbd6305c9f182fc1a5645ef5a3b0dd970"
+   },
+   "meta": {
+    "scene_id": "0174_S2_jet_b1",
+    "tier": "S2",
+    "group": "jet",
+    "band": 1,
+    "noise_spl_db": 112.59195677387773,
+    "total_noise_rms_spl_db": 112.59195677387773,
+    "speech_spl_db": 116.96304673845148,
+    "snr_db": 4.3710899645737555,
+    "clip_fraction_front": 0.05486041666666667,
+    "clip_fraction_rear": 0.03396875,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 147.1954249743435
+   }
+  },
+  "0175_S2_helicopter_b1": {
+   "sha256": {
+    "mic.flac": "3953029fa2d208477f95dd1550171ea12855f5517fee70d3c05f94f2d5241950",
+    "clean.flac": "77bc1d12c2747fadfed56f6762a77751ddd0f48cc36ddc41da1416342cbb36ef"
+   },
+   "meta": {
+    "scene_id": "0175_S2_helicopter_b1",
+    "tier": "S2",
+    "group": "helicopter",
+    "band": 1,
+    "noise_spl_db": 106.67584588450352,
+    "total_noise_rms_spl_db": 106.67584588450352,
+    "speech_spl_db": 108.58555880592259,
+    "snr_db": 1.9097129214190716,
+    "clip_fraction_front": 0.0013625,
+    "clip_fraction_rear": 0.0011916666666666666,
+    "lost_fraction": 0.0032,
+    "peak_pa_front": 56.96747075852461
+   }
+  },
+  "0176_S2_tank_b1": {
+   "sha256": {
+    "mic.flac": "98bbac644741c583bea011c9e6be89c7f407c502051faeb9f7c14baade2b55bd",
+    "clean.flac": "b46faa47ddeda1118d0141bb582ecaa4a57d286eae6077d277aeb6161e24b1ce"
+   },
+   "meta": {
+    "scene_id": "0176_S2_tank_b1",
+    "tier": "S2",
+    "group": "tank",
+    "band": 1,
+    "noise_spl_db": 105.92039383503534,
+    "total_noise_rms_spl_db": 105.92221211853752,
+    "speech_spl_db": 112.17590001709027,
+    "snr_db": 6.253687898552755,
+    "clip_fraction_front": 0.011616666666666668,
+    "clip_fraction_rear": 0.0017354166666666666,
+    "lost_fraction": 0.0010666666666666667,
+    "peak_pa_front": 83.17247420522195
+   }
+  },
+  "0177_S2_missile_b1": {
+   "sha256": {
+    "mic.flac": "21d93bdbf33425451f589d8d1afd1bc39fd2d23321f486b243edb9e9da08bbb5",
+    "clean.flac": "acd153d350bcbcd13505659c939caa433973b7f298f897b99dee6d75db8ef355"
+   },
+   "meta": {
+    "scene_id": "0177_S2_missile_b1",
+    "tier": "S2",
+    "group": "missile",
+    "band": 1,
+    "noise_spl_db": 107.11038471506546,
+    "total_noise_rms_spl_db": 107.11038471506546,
+    "speech_spl_db": 110.14012187471099,
+    "snr_db": 3.0297371596455207,
+    "clip_fraction_front": 0.00075625,
+    "clip_fraction_rear": 0.00061875,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 44.47026750541582
+   }
+  },
+  "0178_S2_gunfire_b1": {
+   "sha256": {
+    "mic.flac": "8bc48507ba424348243509e33f9474c4a22f72f2ee3c43e00482f52e3ae10067",
+    "clean.flac": "bc76286fcf68f3af6ce38dfe2536c56c93909bb720f84650eefc6f1e0eab7bbb"
+   },
+   "meta": {
+    "scene_id": "0178_S2_gunfire_b1",
+    "tier": "S2",
+    "group": "gunfire",
+    "band": 1,
+    "noise_spl_db": 118.95124740873378,
+    "total_noise_rms_spl_db": 120.92779542943,
+    "speech_spl_db": 113.72010720403063,
+    "snr_db": -7.20768822539938,
+    "clip_fraction_front": 0.1678625,
+    "clip_fraction_rear": 0.09068333333333334,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 608.0945537576242
+   }
+  },
+  "0179_S2_artillery_b1": {
+   "sha256": {
+    "mic.flac": "987ff638135c7dde4d9fccf2e10032c51cd363098b1304f7dcf6e001ccddf26d",
+    "clean.flac": "5059d5e646f23f3ad57b4db01f700a1cd36efbf20e891a3fa793a087189fc029"
+   },
+   "meta": {
+    "scene_id": "0179_S2_artillery_b1",
+    "tier": "S2",
+    "group": "artillery",
+    "band": 1,
+    "noise_spl_db": 104.5882529263659,
+    "total_noise_rms_spl_db": 106.92151194577094,
+    "speech_spl_db": 107.40994177643552,
+    "snr_db": 0.4884298306645718,
+    "clip_fraction_front": 0.00375625,
+    "clip_fraction_rear": 0.0019041666666666666,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 77.42014973283044
+   }
+  },
+  "0180_S2_jet_b2": {
+   "sha256": {
+    "mic.flac": "6e877044c8cbff27e9d84c4c88f5659cd715b14600ea7e0b9a5cae6681879d5f",
+    "clean.flac": "21ca3e38ebbe1d4ce4eab995a337475fe57c5df477f18e49dfc9081b05fb97df"
+   },
+   "meta": {
+    "scene_id": "0180_S2_jet_b2",
+    "tier": "S2",
+    "group": "jet",
+    "band": 2,
+    "noise_spl_db": 120.12163214369083,
+    "total_noise_rms_spl_db": 120.12163214369083,
+    "speech_spl_db": 118.23335926682068,
+    "snr_db": -1.8882728768701469,
+    "clip_fraction_front": 0.17748125,
+    "clip_fraction_rear": 0.14422083333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 201.27366375499176
+   }
+  },
+  "0181_S2_helicopter_b2": {
+   "sha256": {
+    "mic.flac": "cbc66a0ca7323962ab3591aaac2f91690724885044a2288a1a2c76166e7efd45",
+    "clean.flac": "3c85353677ebc817ff7f415bb3fc48c000f0b0839aeabe6afde10e73e02f4d20"
+   },
+   "meta": {
+    "scene_id": "0181_S2_helicopter_b2",
+    "tier": "S2",
+    "group": "helicopter",
+    "band": 2,
+    "noise_spl_db": 127.49275397586062,
+    "total_noise_rms_spl_db": 127.49275397586062,
+    "speech_spl_db": 115.67720859211315,
+    "snr_db": -11.815545383747477,
+    "clip_fraction_front": 0.4052541666666667,
+    "clip_fraction_rear": 0.5090645833333334,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 414.5085882987127
+   }
+  },
+  "0182_S2_tank_b2": {
+   "sha256": {
+    "mic.flac": "ed845e22a55e7783b5b990d922b5a6f86b2ba308f9db270d5fdd16bdc919c17f",
+    "clean.flac": "efff16d1c9ca328d0611ea4f0db93d8f80c2051b3bb4b27eb46301d3e4b6f2fd"
+   },
+   "meta": {
+    "scene_id": "0182_S2_tank_b2",
+    "tier": "S2",
+    "group": "tank",
+    "band": 2,
+    "noise_spl_db": 126.27092808355184,
+    "total_noise_rms_spl_db": 126.27092625324194,
+    "speech_spl_db": 117.25566017626981,
+    "snr_db": -9.015266076972125,
+    "clip_fraction_front": 0.4229375,
+    "clip_fraction_rear": 0.40405416666666666,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 367.862002731995
+   }
+  },
+  "0183_S2_missile_b2": {
+   "sha256": {
+    "mic.flac": "4652d526e26a79d28ec384cc0d272a718e13353b9826d5e77614a3c9671653d8",
+    "clean.flac": "d590b26e3dfb50c90c1c15294e7a8248d013b8afaa418d996b105b3e969279b9"
+   },
+   "meta": {
+    "scene_id": "0183_S2_missile_b2",
+    "tier": "S2",
+    "group": "missile",
+    "band": 2,
+    "noise_spl_db": 126.0847946861798,
+    "total_noise_rms_spl_db": 126.08540806420092,
+    "speech_spl_db": 115.73618780883317,
+    "snr_db": -10.349220255367754,
+    "clip_fraction_front": 0.3358125,
+    "clip_fraction_rear": 0.30104583333333335,
+    "lost_fraction": 0.0021333333333333334,
+    "peak_pa_front": 570.3866630535374
+   }
+  },
+  "0184_S2_gunfire_b2": {
+   "sha256": {
+    "mic.flac": "5f778be7ddceeb617a2a916e8ec2ff1d375c1e357e3aa8423dcdecfcb8fd5b6f",
+    "clean.flac": "d6722cc243183966165c3e7fa152c315fbf9bbbbd20aa0e91cc721d2a90536c4"
+   },
+   "meta": {
+    "scene_id": "0184_S2_gunfire_b2",
+    "tier": "S2",
+    "group": "gunfire",
+    "band": 2,
+    "noise_spl_db": 122.33179706511206,
+    "total_noise_rms_spl_db": 122.39920373195446,
+    "speech_spl_db": 116.18889585923955,
+    "snr_db": -6.210307872714907,
+    "clip_fraction_front": 0.21329375,
+    "clip_fraction_rear": 0.22554375,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 431.11630428114086
+   }
+  },
+  "0185_S2_artillery_b2": {
+   "sha256": {
+    "mic.flac": "ec6f723fb576023fd2669cfb2ec3c6f40e567a7ffa1beb0c70dfc4c1680c9b9c",
+    "clean.flac": "acbe9ed31793601a96b711829bf53ffca967df72116fee9704997d6f7d5ead83"
+   },
+   "meta": {
+    "scene_id": "0185_S2_artillery_b2",
+    "tier": "S2",
+    "group": "artillery",
+    "band": 2,
+    "noise_spl_db": 114.97082981328856,
+    "total_noise_rms_spl_db": 115.71680494499839,
+    "speech_spl_db": 112.71182722282778,
+    "snr_db": -3.004977722170608,
+    "clip_fraction_front": 0.032966666666666665,
+    "clip_fraction_rear": 0.018779166666666666,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 222.46791585856
+   }
+  },
+  "0186_S2_jet_b3": {
+   "sha256": {
+    "mic.flac": "c4b27611a70ab40d68a3eb1da6b372046ba7cf3ec1e9b3df325ab15cf5f3ca8d",
+    "clean.flac": "b5dcd0057d782a101e0d0ef0e6c5506bc5873fcf197345c4324b29c4ac97f028"
+   },
+   "meta": {
+    "scene_id": "0186_S2_jet_b3",
+    "tier": "S2",
+    "group": "jet",
+    "band": 3,
+    "noise_spl_db": 137.7883343195135,
+    "total_noise_rms_spl_db": 137.7883343195135,
+    "speech_spl_db": 115.94859612798126,
+    "snr_db": -21.839738191532234,
+    "clip_fraction_front": 0.8298645833333333,
+    "clip_fraction_rear": 0.8334270833333334,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 2108.6423223744023
+   }
+  },
+  "0187_S2_helicopter_b3": {
+   "sha256": {
+    "mic.flac": "f9f6416774d42c7927194b96cb1e0af1205fa1c7a4f6c1c7e5b16301aa2ee201",
+    "clean.flac": "d51f8f9e1f57c1c56570a9ab42cd6804159bd743756a3a5a49e3ff9698393e76"
+   },
+   "meta": {
+    "scene_id": "0187_S2_helicopter_b3",
+    "tier": "S2",
+    "group": "helicopter",
+    "band": 3,
+    "noise_spl_db": 137.64761801067166,
+    "total_noise_rms_spl_db": 137.64761801067166,
+    "speech_spl_db": 119.0902257968735,
+    "snr_db": -18.557392213798167,
+    "clip_fraction_front": 0.8109020833333334,
+    "clip_fraction_rear": 0.81283125,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1479.3677433527494
+   }
+  },
+  "0188_S2_tank_b3": {
+   "sha256": {
+    "mic.flac": "fe4b09dac8b78971c0aadeeb77d033f28a3e48599dc79bf14db1382c3051e61e",
+    "clean.flac": "d32226c3d536e388d1f4e9818b2230a936d88bb1c3cc56a5d0fc6d42a5c108ac"
+   },
+   "meta": {
+    "scene_id": "0188_S2_tank_b3",
+    "tier": "S2",
+    "group": "tank",
+    "band": 3,
+    "noise_spl_db": 130.02792501476264,
+    "total_noise_rms_spl_db": 130.02792501476264,
+    "speech_spl_db": 116.17733100290093,
+    "snr_db": -13.850594011861716,
+    "clip_fraction_front": 0.622275,
+    "clip_fraction_rear": 0.5962458333333334,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 537.302508664034
+   }
+  },
+  "0189_S2_missile_b3": {
+   "sha256": {
+    "mic.flac": "08e948ab3e41054a40de5546b39a0cfc9e617ca6786e407e5533019fed8ac351",
+    "clean.flac": "d8d6b50fae760637343f75048818c6b44115a5167a789857849a8e3d0a746077"
+   },
+   "meta": {
+    "scene_id": "0189_S2_missile_b3",
+    "tier": "S2",
+    "group": "missile",
+    "band": 3,
+    "noise_spl_db": 136.80585501416306,
+    "total_noise_rms_spl_db": 136.80585501416306,
+    "speech_spl_db": 117.331058902584,
+    "snr_db": -19.474796111579053,
+    "clip_fraction_front": 0.8150395833333334,
+    "clip_fraction_rear": 0.77131875,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1698.8199790994033
+   }
+  },
+  "0190_S2_gunfire_b3": {
+   "sha256": {
+    "mic.flac": "c9518c82fbe7de5925bd48bb702a3937c7f38b2522cf05362d0a910b84ee0410",
+    "clean.flac": "3eca62e4c0731658f8bbf8b66f782a7877027590ffac5df51842a1031dee5aaa"
+   },
+   "meta": {
+    "scene_id": "0190_S2_gunfire_b3",
+    "tier": "S2",
+    "group": "gunfire",
+    "band": 3,
+    "noise_spl_db": 129.79937213315392,
+    "total_noise_rms_spl_db": 129.93389458625995,
+    "speech_spl_db": 116.26974095391407,
+    "snr_db": -13.664153632345887,
+    "clip_fraction_front": 0.6038395833333333,
+    "clip_fraction_rear": 0.6337541666666666,
+    "lost_fraction": 0.004266666666666667,
+    "peak_pa_front": 572.4276465754826
+   }
+  },
+  "0191_S2_artillery_b3": {
+   "sha256": {
+    "mic.flac": "79adef8ab8024bc8f7c8b09cf79f75bb35f75d1555a4e59e3efd3cc9a4dde0ca",
+    "clean.flac": "d2d20fd150fd38c19bac12573a647c5850fb516d8c8e437f4562e2ef9b015dfb"
+   },
+   "meta": {
+    "scene_id": "0191_S2_artillery_b3",
+    "tier": "S2",
+    "group": "artillery",
+    "band": 3,
+    "noise_spl_db": 131.92360559351675,
+    "total_noise_rms_spl_db": 132.72712097068182,
+    "speech_spl_db": 120.28599107240882,
+    "snr_db": -12.441129898273005,
+    "clip_fraction_front": 0.50613125,
+    "clip_fraction_rear": 0.48940416666666664,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1370.555435512758
+   }
+  },
+  "0192_S3_jet_b0": {
+   "sha256": {
+    "mic.flac": "1c8929e47a6636f8f287a1d7be5d3b75213ae83540a9b28506d90376de920259",
+    "clean.flac": "528808c42d674c648964a63448e67e340d2e7b70bf3d3a10214e574daa9832c2"
+   },
+   "meta": {
+    "scene_id": "0192_S3_jet_b0",
+    "tier": "S3",
+    "group": "jet",
+    "band": 0,
+    "noise_spl_db": 99.92719658726375,
+    "total_noise_rms_spl_db": 99.92719658726375,
+    "speech_spl_db": 109.79658038610611,
+    "snr_db": 9.869383798842364,
+    "clip_fraction_front": 0.00583125,
+    "clip_fraction_rear": 0.0003333333333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 122.5710209166514
+   }
+  },
+  "0193_S3_helicopter_b0": {
+   "sha256": {
+    "mic.flac": "d86543fda2a9735b227c1aca1a445294f72c2b698ae037172cb499ee1751d055",
+    "clean.flac": "79ad7e13f67d9bfd3bcea4ff59ebbedc4cd1791eae82436f175d441f6a7735bb"
+   },
+   "meta": {
+    "scene_id": "0193_S3_helicopter_b0",
+    "tier": "S3",
+    "group": "helicopter",
+    "band": 0,
+    "noise_spl_db": 100.8428580613716,
+    "total_noise_rms_spl_db": 100.8428580613716,
+    "speech_spl_db": 104.09432369214167,
+    "snr_db": 3.2514656307700704,
+    "clip_fraction_front": 0.00045625,
+    "clip_fraction_rear": 3.125e-05,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 41.7683455274168
+   }
+  },
+  "0194_S3_tank_b0": {
+   "sha256": {
+    "mic.flac": "ea9267b169f03a0b1e6fbcf86ec199d89519ada0326b73267bfea37424810c61",
+    "clean.flac": "57b36590fde67d723c0221e2e396be510e0ccf66d852db16cdb11401e9f840ae"
+   },
+   "meta": {
+    "scene_id": "0194_S3_tank_b0",
+    "tier": "S3",
+    "group": "tank",
+    "band": 0,
+    "noise_spl_db": 104.40599075868082,
+    "total_noise_rms_spl_db": 104.40599075868082,
+    "speech_spl_db": 113.07693209546177,
+    "snr_db": 8.670941336780956,
+    "clip_fraction_front": 0.017889583333333334,
+    "clip_fraction_rear": 0.00385625,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 74.41411600280183
+   }
+  },
+  "0195_S3_missile_b0": {
+   "sha256": {
+    "mic.flac": "b0fc4fd1518576da564e41d61e8990f2d469023f7a2b4bd65114bb83e22fc617",
+    "clean.flac": "3fadf4f8fedf0c921c0b5acb4ff2aa77e7f09e5fc2e80cb7c7f7736d7b12885a"
+   },
+   "meta": {
+    "scene_id": "0195_S3_missile_b0",
+    "tier": "S3",
+    "group": "missile",
+    "band": 0,
+    "noise_spl_db": 91.05047430394745,
+    "total_noise_rms_spl_db": 91.05047430394745,
+    "speech_spl_db": 101.0951180490485,
+    "snr_db": 10.044643745101041,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0010666666666666667,
+    "peak_pa_front": 17.318325096890565
+   }
+  },
+  "0196_S3_gunfire_b0": {
+   "sha256": {
+    "mic.flac": "0398ee6aa78ba695e3b17ab49b64d94ac3eb37136b269ebfea84fd3630cccafb",
+    "clean.flac": "19332ff88b56fa79feafed0acbc16fb5cc0dbd7ce446c70a227c53682c7d6b90"
+   },
+   "meta": {
+    "scene_id": "0196_S3_gunfire_b0",
+    "tier": "S3",
+    "group": "gunfire",
+    "band": 0,
+    "noise_spl_db": 95.0084558663103,
+    "total_noise_rms_spl_db": 95.38984359856379,
+    "speech_spl_db": 105.00396661377246,
+    "snr_db": 9.614123015208676,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 21.786610052201187
+   }
+  },
+  "0197_S3_artillery_b0": {
+   "sha256": {
+    "mic.flac": "6651434ba24bada2c4987c0420aafdbfbb7d93793b851a9589ecea2f67b484f8",
+    "clean.flac": "d43405fd759031edd441abbc447da6086d96b12b96b33f9fd582135359a880c0"
+   },
+   "meta": {
+    "scene_id": "0197_S3_artillery_b0",
+    "tier": "S3",
+    "group": "artillery",
+    "band": 0,
+    "noise_spl_db": 94.17428391746526,
+    "total_noise_rms_spl_db": 94.43588546710616,
+    "speech_spl_db": 105.77254575864396,
+    "snr_db": 11.336660291537797,
+    "clip_fraction_front": 0.0018583333333333334,
+    "clip_fraction_rear": 0.0006583333333333334,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 66.23798376995349
+   }
+  },
+  "0198_S3_jet_b1": {
+   "sha256": {
+    "mic.flac": "21a145274ed1bec9c69a38869c762575ed1871ba355a04fadcc37566b9d3783b",
+    "clean.flac": "68ac4123018c8d9bcb1c9f40831667a59a24faa6b3cd3891c76b069ef2eb4832"
+   },
+   "meta": {
+    "scene_id": "0198_S3_jet_b1",
+    "tier": "S3",
+    "group": "jet",
+    "band": 1,
+    "noise_spl_db": 117.76392266889617,
+    "total_noise_rms_spl_db": 117.76392266889617,
+    "speech_spl_db": 120.80501417722343,
+    "snr_db": 3.0410915083272556,
+    "clip_fraction_front": 0.20050833333333334,
+    "clip_fraction_rear": 0.12443333333333334,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 361.6745526685867
+   }
+  },
+  "0199_S3_helicopter_b1": {
+   "sha256": {
+    "mic.flac": "0f16630a2906b5e62c5f1caf5c538e3de6a9aee2de4b5a170be26131c766b9d1",
+    "clean.flac": "7b56c579cc67089f58ff7ca30c0faee35e29b985d945bae60c871a6d7934d192"
+   },
+   "meta": {
+    "scene_id": "0199_S3_helicopter_b1",
+    "tier": "S3",
+    "group": "helicopter",
+    "band": 1,
+    "noise_spl_db": 117.7346292521276,
+    "total_noise_rms_spl_db": 117.7346292521276,
+    "speech_spl_db": 119.34531673275013,
+    "snr_db": 1.6106874806225306,
+    "clip_fraction_front": 0.13721875,
+    "clip_fraction_rear": 0.08204583333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 203.38549176279727
+   }
+  },
+  "0200_S3_tank_b1": {
+   "sha256": {
+    "mic.flac": "2e4f5bcbadb81fbf894c5af8e25e85dfabfdfd8b2fbaa66accb929abab9b1414",
+    "clean.flac": "08f2e685705b72cb1d882ba123434424ab8618d85f29b856a329eceff4f12290"
+   },
+   "meta": {
+    "scene_id": "0200_S3_tank_b1",
+    "tier": "S3",
+    "group": "tank",
+    "band": 1,
+    "noise_spl_db": 114.09950357637254,
+    "total_noise_rms_spl_db": 114.11056317304302,
+    "speech_spl_db": 116.57099211740916,
+    "snr_db": 2.460428944366143,
+    "clip_fraction_front": 0.08078958333333333,
+    "clip_fraction_rear": 0.04074791666666667,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 188.05549740974573
+   }
+  },
+  "0201_S3_missile_b1": {
+   "sha256": {
+    "mic.flac": "2c37a13f04a4e44366fa91afb37d4a2484b22d0735a3a2a04ff203a3fe0de4d5",
+    "clean.flac": "cfb1df28c0976b1f73358a3f26cec44dd011049b68420bb591e93cb332e1c501"
+   },
+   "meta": {
+    "scene_id": "0201_S3_missile_b1",
+    "tier": "S3",
+    "group": "missile",
+    "band": 1,
+    "noise_spl_db": 106.84335094472871,
+    "total_noise_rms_spl_db": 106.84335094472871,
+    "speech_spl_db": 110.14186242682499,
+    "snr_db": 3.2985114820962735,
+    "clip_fraction_front": 0.004047916666666667,
+    "clip_fraction_rear": 0.00271875,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 144.4885372974801
+   }
+  },
+  "0202_S3_gunfire_b1": {
+   "sha256": {
+    "mic.flac": "98aa2d736578b52a93716a60f564b399b7d877cddce128bdb8902a21569e5e54",
+    "clean.flac": "080c2ba0b20387804329130dd2ee3a7d888225859d0f0641fc1f36fabdbd9165"
+   },
+   "meta": {
+    "scene_id": "0202_S3_gunfire_b1",
+    "tier": "S3",
+    "group": "gunfire",
+    "band": 1,
+    "noise_spl_db": 103.87357194322043,
+    "total_noise_rms_spl_db": 103.96541657920176,
+    "speech_spl_db": 108.17190998573412,
+    "snr_db": 4.20649340653236,
+    "clip_fraction_front": 0.0016104166666666667,
+    "clip_fraction_rear": 0.0005875,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 53.72393343886759
+   }
+  },
+  "0203_S3_artillery_b1": {
+   "sha256": {
+    "mic.flac": "54b6d82aa0a173f29e175e7bf7aa6f817e77424b6703b6169cb142dcd5a5d7cf",
+    "clean.flac": "c773a33f5b2fe91c9cbc44678816dc18babc503a4e6c5b9879f3ce56c1010f32"
+   },
+   "meta": {
+    "scene_id": "0203_S3_artillery_b1",
+    "tier": "S3",
+    "group": "artillery",
+    "band": 1,
+    "noise_spl_db": 104.02378227352631,
+    "total_noise_rms_spl_db": 104.33812559106299,
+    "speech_spl_db": 110.0448793393752,
+    "snr_db": 5.7067537483122095,
+    "clip_fraction_front": 0.004085416666666667,
+    "clip_fraction_rear": 0.0006395833333333334,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 65.34025992387045
+   }
+  },
+  "0204_S3_jet_b2": {
+   "sha256": {
+    "mic.flac": "9a144cfd395851dfa2c0268c5d1e4be11c46106fd59ba0e16929a7f07d52d9e8",
+    "clean.flac": "57d34e7b7dabf973f3ff032ecc1b4fd48ebeaf41b2a80e5d2205a0577ffb02bf"
+   },
+   "meta": {
+    "scene_id": "0204_S3_jet_b2",
+    "tier": "S3",
+    "group": "jet",
+    "band": 2,
+    "noise_spl_db": 123.31288655613389,
+    "total_noise_rms_spl_db": 123.31288655613389,
+    "speech_spl_db": 117.14904475339424,
+    "snr_db": -6.163841802739654,
+    "clip_fraction_front": 0.3340125,
+    "clip_fraction_rear": 0.29313333333333336,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 172.0257014689948
+   }
+  },
+  "0205_S3_helicopter_b2": {
+   "sha256": {
+    "mic.flac": "42e72e48e2c559b70aaa2dcc70dbfa8f4a7f11e817ae451b9701d1bba9d30ea7",
+    "clean.flac": "b8d49399495357f4144a516de80038916e2d9a5d19884518f554f65f7aaf5fb0"
+   },
+   "meta": {
+    "scene_id": "0205_S3_helicopter_b2",
+    "tier": "S3",
+    "group": "helicopter",
+    "band": 2,
+    "noise_spl_db": 124.63980283652774,
+    "total_noise_rms_spl_db": 124.63980283652774,
+    "speech_spl_db": 116.24174327077792,
+    "snr_db": -8.398059565749818,
+    "clip_fraction_front": 0.33099791666666667,
+    "clip_fraction_rear": 0.29218333333333335,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 239.7554851114639
+   }
+  },
+  "0206_S3_tank_b2": {
+   "sha256": {
+    "mic.flac": "c9d7a5127a3c9a6e64a8ae848b6909c9b1948ed790dea4fed3458c6b5ece0704",
+    "clean.flac": "b24a3a3a946ffe4fb0b806228a27ea936630b7fcb34ab3da801fe543f9d72fd5"
+   },
+   "meta": {
+    "scene_id": "0206_S3_tank_b2",
+    "tier": "S3",
+    "group": "tank",
+    "band": 2,
+    "noise_spl_db": 123.40027631461368,
+    "total_noise_rms_spl_db": 123.40027631461368,
+    "speech_spl_db": 116.88861872002568,
+    "snr_db": -6.5116575945880015,
+    "clip_fraction_front": 0.3775145833333333,
+    "clip_fraction_rear": 0.37031041666666664,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 235.83203163248675
+   }
+  },
+  "0207_S3_missile_b2": {
+   "sha256": {
+    "mic.flac": "78e7d2371b74362613843b95d7fd8fe728d7d45242c6786b64f897fa12e8c524",
+    "clean.flac": "09ccdd27d519bc47d663834a0b1c331a7d7b1d43eb94e66baf050eb3ede9da13"
+   },
+   "meta": {
+    "scene_id": "0207_S3_missile_b2",
+    "tier": "S3",
+    "group": "missile",
+    "band": 2,
+    "noise_spl_db": 127.87713397094998,
+    "total_noise_rms_spl_db": 127.87713397094998,
+    "speech_spl_db": 114.37674191647315,
+    "snr_db": -13.500392054476833,
+    "clip_fraction_front": 0.32178125,
+    "clip_fraction_rear": 0.2701895833333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 731.870768507024
+   }
+  },
+  "0208_S3_gunfire_b2": {
+   "sha256": {
+    "mic.flac": "e3ab484315507be6d628d9138ef48d1c8a5f653205db342dc6784c7a9437e20b",
+    "clean.flac": "5d788c954a04171e6b406fc37ea40281ee7733084e8b597a5c9f6566762e711d"
+   },
+   "meta": {
+    "scene_id": "0208_S3_gunfire_b2",
+    "tier": "S3",
+    "group": "gunfire",
+    "band": 2,
+    "noise_spl_db": 117.9617156472182,
+    "total_noise_rms_spl_db": 118.18035063089226,
+    "speech_spl_db": 115.5929473245687,
+    "snr_db": -2.5874033063235657,
+    "clip_fraction_front": 0.0653,
+    "clip_fraction_rear": 0.062045833333333335,
+    "lost_fraction": 0.0010666666666666667,
+    "peak_pa_front": 440.00890178835687
+   }
+  },
+  "0209_S3_artillery_b2": {
+   "sha256": {
+    "mic.flac": "46be1f3664611662c0bba00ecc3c41186c4741da8343537ed76136368a7bb6da",
+    "clean.flac": "8287dfa0cb993e5ac85a5ccc91503fc1af7a27dbf0e800844949f8057987f539"
+   },
+   "meta": {
+    "scene_id": "0209_S3_artillery_b2",
+    "tier": "S3",
+    "group": "artillery",
+    "band": 2,
+    "noise_spl_db": 116.86596909027075,
+    "total_noise_rms_spl_db": 117.07097617258141,
+    "speech_spl_db": 115.77598563252695,
+    "snr_db": -1.2949905400544566,
+    "clip_fraction_front": 0.09271458333333334,
+    "clip_fraction_rear": 0.09525833333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 143.17388216770422
+   }
+  },
+  "0210_S3_jet_b3": {
+   "sha256": {
+    "mic.flac": "ae63396c8cc1dce04eb9fef2727d8d6b317ae59faa9b62214bab1e5c9f1321f6",
+    "clean.flac": "e2f7aa35f8a34580f80f97698a6a4bf92f327dfbb9cc6e8192a2dde67900a513"
+   },
+   "meta": {
+    "scene_id": "0210_S3_jet_b3",
+    "tier": "S3",
+    "group": "jet",
+    "band": 3,
+    "noise_spl_db": 133.60784632249354,
+    "total_noise_rms_spl_db": 133.60784632249354,
+    "speech_spl_db": 117.52453065490633,
+    "snr_db": -16.083315667587215,
+    "clip_fraction_front": 0.74908125,
+    "clip_fraction_rear": 0.7711291666666666,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1431.6849792494877
+   }
+  },
+  "0211_S3_helicopter_b3": {
+   "sha256": {
+    "mic.flac": "8d557638fc700340133d2d35bb2587b30d4fe9ad96e035454a7e72ab2066cb6c",
+    "clean.flac": "0adaa89932465d710391c052fd1cc55f194d892a23dfecd04d7aa3f2dd73bd74"
+   },
+   "meta": {
+    "scene_id": "0211_S3_helicopter_b3",
+    "tier": "S3",
+    "group": "helicopter",
+    "band": 3,
+    "noise_spl_db": 136.82548802004322,
+    "total_noise_rms_spl_db": 136.82535647323573,
+    "speech_spl_db": 115.21462999118208,
+    "snr_db": -21.61072648205365,
+    "clip_fraction_front": 0.7676291666666667,
+    "clip_fraction_rear": 0.7162166666666666,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1180.7369693325295
+   }
+  },
+  "0212_S3_tank_b3": {
+   "sha256": {
+    "mic.flac": "a98e84ed8b823df5f0fd287f242c546ba27f01e7b6d773c3dd71099cf24bfdb6",
+    "clean.flac": "2607fc594d7ab1967c5c012b65980361f80b2d2d1fc37ef2d0ef128b241e98c6"
+   },
+   "meta": {
+    "scene_id": "0212_S3_tank_b3",
+    "tier": "S3",
+    "group": "tank",
+    "band": 3,
+    "noise_spl_db": 135.03169575375287,
+    "total_noise_rms_spl_db": 135.03163486335959,
+    "speech_spl_db": 117.85047491421774,
+    "snr_db": -17.181159949141843,
+    "clip_fraction_front": 0.7911229166666667,
+    "clip_fraction_rear": 0.7831625,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1068.66158247187
+   }
+  },
+  "0213_S3_missile_b3": {
+   "sha256": {
+    "mic.flac": "8a25a80d192a24a6e88d0a0b10c63309d799fcc2e30cd66318e4bdee334b69d7",
+    "clean.flac": "12586505dc412536512a6ce7ddaad4c1f0e7b3c2dbc55f9c7102043abf8326cf"
+   },
+   "meta": {
+    "scene_id": "0213_S3_missile_b3",
+    "tier": "S3",
+    "group": "missile",
+    "band": 3,
+    "noise_spl_db": 133.46337984071715,
+    "total_noise_rms_spl_db": 133.46337984071715,
+    "speech_spl_db": 119.75091630453042,
+    "snr_db": -13.712463536186732,
+    "clip_fraction_front": 0.7204395833333334,
+    "clip_fraction_rear": 0.7243604166666666,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 615.5389562088255
+   }
+  },
+  "0214_S3_gunfire_b3": {
+   "sha256": {
+    "mic.flac": "c8c93f34a2df7c431605ce0b5e9ef30e1f73c676d7e3452c62f3971f88e0dd66",
+    "clean.flac": "1efc4a8d867c0e62d1014d5605386fb86fd4ae059d46330bb906269f3387bbc1"
+   },
+   "meta": {
+    "scene_id": "0214_S3_gunfire_b3",
+    "tier": "S3",
+    "group": "gunfire",
+    "band": 3,
+    "noise_spl_db": 124.59553910844974,
+    "total_noise_rms_spl_db": 124.91578471971204,
+    "speech_spl_db": 117.80221248808422,
+    "snr_db": -7.113572231627813,
+    "clip_fraction_front": 0.24140833333333334,
+    "clip_fraction_rear": 0.24733333333333332,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1056.3226327593757
+   }
+  },
+  "0215_S3_artillery_b3": {
+   "sha256": {
+    "mic.flac": "b0d89d543a8a8a51505b0dfe9c2e3afdad401732ce8092baefad3a712184b395",
+    "clean.flac": "dbaa3e7959c00356cb1f06ade448acfa802c9507ecbb1c5bc1822a669102b5bb"
+   },
+   "meta": {
+    "scene_id": "0215_S3_artillery_b3",
+    "tier": "S3",
+    "group": "artillery",
+    "band": 3,
+    "noise_spl_db": 122.56569803433484,
+    "total_noise_rms_spl_db": 123.75324671853144,
+    "speech_spl_db": 114.81039250730925,
+    "snr_db": -8.942854211222198,
+    "clip_fraction_front": 0.30146875,
+    "clip_fraction_rear": 0.323075,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 412.93046540673345
+   }
+  },
+  "0216_S1_jet_b0": {
+   "sha256": {
+    "mic.flac": "377b601cadb443873807d1f26a6fefaf58c610cea933c2c7af4eb3c37e21cf8d",
+    "clean.flac": "27389a0d821a438970b1fd3d3a48a14eb70a3f16fc818ad3dedfc2f81d0c3413"
+   },
+   "meta": {
+    "scene_id": "0216_S1_jet_b0",
+    "tier": "S1",
+    "group": "jet",
+    "band": 0,
+    "noise_spl_db": 92.69331939706474,
+    "total_noise_rms_spl_db": 92.69331939706474,
+    "speech_spl_db": 99.33837973868282,
+    "snr_db": 6.645060341618077,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 15.65566110333475
+   }
+  },
+  "0217_S1_helicopter_b0": {
+   "sha256": {
+    "mic.flac": "18dbbb1d84b00612f3c201be74297fbde8f99f4a584379b51ada3265c60135fc",
+    "clean.flac": "317a56f2459f53488c3f8eedb6be03b8b2986a693d2569c2d0c1c1e533856406"
+   },
+   "meta": {
+    "scene_id": "0217_S1_helicopter_b0",
+    "tier": "S1",
+    "group": "helicopter",
+    "band": 0,
+    "noise_spl_db": 90.71790166716977,
+    "total_noise_rms_spl_db": 90.96020089340215,
+    "speech_spl_db": 100.96676157231762,
+    "snr_db": 10.006560678915477,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 16.581345327726627
+   }
+  },
+  "0218_S1_tank_b0": {
+   "sha256": {
+    "mic.flac": "0426a0156694e7e8cba5c3d85d19585f548b06adca5289aaff03638d7ff32ba6",
+    "clean.flac": "088c464793f552bae5481594136e749e63823e9645a96958912516acb72f82f2"
+   },
+   "meta": {
+    "scene_id": "0218_S1_tank_b0",
+    "tier": "S1",
+    "group": "tank",
+    "band": 0,
+    "noise_spl_db": 102.58085775134171,
+    "total_noise_rms_spl_db": 102.58085775134171,
+    "speech_spl_db": 111.16978892779092,
+    "snr_db": 8.588931176449208,
+    "clip_fraction_front": 0.0072208333333333334,
+    "clip_fraction_rear": 0.0021375,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 62.82390294672102
+   }
+  },
+  "0219_S1_missile_b0": {
+   "sha256": {
+    "mic.flac": "b2efb276463f81d4ce50ca6100b584b8c62f0ba1aa07e2eb1c69a45eec47e6ad",
+    "clean.flac": "ed31d49fdcf967f3b519462c0f93e5dba3049d644b38693938027ccfeaf325e6"
+   },
+   "meta": {
+    "scene_id": "0219_S1_missile_b0",
+    "tier": "S1",
+    "group": "missile",
+    "band": 0,
+    "noise_spl_db": 95.00013046953751,
+    "total_noise_rms_spl_db": 95.00013046953751,
+    "speech_spl_db": 105.21001127540491,
+    "snr_db": 10.2098808058674,
+    "clip_fraction_front": 2.7083333333333332e-05,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 27.393878779871784
+   }
+  },
+  "0220_S1_gunfire_b0": {
+   "sha256": {
+    "mic.flac": "f092252fb18d592da1b48c8a4088980adfcba678a1e15fe2fb2580f7106fb90f",
+    "clean.flac": "ffac354a96d105a0cecbdb5465eda94a437efec00dd680f61b6a2f2b9e4f7a79"
+   },
+   "meta": {
+    "scene_id": "0220_S1_gunfire_b0",
+    "tier": "S1",
+    "group": "gunfire",
+    "band": 0,
+    "noise_spl_db": 91.46584491023405,
+    "total_noise_rms_spl_db": 91.60124732946619,
+    "speech_spl_db": 101.6288637320056,
+    "snr_db": 10.027616402539408,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 17.793826864353264
+   }
+  },
+  "0221_S1_artillery_b0": {
+   "sha256": {
+    "mic.flac": "3dbf64664c3df6472dc95e53abdd64db6a7f6c18c94d4c5f01291255ae41eeca",
+    "clean.flac": "323a7f050dfcbbbed6d88214ef58f56702335b1bf5a6afc3ea8e569e4917f0a7"
+   },
+   "meta": {
+    "scene_id": "0221_S1_artillery_b0",
+    "tier": "S1",
+    "group": "artillery",
+    "band": 0,
+    "noise_spl_db": 88.45402297892598,
+    "total_noise_rms_spl_db": 90.6820860330844,
+    "speech_spl_db": 99.88792179209844,
+    "snr_db": 9.205835759014036,
+    "clip_fraction_front": 0.0,
+    "clip_fraction_rear": 0.0,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 16.226599934786908
+   }
+  },
+  "0222_S1_jet_b1": {
+   "sha256": {
+    "mic.flac": "12fd25efba9bfcd45890e8b204916fc80b10637ea968c924161f2c3eac731c28",
+    "clean.flac": "38372e12087d4b4e8ceedcf06e63d289fffe03caf9aaebb7ee364f515298758e"
+   },
+   "meta": {
+    "scene_id": "0222_S1_jet_b1",
+    "tier": "S1",
+    "group": "jet",
+    "band": 1,
+    "noise_spl_db": 116.10103387039666,
+    "total_noise_rms_spl_db": 116.10103387039666,
+    "speech_spl_db": 117.57895915650654,
+    "snr_db": 1.4779252861098797,
+    "clip_fraction_front": 0.1227125,
+    "clip_fraction_rear": 0.09713125,
+    "lost_fraction": 0.0010666666666666667,
+    "peak_pa_front": 120.49122590461909
+   }
+  },
+  "0223_S1_helicopter_b1": {
+   "sha256": {
+    "mic.flac": "c66709edb4d85f14b66a2b05a88b3fc4fdb2075ccf50cc00bc774cce2e6177be",
+    "clean.flac": "9c9e5524cd61f7aae5ccafb8fe6a4ba66906abd1dba602d5e2060270d9a11f87"
+   },
+   "meta": {
+    "scene_id": "0223_S1_helicopter_b1",
+    "tier": "S1",
+    "group": "helicopter",
+    "band": 1,
+    "noise_spl_db": 114.97048122185842,
+    "total_noise_rms_spl_db": 114.97048122185842,
+    "speech_spl_db": 113.66851367015664,
+    "snr_db": -1.3019675517017788,
+    "clip_fraction_front": 0.028,
+    "clip_fraction_rear": 0.017989583333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 86.07874087092777
+   }
+  },
+  "0224_S1_tank_b1": {
+   "sha256": {
+    "mic.flac": "1b3a7f78a2e47f2dc89e3f8db568c0b642653e39e59bba92839b1370710d86c1",
+    "clean.flac": "0f1bf4851b5812c7e495be3f2b0f4dd02c3cc02bb27d8ab522f09ad0a05824ed"
+   },
+   "meta": {
+    "scene_id": "0224_S1_tank_b1",
+    "tier": "S1",
+    "group": "tank",
+    "band": 1,
+    "noise_spl_db": 115.13522968340398,
+    "total_noise_rms_spl_db": 115.13522968340398,
+    "speech_spl_db": 119.98424202099366,
+    "snr_db": 4.849012337589684,
+    "clip_fraction_front": 0.12202916666666666,
+    "clip_fraction_rear": 0.0850625,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 145.08735156669266
+   }
+  },
+  "0225_S1_missile_b1": {
+   "sha256": {
+    "mic.flac": "ca0f597b74e16075b162b3d0f5e9ecfae3fed0c86009a949f83a8b6f7374ee66",
+    "clean.flac": "a812a064f9002f820223a54d15bbead118ce3fbb6b8b0d23853cc989f869c555"
+   },
+   "meta": {
+    "scene_id": "0225_S1_missile_b1",
+    "tier": "S1",
+    "group": "missile",
+    "band": 1,
+    "noise_spl_db": 105.36807530576587,
+    "total_noise_rms_spl_db": 105.36807530576587,
+    "speech_spl_db": 109.26975677603791,
+    "snr_db": 3.901681470272038,
+    "clip_fraction_front": 0.0026770833333333334,
+    "clip_fraction_rear": 0.00031875,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 48.347624135917144
+   }
+  },
+  "0226_S1_gunfire_b1": {
+   "sha256": {
+    "mic.flac": "719f95dbdadb45a967cc92352942eb2b1852a34dcc08bcc3a0aaf54687618bc4",
+    "clean.flac": "81ef6615bdb9c3fc0c6c62a927b23a7b77cd2b3580177ff8671eb2dda0aac340"
+   },
+   "meta": {
+    "scene_id": "0226_S1_gunfire_b1",
+    "tier": "S1",
+    "group": "gunfire",
+    "band": 1,
+    "noise_spl_db": 110.71526549121492,
+    "total_noise_rms_spl_db": 110.77565733732264,
+    "speech_spl_db": 113.97051855673396,
+    "snr_db": 3.1948612194113224,
+    "clip_fraction_front": 0.02210625,
+    "clip_fraction_rear": 0.011814583333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 88.31473311089059
+   }
+  },
+  "0227_S1_artillery_b1": {
+   "sha256": {
+    "mic.flac": "2e175476bece73b08397135749a9943fb6ee4215f0dba053fb46c8624119b98c",
+    "clean.flac": "2c2ee71fe0b98828d6bbbba1e3ee4b81538a8ee964a91015ba1e2aaf00e537e1"
+   },
+   "meta": {
+    "scene_id": "0227_S1_artillery_b1",
+    "tier": "S1",
+    "group": "artillery",
+    "band": 1,
+    "noise_spl_db": 104.4166324808779,
+    "total_noise_rms_spl_db": 104.7714841182704,
+    "speech_spl_db": 108.99810580138957,
+    "snr_db": 4.226621683119177,
+    "clip_fraction_front": 0.0010395833333333333,
+    "clip_fraction_rear": 0.00028125,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 103.27365145248068
+   }
+  },
+  "0228_S1_jet_b2": {
+   "sha256": {
+    "mic.flac": "7cc757352050d3c8d6cbf260e93ea086c1b368be7e53a679097145f8ac37f9e3",
+    "clean.flac": "93427596f2669d92ad6f4eccfedb7f60c5824ff31304272d2dbab071a2f08ded"
+   },
+   "meta": {
+    "scene_id": "0228_S1_jet_b2",
+    "tier": "S1",
+    "group": "jet",
+    "band": 2,
+    "noise_spl_db": 126.90999070930785,
+    "total_noise_rms_spl_db": 126.90999070930785,
+    "speech_spl_db": 119.48271835323077,
+    "snr_db": -7.427272356077083,
+    "clip_fraction_front": 0.4823854166666667,
+    "clip_fraction_rear": 0.49985,
+    "lost_fraction": 0.0021333333333333334,
+    "peak_pa_front": 426.43262591463474
+   }
+  },
+  "0229_S1_helicopter_b2": {
+   "sha256": {
+    "mic.flac": "5dab425c3c7a8bc0ea5c7ebb430b262f8d8639e2186073bb00769f7224f1c2b1",
+    "clean.flac": "c72dfcca4a50a5b783cdf0201146cfad9441942d5c5a2655e4ba7b1bfa5fdf9c"
+   },
+   "meta": {
+    "scene_id": "0229_S1_helicopter_b2",
+    "tier": "S1",
+    "group": "helicopter",
+    "band": 2,
+    "noise_spl_db": 123.74609853183934,
+    "total_noise_rms_spl_db": 123.74609853183934,
+    "speech_spl_db": 116.84688823913743,
+    "snr_db": -6.899210292701909,
+    "clip_fraction_front": 0.20997708333333334,
+    "clip_fraction_rear": 0.14180416666666668,
+    "lost_fraction": 0.0032,
+    "peak_pa_front": 399.582170625357
+   }
+  },
+  "0230_S1_tank_b2": {
+   "sha256": {
+    "mic.flac": "37710222c9159bb37acf420bb4f99dd2cfdb97859fa34a76f43825e055ac6139",
+    "clean.flac": "5ff4b1425a1166cb90c0c047b4836865ce87ef0b6e8d498d66cc4a801bc6ce0b"
+   },
+   "meta": {
+    "scene_id": "0230_S1_tank_b2",
+    "tier": "S1",
+    "group": "tank",
+    "band": 2,
+    "noise_spl_db": 122.4538478520002,
+    "total_noise_rms_spl_db": 122.4538478520002,
+    "speech_spl_db": 117.76587212401466,
+    "snr_db": -4.687975727985531,
+    "clip_fraction_front": 0.24788541666666666,
+    "clip_fraction_rear": 0.27515208333333335,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 289.89798250001917
+   }
+  },
+  "0231_S1_missile_b2": {
+   "sha256": {
+    "mic.flac": "bbabcb453901dad346c9d6aea959859e218948c44db1d891c59a6aefcd28af64",
+    "clean.flac": "18e36c73651a6193b73382435d47e362dda2b3ac1eb521f0e79ee5cdd4b14ea9"
+   },
+   "meta": {
+    "scene_id": "0231_S1_missile_b2",
+    "tier": "S1",
+    "group": "missile",
+    "band": 2,
+    "noise_spl_db": 120.31630014818805,
+    "total_noise_rms_spl_db": 120.31630014818805,
+    "speech_spl_db": 119.23152149208981,
+    "snr_db": -1.084778656098237,
+    "clip_fraction_front": 0.17881875,
+    "clip_fraction_rear": 0.12672083333333334,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 233.4612744829684
+   }
+  },
+  "0232_S1_gunfire_b2": {
+   "sha256": {
+    "mic.flac": "3c9856a57e0113799edd96250eaccda1e9ee46904347031bb2cdf49ccdeab151",
+    "clean.flac": "dd9bc5e13d1090e80c578f277b03c704e1e8c7969924f3992358f5032a849e35"
+   },
+   "meta": {
+    "scene_id": "0232_S1_gunfire_b2",
+    "tier": "S1",
+    "group": "gunfire",
+    "band": 2,
+    "noise_spl_db": 115.38303050402179,
+    "total_noise_rms_spl_db": 115.59953885079833,
+    "speech_spl_db": 112.92710264585465,
+    "snr_db": -2.672436204943679,
+    "clip_fraction_front": 0.03565625,
+    "clip_fraction_rear": 0.022775,
+    "lost_fraction": 0.0021333333333333334,
+    "peak_pa_front": 258.2109722705557
+   }
+  },
+  "0233_S1_artillery_b2": {
+   "sha256": {
+    "mic.flac": "b857c88265de4066da79a7d4c75f1f0a8d96e5a024ffab3c48de9597f6856cc2",
+    "clean.flac": "52066329d9b2aa2f0faddd72fa07ec2630b6712e5949e80846ddbc463bbe6772"
+   },
+   "meta": {
+    "scene_id": "0233_S1_artillery_b2",
+    "tier": "S1",
+    "group": "artillery",
+    "band": 2,
+    "noise_spl_db": 122.14993335345342,
+    "total_noise_rms_spl_db": 124.24449458557802,
+    "speech_spl_db": 116.31337673792338,
+    "snr_db": -7.931117847654647,
+    "clip_fraction_front": 0.23806666666666668,
+    "clip_fraction_rear": 0.2625458333333333,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 440.5823486347624
+   }
+  },
+  "0234_S1_jet_b3": {
+   "sha256": {
+    "mic.flac": "7aa616c530cef7ae47275367dd3387f149bfc49e90fcce5d0fcb038235de2858",
+    "clean.flac": "1bfd048acd9f4ef9e70aaa2b00b04cfa34fcbc2017e8705354646ec4dbcb8bb4"
+   },
+   "meta": {
+    "scene_id": "0234_S1_jet_b3",
+    "tier": "S1",
+    "group": "jet",
+    "band": 3,
+    "noise_spl_db": 133.8637454202211,
+    "total_noise_rms_spl_db": 133.86406938944964,
+    "speech_spl_db": 119.53764943792143,
+    "snr_db": -14.326419951528209,
+    "clip_fraction_front": 0.7481541666666667,
+    "clip_fraction_rear": 0.7361229166666666,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1914.4156857134901
+   }
+  },
+  "0235_S1_helicopter_b3": {
+   "sha256": {
+    "mic.flac": "a4acff73b3bb148238ed7f80d02342d5a4b8ecf3ee1353a634c1a5ee64a447c1",
+    "clean.flac": "e45ff9b81fa2f0c0c366d03e1e9ce522dca65b56fb9c3d86ba60946428e278d6"
+   },
+   "meta": {
+    "scene_id": "0235_S1_helicopter_b3",
+    "tier": "S1",
+    "group": "helicopter",
+    "band": 3,
+    "noise_spl_db": 130.2528096752654,
+    "total_noise_rms_spl_db": 130.2528096752654,
+    "speech_spl_db": 120.8149376353013,
+    "snr_db": -9.437872039964105,
+    "clip_fraction_front": 0.53895,
+    "clip_fraction_rear": 0.5353875,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 751.6803001912058
+   }
+  },
+  "0236_S1_tank_b3": {
+   "sha256": {
+    "mic.flac": "4d4b9accea166d5a4b9e8855467d5fd8209b572bcca3ac976789882412d99175",
+    "clean.flac": "1e0c14c781761abd57c70d3da40b5a4d884e75252731deb93f5a63164f0e8fb8"
+   },
+   "meta": {
+    "scene_id": "0236_S1_tank_b3",
+    "tier": "S1",
+    "group": "tank",
+    "band": 3,
+    "noise_spl_db": 131.3535507215814,
+    "total_noise_rms_spl_db": 131.3535507215814,
+    "speech_spl_db": 117.10415771954607,
+    "snr_db": -14.249393002035333,
+    "clip_fraction_front": 0.6630125,
+    "clip_fraction_rear": 0.6303625,
+    "lost_fraction": 0.0021333333333333334,
+    "peak_pa_front": 523.2958229244384
+   }
+  },
+  "0237_S1_missile_b3": {
+   "sha256": {
+    "mic.flac": "8c87f9428a87c37dcadaa405e3a2325ab0a3234f34b3fd612f03bfa4172b81b0",
+    "clean.flac": "871e4e04424bc02bf8fc9cc245ac389fb673f0d44014c63fc6d83ed3c0771ba2"
+   },
+   "meta": {
+    "scene_id": "0237_S1_missile_b3",
+    "tier": "S1",
+    "group": "missile",
+    "band": 3,
+    "noise_spl_db": 130.49471014191005,
+    "total_noise_rms_spl_db": 130.49471014191005,
+    "speech_spl_db": 117.82443731239158,
+    "snr_db": -12.670272829518467,
+    "clip_fraction_front": 0.5464020833333333,
+    "clip_fraction_rear": 0.42525625,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1337.9465289849736
+   }
+  },
+  "0238_S1_gunfire_b3": {
+   "sha256": {
+    "mic.flac": "bbbcfbbe7742bb7c04c4500435bb3449ad67ecd441b84063b24b340a5f8bc774",
+    "clean.flac": "c36de90fc145f83dc86bfadbef9d81774d396516b9f08265598fd1f67368358d"
+   },
+   "meta": {
+    "scene_id": "0238_S1_gunfire_b3",
+    "tier": "S1",
+    "group": "gunfire",
+    "band": 3,
+    "noise_spl_db": 132.1976539300063,
+    "total_noise_rms_spl_db": 132.4539653719454,
+    "speech_spl_db": 117.24891768640862,
+    "snr_db": -15.205047685536783,
+    "clip_fraction_front": 0.7223229166666667,
+    "clip_fraction_rear": 0.7142541666666666,
+    "lost_fraction": 0.0010666666666666667,
+    "peak_pa_front": 1115.7571544338493
+   }
+  },
+  "0239_S1_artillery_b3": {
+   "sha256": {
+    "mic.flac": "d9bf516fdcfe421fdbff8017841d39c35a41ab30eaa77d23185afa213bf9c5d4",
+    "clean.flac": "37e464a915d1787b3c110772eef81c3e633a16bf548052f2781117d6f4a98929"
+   },
+   "meta": {
+    "scene_id": "0239_S1_artillery_b3",
+    "tier": "S1",
+    "group": "artillery",
+    "band": 3,
+    "noise_spl_db": 130.26346037473627,
+    "total_noise_rms_spl_db": 131.5192195233123,
+    "speech_spl_db": 115.88486961727672,
+    "snr_db": -15.634349906035581,
+    "clip_fraction_front": 0.5810104166666666,
+    "clip_fraction_rear": 0.55978125,
+    "lost_fraction": 0.0,
+    "peak_pa_front": 1054.3576968399805
+   }
+  }
+ }
+}

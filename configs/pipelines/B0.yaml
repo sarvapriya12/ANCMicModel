@@ -1,0 +1,4 @@
+# Baseline B0 = the legacy system: hard-gated NLMS -> FastEnhancer-B -> x0.8.
+pipeline:
+  frontend:
+    mode: robust

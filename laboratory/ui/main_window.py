@@ -2,6 +2,8 @@ import collections
 import os
 import sys
 import threading
+import time
+from collections import deque
 
 import numpy as np
 import sounddevice as sd
@@ -25,16 +27,24 @@ from PyQt6.QtWidgets import (
     QWidget,
 )
 
-# Local imports
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from audio.capture import AudioCapture
-from dsp.pipeline import HighSPLPipeline
-from visualization.plots import (
+# Local imports: the repo root goes FIRST on sys.path and the lab packages are
+# imported by their full names, so a site-packages "audio"/"dsp" can't shadow them.
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
+
+from highspl.config import project_root
+from highspl.telemetry import NoiseFloorTracker, latency_budget
+from laboratory.audio.capture import AudioCapture
+from laboratory.dsp.pipeline import HighSPLPipeline
+from laboratory.visualization.plots import (
     CoherencePlot,
     DualWaveformPlot,
     LatencyBarChart,
     SpectrumPlot,
 )
+
+NN_LATENCY_SAMPLES = 512  # neural-stage algorithmic delay, measured by the evaluator
 
 
 class MainWindow(QMainWindow):
@@ -46,6 +56,12 @@ class MainWindow(QMainWindow):
         self.audio_capture = None
         self.dsp_pipeline = HighSPLPipeline()
         self.is_running = False
+        self.worker_thread = None
+        self._stop_event = threading.Event()
+        self._pending_mode = None  # applied by the worker between blocks
+        self.noise_in = NoiseFloorTracker()
+        self.noise_out = NoiseFloorTracker()
+        self._health = {"healthy": True, "clip": 0.0, "frozen": 0.0, "p99_ms": 0.0}
 
         # Thread-safe metrics ring buffer (audio thread pushes, UI timer polls)
         self.metrics_buffer = collections.deque(maxlen=10)
@@ -69,6 +85,7 @@ class MainWindow(QMainWindow):
 
         self._build_ui()
         self._populate_devices()
+        self._sync_mode_combo()
 
     def _build_ui(self):
         main_widget = QWidget()
@@ -181,6 +198,9 @@ class MainWindow(QMainWindow):
                 "VSS (Academic)",
                 "CLASSICAL (Baseline)",
                 "FDAF (Battlefield)",
+                "DIFF (Differential)",
+                "ADIFF (Adaptive Differential)",
+                "GSC (Beamformer + Canceller)",
                 "BYPASS (AI Only)",
             ]
         )
@@ -254,17 +274,22 @@ class MainWindow(QMainWindow):
         right_layout.addSpacing(16)
 
         # Metrics Display
-        self.lbl_nr = QLabel("Noise Reduction: -- dB")
+        self.lbl_nr = QLabel("Noise floor in pauses: -- dBFS")
         self.lbl_nr.setStyleSheet("font-size: 18px; color: #4CAF50; font-weight: bold;")
         right_layout.addWidget(self.lbl_nr)
 
-        self.lbl_lat = QLabel("Total Latency: -- ms")
+        self.lbl_lat = QLabel("Latency (lower bound): -- ms")
         self.lbl_lat.setStyleSheet("font-size: 14px; color: #7ec8e3;")
         right_layout.addWidget(self.lbl_lat)
 
         self.lbl_lat_detail = QLabel("DSP: -- ms  |  AI: -- ms")
         self.lbl_lat_detail.setStyleSheet("font-size: 12px; color: #aaa;")
         right_layout.addWidget(self.lbl_lat_detail)
+
+        self.lbl_health = QLabel("Health: --")
+        self.lbl_health.setStyleSheet("font-size: 12px; color: #aaa;")
+        self.lbl_health.setWordWrap(True)
+        right_layout.addWidget(self.lbl_health)
 
         right_layout.addStretch()
         top_splitter.addWidget(right_panel)
@@ -286,6 +311,17 @@ class MainWindow(QMainWindow):
         bottom_layout.addWidget(self.plot_spec, 0, 1)
         bottom_layout.addWidget(self.plot_coh, 1, 0)
         bottom_layout.addWidget(self.plot_lat, 1, 1)
+
+    def _sync_mode_combo(self):
+        """Show the pipeline's real stage-1 mode (the preset decides the default)."""
+        mode = self.dsp_pipeline.dsp_mode
+        for i in range(self.cb_dsp_mode.count()):
+            if self.cb_dsp_mode.itemText(i).split(" ")[0] == mode:
+                self.cb_dsp_mode.setCurrentIndex(i)
+                break
+        self.setWindowTitle(
+            f"HighSPL Dual Mic Speech Enhancement Laboratory - preset {self.dsp_pipeline.preset}"
+        )
 
     def _populate_devices(self):
         self.cb_mic_a.clear()
@@ -346,6 +382,12 @@ class MainWindow(QMainWindow):
             rms = np.sqrt(np.mean(recording**2))
             rms_db = 20 * np.log10(rms + 1e-10)
             clipping = "YES - CLIPPING DETECTED" if peak > 0.95 else "No"
+            # Noise floor = quietest 10 % of 20 ms windows (a muted mic is fine, not a crash)
+            win = 960
+            frames = recording[: (recording.size // win) * win].reshape(-1, win)
+            floor_db = 10 * np.log10(
+                np.percentile(np.mean(frames**2, axis=1), 10) + 1e-20
+            )
 
             QMessageBox.information(
                 self,
@@ -354,14 +396,14 @@ class MainWindow(QMainWindow):
                 f"Peak Amplitude: {peak:.4f}\n"
                 f"RMS Level: {rms_db:.1f} dB\n"
                 f"Clipping: {clipping}\n"
-                f"Noise Floor: {20 * np.log10(np.min(np.abs(recording[recording != 0])) + 1e-10):.1f} dB",
+                f"Noise Floor: {floor_db:.1f} dBFS",
             )
         except Exception as e:  # noqa: BLE001
             msg.accept()
             QMessageBox.critical(self, "Error", f"Failed to test microphone:\n{e!s}")
 
     def test_output_audio(self):
-        path = "D:/SIH/ANCMicModel/output_sample/live_noisy_clean.wav"
+        path = str(project_root() / "output_sample" / "live_noisy_clean.wav")
         if not os.path.exists(path):
             QMessageBox.warning(self, "File Not Found", f"Could not find:\n{path}")
             return
@@ -376,7 +418,7 @@ class MainWindow(QMainWindow):
         sd.stop()
         if text == "Custom WAV...":
             path, _ = QFileDialog.getOpenFileName(
-                self, "Select Noise WAV", "D:/SIH", "Audio (*.wav)"
+                self, "Select Noise WAV", str(project_root()), "Audio (*.wav)"
             )
             if path:
                 try:
@@ -392,8 +434,11 @@ class MainWindow(QMainWindow):
             self.cb_noise.setItemText(1, "Custom WAV...")
 
     def on_dsp_changed(self, text):
-        mode = text.split(" ")[0]  # Gets "ROBUST", "VSS", or "BYPASS"
-        self.dsp_pipeline.dsp_mode = mode
+        mode = text.split(" ")[0]  # "ROBUST", "VSS", "GSC", "BYPASS", ...
+        if self.is_running:
+            self._pending_mode = mode  # the worker switches between blocks
+        else:
+            self.dsp_pipeline.dsp_mode = mode
 
     def trigger_save_session(self):
         if not self.is_running:
@@ -461,6 +506,12 @@ class MainWindow(QMainWindow):
                 self.audio_capture = None
                 return
 
+            # Every session starts from clean state (stale NLMS weights / model
+            # caches from a previous device selection must not leak in).
+            self.dsp_pipeline.reset()
+            self.noise_in.reset()
+            self.noise_out.reset()
+            self._stop_event.clear()
             self.is_running = True
             self.lbl_status.setText("RUNNING")
             self.lbl_status.setStyleSheet(
@@ -480,9 +531,15 @@ class MainWindow(QMainWindow):
             self.worker_thread.start()
         else:
             self.is_running = False
+            self._stop_event.set()
             self.update_timer.stop()
             if self.audio_capture:
-                self.audio_capture.stop()
+                self.audio_capture.stop()  # also wakes a worker blocked on the queue
+            if self.worker_thread is not None:
+                self.worker_thread.join(
+                    timeout=1.0
+                )  # never two workers on one pipeline
+                self.worker_thread = None
             self.lbl_status.setText("OFFLINE")
             self.lbl_status.setStyleSheet(
                 "font-size: 16px; font-weight: bold; color: #ff4444; padding: 4px;"
@@ -493,42 +550,70 @@ class MainWindow(QMainWindow):
             )
 
     def _processing_worker(self):
-        """Runs in a background thread. Never touches the UI directly."""
-        import time
-
+        """Runs in a background thread. Never touches the UI directly and never
+        dies silently: any error is contained, counted and shown as ``Health``."""
         last_log = time.time()
+        block_ms = deque(maxlen=400)
+        frozen = deque(maxlen=200)
+        clipped = deque(maxlen=200)
 
-        while self.is_running:
-            mic_a, mic_b = self.audio_capture.get_frames()
+        while self.is_running and not self._stop_event.is_set():
+            capture = self.audio_capture
+            if capture is None:
+                break
+            mic_a, mic_b, gap = capture.get_frames(timeout=0.1)
             if mic_a is None:
                 continue
+            if self._pending_mode is not None:
+                self.dsp_pipeline.dsp_mode = self._pending_mode
+                self._pending_mode = None
 
-            if self.chk_enhance.isChecked():
-                metrics = self.dsp_pipeline.process(mic_a, mic_b)
-                self.audio_capture.push_output(metrics["enhanced_audio"], metrics)
-            else:
-                metrics = {
-                    "waveform": mic_a,
-                    "waveform_ref": mic_b,
-                    "enhanced_audio": mic_a,
-                    "noise_reduction_db": 0.0,
-                    "coherence": 0.0,
-                    "latency": {"dsp": 0.0, "ai": 0.0},
+            try:
+                if self.chk_enhance.isChecked():
+                    t0 = time.perf_counter()
+                    metrics = self.dsp_pipeline.process(mic_a, mic_b)
+                    block_ms.append((time.perf_counter() - t0) * 1000.0)
+                    tele = metrics["telemetry"]
+                    frozen.append(1.0 if tele.get("adaptation_frozen") else 0.0)
+                    clipped.append(tele.get("clip_front", 0.0))
+                    capture.push_output(metrics["enhanced_audio"], metrics)
+                else:
+                    metrics = {
+                        "waveform": mic_a,
+                        "waveform_ref": mic_b,
+                        "enhanced_audio": mic_a,
+                        "noise_reduction_db": 0.0,
+                        "coherence": 0.0,
+                        "latency": {"dsp": 0.0, "ai": 0.0},
+                        "telemetry": {"healthy": True},
+                    }
+                    capture.push_output(mic_a)
+                self.noise_in.update(mic_a)
+                self.noise_out.update(metrics["enhanced_audio"])
+                self._health = {
+                    "healthy": bool(metrics["telemetry"].get("healthy", True))
+                    and not gap,
+                    "clip": float(np.mean(clipped)) if clipped else 0.0,
+                    "frozen": float(np.mean(frozen)) if frozen else 0.0,
+                    "p99_ms": float(np.percentile(block_ms, 99)) if block_ms else 0.0,
+                    "xruns": dict(capture.stats),
                 }
-                self.audio_capture.push_output(mic_a)
+                self.metrics_buffer.append(metrics)
+            except Exception as e:  # noqa: BLE001 - keep the audio thread alive
+                self._health = {**self._health, "healthy": False, "error": str(e)}
+                continue
 
-            # Push to ring buffer for UI timer to poll
-            self.metrics_buffer.append(metrics)
-
-            # Telemetry logging (1 Hz)
             now = time.time()
             if now - last_log > 1.0:
-                va = np.max(np.abs(mic_a))
-                vb = np.max(np.abs(mic_b))
-                speech = (va > vb * 1.5) and (va > 0.05)
+                va = float(np.max(np.abs(mic_a)))
+                vb = float(np.max(np.abs(mic_b)))
                 lat = metrics["latency"]
                 print(
-                    f"[TELEMETRY] A:{va:.4f} B:{vb:.4f} Voice:{speech} NR:{metrics['noise_reduction_db']:.1f}dB DSP:{lat['dsp']:.1f}ms AI:{lat['ai']:.1f}ms",
+                    f"[TELEMETRY] A:{va:.4f} B:{vb:.4f} "
+                    f"floor_in:{self.noise_in.floor_dbfs:.1f} "
+                    f"floor_out:{self.noise_out.floor_dbfs:.1f} "
+                    f"DSP:{lat['dsp']:.1f}ms AI:{lat['ai']:.1f}ms "
+                    f"xruns:{capture.stats['input_overflows']}",
                     flush=True,
                 )
                 last_log = now
@@ -563,16 +648,37 @@ class MainWindow(QMainWindow):
         self.meter_b.setValue(int(vb))
         self.meter_out.setValue(int(vo))
 
-        # Text metrics
-        nr = metrics["noise_reduction_db"]
+        # Text metrics (honest versions)
         dsp_lat = metrics["latency"]["dsp"]
         ai_lat = metrics["latency"]["ai"]
-        total_lat = dsp_lat + ai_lat + 10.6
-
-        self.lbl_nr.setText(f"Noise Reduction: {nr:.1f} dB")
-        self.lbl_lat.setText(f"Total Latency: {total_lat:.1f} ms")
+        f_in, f_out = self.noise_in.floor_dbfs, self.noise_out.floor_dbfs
+        if np.isfinite(f_in) and np.isfinite(f_out):
+            self.lbl_nr.setText(
+                f"Noise floor: {f_in:.0f} -> {f_out:.0f} dBFS ({f_out - f_in:+.0f} dB)"
+            )
+        bs = self.audio_capture.blocksize if self.audio_capture else 512
+        budget = latency_budget(
+            bs,
+            model_latency_samples=NN_LATENCY_SAMPLES,
+            compute_ms=dsp_lat + ai_lat,
+        )
+        self.lbl_lat.setText(
+            f"Latency (lower bound): {budget['total_lower_bound_ms']:.1f} ms"
+        )
         self.lbl_lat_detail.setText(
-            f"DSP: {dsp_lat:.1f} ms  |  AI: {ai_lat:.1f} ms  |  Buffer: 10.6 ms"
+            f"capture {budget['capture_block_ms']:.1f} + model {budget['model_ms']:.1f} + "
+            f"DSP {dsp_lat:.1f} + AI {ai_lat:.1f} + "
+            f"playback {budget['playback_block_ms']:.1f} ms (excl. OS/driver)"
+        )
+        h = self._health
+        x = h.get("xruns", {})
+        flag = "OK" if h.get("healthy", True) else "ATTENTION"
+        self.lbl_health.setText(
+            f"Health: {flag}  |  xruns in/out: {x.get('input_overflows', 0)}/"
+            f"{x.get('output_underflows', 0)}  drops: {x.get('queue_drops', 0)}  |  "
+            f"clip: {h.get('clip', 0) * 100:.1f}%  frozen: {h.get('frozen', 0) * 100:.0f}%  "
+            f"p99 block: {h.get('p99_ms', 0):.1f} ms"
+            + (f"  | error: {h['error']}" if "error" in h else "")
         )
 
         # Graphs

@@ -1,0 +1,8 @@
+# adiff front-end plus level management.
+pipeline:
+  frontend:
+    mode: adiff
+  level:
+    output_gain_db: 0.0
+    agc_enabled: true
+    limiter_enabled: true

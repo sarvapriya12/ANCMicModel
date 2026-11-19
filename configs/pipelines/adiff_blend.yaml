@@ -1,0 +1,6 @@
+pipeline:
+  frontend:
+    mode: adiff
+    blend: true
+  level:
+    output_gain_db: 0.0
